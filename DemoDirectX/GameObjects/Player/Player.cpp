@@ -4,9 +4,9 @@
 
 Player::Player()
 {
-    mAnimationStanding = new Animation("Resources/megamanPlayerState/dungYen.png", 3, 1, 3, 0.15f);
-    mAnimationJumping = new Animation("Resources/mario/nhay.png", 7, 1, 7, 0.15f);
-    mAnimationRunning = new Animation("Resources/mario/chay.png", 11, 1, 11, 0.15f);
+    mAnimationStanding = new Animation("Resources/megamanPlayerState/standing", 3, 1, 3, 0.001f);
+    mAnimationJumping = new Animation("Resources/megamanPlayerState/jump.png", 7, 1, 7, 0.001f);
+    mAnimationRunning = new Animation("Resources/megamanPlayerState/run.png", 11, 1, 11, 0.001f);
 
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
@@ -43,7 +43,7 @@ void Player::HandleKeyboard(std::map<int, bool> keys)
 
 void Player::OnKeyPressed(int key)
 {
-    if (key == VK_SPACE)
+    if (key == 0x53)
     {
         if (allowJump)
         {
@@ -59,7 +59,7 @@ void Player::OnKeyPressed(int key)
 
 void Player::OnKeyUp(int key)
 {
-    if (key == VK_SPACE)
+    if (key == 0x53)
         allowJump = true;
 }
 

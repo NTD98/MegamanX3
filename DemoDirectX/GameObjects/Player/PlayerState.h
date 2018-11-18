@@ -12,7 +12,12 @@ public:
         Running,
         Falling,
         Jumping,
-        Die
+        Die,
+		HitAndJump,
+		HitAndRun,
+		HitAndSpeedRun,
+		Power,
+		Grounding
     };
 
     ~PlayerState();

@@ -24,13 +24,13 @@ RECT Entity::GetBound()
 
 void Entity::OnSetPosition(D3DXVECTOR3 pos)
 {
-
+	
 }
 
 void Entity::Update(float dt)
 {
     //velocity = pixel / s
-    posX += vx * dt;
+	posX += vx * dt ;
     posY += vy * dt;
 }
 
@@ -49,7 +49,7 @@ void Entity::SetPosition(D3DXVECTOR3 pos)
     this->posX = pos.x;
     this->posY = pos.y; 
 
-    OnSetPosition(pos);
+    //OnSetPosition(pos);
 }
 
 void Entity::AddPosition(D3DXVECTOR3 pos)
