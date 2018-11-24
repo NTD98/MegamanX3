@@ -15,11 +15,6 @@ PlayerStandingState::~PlayerStandingState()
 {
 }
 
-void PlayerStandingState::Update(float dt)
-{
-
-}
-
 void PlayerStandingState::HandleKeyboard(std::map<int, bool> keys)
 {
     if (keys[VK_LEFT] || keys[VK_RIGHT])

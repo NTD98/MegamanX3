@@ -1,6 +1,8 @@
 #include "PlayerJumpingState.h"
 #include "PlayerStandingState.h"
 #include "PlayerFallingState.h"
+#include "PlayerClingingState.h"
+#include "../../GameComponents/GameCollision.h"
 #include "../../GameDefines/GameDefine.h"
 
 PlayerJumpingState::PlayerJumpingState(PlayerData *playerData)
@@ -8,8 +10,8 @@ PlayerJumpingState::PlayerJumpingState(PlayerData *playerData)
     this->mPlayerData = playerData;
     this->mPlayerData->player->SetVy(Define::PLAYER_MIN_JUMP_VELOCITY);
 
-    acceleratorY = 5.0f;
-    acceleratorX = 6.0f;
+    acceleratorY = 15.0f;
+    acceleratorX = 14.0f;
 
     noPressed = false;
 }
@@ -97,6 +99,51 @@ void PlayerJumpingState::HandleKeyboard(std::map<int, bool> keys)
     else
     {
         noPressed = true;
+    }
+}
+
+void PlayerJumpingState::OnCollision(Entity *impactor, Entity::SideCollisions side, Entity::CollisionReturn data)
+ {
+    switch (side)
+    {
+        case Entity::Left:
+        {
+            this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left, 0);
+            this->mPlayerData->player->SetVx(0);
+			if (noPressed == false)
+			{
+				this->mPlayerData->player->SetVy(0);
+				this->mPlayerData->player->SetState(new PlayerClingingState(this->mPlayerData));
+			}
+            break;
+        }     
+
+        case Entity::Right:
+        {
+            this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left), 0);
+            this->mPlayerData->player->SetVx(0);
+			if (noPressed == false)
+			{
+
+				this->mPlayerData->player->SetState(new PlayerClingingState(this->mPlayerData));
+			}
+            break;
+        }
+
+        case Entity::TopRight: case Entity::TopLeft: case Entity::Top:
+        {          
+            this->mPlayerData->player->AddPosition(0, data.RegionCollision.bottom - data.RegionCollision.top);            
+            this->mPlayerData->player->SetVy(0);
+            break;
+        }
+
+        case Entity::BottomRight: case Entity::BottomLeft: case Entity::Bottom:
+        {
+            this->mPlayerData->player->AddPosition(0, -(data.RegionCollision.bottom - data.RegionCollision.top));
+        }
+
+        default:
+            break;
     }
 }
 

@@ -127,7 +127,7 @@ void Sprite::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
         mRotationCenter = D3DXVECTOR2(inPosition.x, inPosition.y);// cho phep quay giua hinh
 
     D3DXMatrixTransformation2D(&mMatrix, &scalingScenter, 0, &inCcale, &inRotationCenter,
-        inRotation, &inTranslation);
+                                inRotation, &inTranslation);
 
     D3DXMATRIX oldMatrix;
     mSpriteHandler->GetTransform(&oldMatrix);

@@ -1,6 +1,7 @@
 #pragma once
 #include "PlayerData.h"
 #include "../Entity.h"
+#include "../../GameComponents/GameCollision.h"
 #include <map>
 
 class PlayerState
@@ -13,11 +14,9 @@ public:
         Falling,
         Jumping,
         Die,
-		HitAndJump,
-		HitAndRun,
-		HitAndSpeedRun,
-		Power,
-		Grounding
+		Spawning,
+		Clinging,
+		ClingingJ
     };
 
     ~PlayerState();
@@ -26,7 +25,9 @@ public:
 
     virtual void HandleKeyboard(std::map<int, bool> keys);
 
-    //ham thuan ao bat buoc phai ke thua
+    //side va cham voi player
+    virtual void OnCollision(Entity *impactor, Entity::SideCollisions side, Entity::CollisionReturn data);
+
     virtual StateName GetState() = 0;
 
 protected:

@@ -1,13 +1,15 @@
 #include "PlayerFallingState.h"
 #include "Player.h"
 #include "PlayerStandingState.h"
+#include "PlayerClingingState.h"
+#include "../../GameComponents/GameCollision.h"
 #include "../../GameDefines/GameDefine.h"
 
 PlayerFallingState::PlayerFallingState(PlayerData *playerData)
 {
     this->mPlayerData = playerData;
-    acceleratorY = 10.0f;
-    acceleratorX = 3.0f;
+    acceleratorY = 15.0f;
+    acceleratorX = 20.0f;
 
     if (this->mPlayerData->player->GetVx() == 0)
     {
@@ -51,6 +53,7 @@ void PlayerFallingState::HandleKeyboard(std::map<int, bool> keys)
                 this->mPlayerData->player->SetVx(Define::PLAYER_MAX_RUNNING_SPEED);
             }
         }
+		
     }
     else if (keys[VK_LEFT])
     {
@@ -71,6 +74,59 @@ void PlayerFallingState::HandleKeyboard(std::map<int, bool> keys)
     else
     {
         isLeftOrRightKeyPressed = false;    
+    }
+}
+
+void PlayerFallingState::OnCollision(Entity *impactor, Entity::SideCollisions side, Entity::CollisionReturn data)
+{
+    //lay phia va cham so voi player
+    //GameCollision::SideCollisions side = GameCollision::getSideCollision(this->mPlayerData->player, data);
+
+    switch (side)
+    {
+        case Entity::Left:
+            if (mPlayerData->player->getMoveDirection() == Player::MoveToLeft)
+            {
+                this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left, 0);
+                this->mPlayerData->player->SetVx(0);
+				if(isLeftOrRightKeyPressed)
+				this->mPlayerData->player->SetState(new PlayerClingingState(this->mPlayerData));
+            }
+            break;
+
+        case Entity::Right:
+            if (mPlayerData->player->getMoveDirection() == Player::MoveToRight)
+            {
+                this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left), 0);
+                this->mPlayerData->player->SetVx(0);
+				if (isLeftOrRightKeyPressed)
+					this->mPlayerData->player->SetState(new PlayerClingingState(this->mPlayerData));
+            }
+            break;
+
+        case Entity::Top:
+            break;
+
+        case Entity::Bottom:
+        case Entity::BottomRight:
+        case Entity::BottomLeft:
+            if (data.RegionCollision.right - data.RegionCollision.left >= 8.0f)
+            {
+                this->mPlayerData->player->AddPosition(0, -(data.RegionCollision.bottom - data.RegionCollision.top));
+
+                if (isLeftOrRightKeyPressed)
+                {
+                    this->mPlayerData->player->SetState(new PlayerRunningState(this->mPlayerData));
+                }
+                else
+                {
+                    this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+                }
+            }
+            return;
+
+        default:
+            break;
     }
 }
 

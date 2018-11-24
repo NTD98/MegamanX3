@@ -81,7 +81,7 @@ int initWindow(int cmdShow)
 
     if (InitDevice())
     {
-        Game *game = new Game(60);
+        Game *game = new Game(FPS);
     }
 
     return 0;

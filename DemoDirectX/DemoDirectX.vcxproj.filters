@@ -38,6 +38,9 @@
     <Filter Include="FrameWork\GameDefines">
       <UniqueIdentifier>{9b5a9b8a-da07-445e-8ec2-51c3cb648f6e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\GameObjects\MapObjects">
+      <UniqueIdentifier>{47b142cd-294b-49c2-81a6-4db7d2457b95}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -156,6 +159,33 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Entity.cpp">
       <Filter>FrameWork\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameCollision.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\QuadTree.cpp">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\Brick.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\GameObject.cpp">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerSpawingState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerClingingState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerClingingJState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -284,6 +314,33 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Entity.h">
       <Filter>FrameWork\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameCollision.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\QuadTree.h">
+      <Filter>FrameWork\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\Brick.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\BrickGold.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\BrickNormal.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\GameObject.h">
+      <Filter>FrameWork\GameObjects\MapObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerSpawingState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerClingingState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerClingingJState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

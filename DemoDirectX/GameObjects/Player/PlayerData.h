@@ -1,5 +1,4 @@
 #pragma once
-//pre define
 class PlayerState;
 class Player;
 

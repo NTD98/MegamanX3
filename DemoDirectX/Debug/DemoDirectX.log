@@ -1,8 +1,5 @@
-﻿  Player.cpp
-c:\users\danhypc\documents\github\megamanx3\demodirectx\gameobjects\player\player.cpp(93): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\danhypc\documents\github\megamanx3\demodirectx\gameobjects\player\player.cpp(95): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\danhypc\documents\github\megamanx3\demodirectx\gameobjects\player\player.cpp(122): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\documents\github\megamanx3\demodirectx\gameobjects\player\player.cpp(123): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  LINK : C:\Users\DanhyPC\Documents\GitHub\MegamanX3\Debug\DemoDirectX.exe not found or not built by the last incremental link; performing full link
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Documents\GitHub\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Documents\GitHub\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+﻿  PlayerRunningState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(82): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(96): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(107): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  DemoDirectX.vcxproj -> C:\Users\NTD\Desktop\colision\Debug\DemoDirectX.exe

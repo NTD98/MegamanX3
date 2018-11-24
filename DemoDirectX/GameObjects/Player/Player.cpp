@@ -1,18 +1,26 @@
 #include "Player.h"
-#include "PlayerStandingState.h"
+#include "PlayerFallingState.h"
 #include "PlayerJumpingState.h"
-
+#include "PlayerSpawingState.h"
+#include "PlayerStandingState.h"
+#include "PlayerClingingState.h"
+#include "PlayerClingingJState.h"
+#include "../../GameComponents/GameCollision.h"
+float check = 0.0;
+bool isDone = false;
 Player::Player()
 {
-    mAnimationStanding = new Animation("Resources/megamanPlayerState/standing", 3, 1, 3, 0.001f);
-    mAnimationJumping = new Animation("Resources/megamanPlayerState/jump.png", 7, 1, 7, 0.001f);
-    mAnimationRunning = new Animation("Resources/megamanPlayerState/run.png", 11, 1, 11, 0.001f);
-
+    mAnimationStanding = new Animation("Resources/megaman/pic10.png", 3, 1, 3, 0.2f);
+    mAnimationJumping = new Animation("Resources/megaman/pic4.png", 7, 1, 7, 0.1f);
+    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.15f);
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.15f);	
+	mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
+	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
     this->vy = 0;
-    this->SetState(new PlayerStandingState(this->mPlayerData));
+    this->SetState(new PlayerSpawingState(this->mPlayerData));
 
     allowJump = true;
 }
@@ -22,9 +30,18 @@ Player::~Player()
 }
 
 void Player::Update(float dt)
-{    
+{
+	
+	if (dt >= 1 / 60)
+	{
+		check += dt;
+	}
     mCurrentAnimation->Update(dt);
-
+	if (check >= 0.15 * 7 && isDone == false)
+	{
+		this->SetState(new PlayerStandingState(this->mPlayerData));
+		isDone = true;
+	}
     if (this->mPlayerData->state)
     {
         this->mPlayerData->state->Update(dt);
@@ -43,23 +60,28 @@ void Player::HandleKeyboard(std::map<int, bool> keys)
 
 void Player::OnKeyPressed(int key)
 {
-    if (key == 0x53)
+    if (key == VK_SPACE)
     {
         if (allowJump)
         {
             if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
             {
-                this->SetState(new PlayerJumpingState(this->mPlayerData));
+					this->SetState(new PlayerJumpingState(this->mPlayerData));
             }
-
             allowJump = false;
         }
+		if (mCurrentState == PlayerState::Clinging)
+		{
+			this->SetState(new PlayerClingingJState(this->mPlayerData));
+
+		}
     }
+	
 }
 
 void Player::OnKeyUp(int key)
 {
-    if (key == 0x53)
+    if (key == VK_SPACE)
         allowJump = true;
 }
 
@@ -68,16 +90,34 @@ void Player::SetReverse(bool flag)
     mCurrentReverse = flag;
 }
 
+void Player::SetCamera(Camera *camera)
+{
+    this->mCamera = camera;
+}
+
 void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
     mCurrentAnimation->FlipVertical(mCurrentReverse);
     mCurrentAnimation->SetPosition(this->GetPosition());
 
-    mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+    if (mCamera)
+    {
+        D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
+            GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+
+        mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+    }
+    else
+    {
+        mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+    }        
 }
 
 void Player::SetState(PlayerState *newState)
 {
+    allowMoveLeft = true;
+    allowMoveRight = true;
+
     delete this->mPlayerData->state;
 
     this->mPlayerData->state = newState;
@@ -85,6 +125,11 @@ void Player::SetState(PlayerState *newState)
     this->changeAnimation(newState->GetState());
 
     mCurrentState = newState->GetState();
+}
+
+void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity::SideCollisions side)
+{
+    this->mPlayerData->state->OnCollision(impactor, side, data);
 }
 
 RECT Player::GetBound()
@@ -117,6 +162,17 @@ void Player::changeAnimation(PlayerState::StateName state)
         case PlayerState::Jumping:
             mCurrentAnimation = mAnimationJumping;
             break;
+		case PlayerState::Spawning:
+			mCurrentAnimation = mAnimationSpawning;
+			break;
+		case PlayerState::Clinging:
+			mCurrentAnimation = mAnimationClinging;
+			break;
+		case PlayerState::ClingingJ:
+			mCurrentAnimation = mAnimationClingingJ;
+			break;
+        default:
+            break;
     }
 
     this->width = mCurrentAnimation->GetWidth();
@@ -135,6 +191,14 @@ Player::MoveDirection Player::getMoveDirection()
     }
 
     return MoveDirection::None;
+}
+
+void Player::OnNoCollisionWithBottom()
+{
+    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ)
+    {
+        this->SetState(new PlayerFallingState(this->mPlayerData));
+    }    
 }
 
 PlayerState::StateName Player::getState()

@@ -1,5 +1,5 @@
 #include "Animation.h"
-
+D3DCOLOR check;
 Animation::Animation()
 {
 
@@ -14,6 +14,7 @@ void Animation::InitWithAnimation(const char* filePath, int totalFrame, int rows
 {
     //GAMELOG("animation: frame: %d, row: %d, column: %d, time: %f", totalFrame, rows, columns, timePerFrame);
     this->InitWithSprite(filePath);
+	check = colorKey;
     mCurrentColumn = 0;
     mCurrentRow = 0;
     mTimePerFrame = timePerFrame;
@@ -44,40 +45,41 @@ void Animation::Update(float dt)
 {
     if (mTotalFrame <= 1)
         return;
+	
+		if (mCurrentTotalTime >= mTimePerFrame)
+		{
+			mCurrentTotalTime = 0;
+			mCurrentIndex++;
+			mCurrentColumn++;
 
-    if (mCurrentTotalTime >= mTimePerFrame)
-    {
-        mCurrentTotalTime = 0;
-        mCurrentIndex++;
-        mCurrentColumn++;
+			if (mCurrentIndex >= mTotalFrame)
+			{
+				mCurrentIndex = 0;
+				mCurrentColumn = 0;
+				mCurrentRow = 0;
+			}
 
-        if (mCurrentIndex >= mTotalFrame)
-        {
-            mCurrentIndex = 0;
-            mCurrentColumn = 0;
-            mCurrentRow = 0;
-        }
+			if (mCurrentColumn >= mColumns)
+			{
+				mCurrentColumn = 0;
+				mCurrentRow++;
 
-        if (mCurrentColumn >= mColumns)
-        {
-            mCurrentColumn = 0;
-            mCurrentRow++;
+				if (mCurrentRow >= mRows)
+					mCurrentRow = 0;
+			}
 
-            if (mCurrentRow >= mRows)
-                mCurrentRow = 0;
-        }
+			mRect.left = mCurrentColumn * mFrameWidth;
+			mRect.right = mRect.left + mFrameWidth;
+			mRect.top = mCurrentRow * mFrameHeight;
+			mRect.bottom = mRect.top + mFrameHeight;
 
-        mRect.left = mCurrentColumn * mFrameWidth;
-        mRect.right = mRect.left + mFrameWidth;
-        mRect.top = mCurrentRow * mFrameHeight;
-        mRect.bottom = mRect.top + mFrameHeight;
-
-        SetSourceRect(mRect);
-    }
-    else
-    {
-        mCurrentTotalTime += dt;
-    }
+			SetSourceRect(mRect);
+		}
+		else
+		{
+			mCurrentTotalTime += dt;
+		}
+	
 }
 
 void Animation::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale,
@@ -85,4 +87,9 @@ void Animation::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale,
 {
 
     Sprite::Draw(position, sourceRect, scale, transform, angle, rotationCenter, colorKey);
+}
+
+void Animation::Draw(D3DXVECTOR2 translate)
+{
+    Sprite::Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), translate);
 }

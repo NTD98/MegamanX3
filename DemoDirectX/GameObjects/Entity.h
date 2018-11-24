@@ -2,8 +2,7 @@
 
 #include <d3dx9.h>
 #include <d3d9.h>
-
-#include "../GameComponents/GameGlobal.h"
+#include <map>
 
 class Entity
 {
@@ -25,9 +24,15 @@ public:
         NotKnow
     };
 
+    struct CollisionReturn
+    {
+        bool IsCollided;
+        RECT RegionCollision;
+    };
+
     enum EntityTypes
     {
-        None,Emeny
+        None, Brick, Enemy, Mario, Static, BrickGoldNormal, BrickGoldEated
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity
@@ -69,6 +74,10 @@ public:
     virtual D3DXVECTOR3 GetPosition();
 
     virtual void Update(float dt);
+
+    //kiem soat viec va cham
+    //khi xay ra va cham voi 1 thuc the nao do thi ham nay se dc goi de xu ly
+    virtual void OnCollision(Entity *impactor, CollisionReturn data, SideCollisions side);
 
 protected:
 
