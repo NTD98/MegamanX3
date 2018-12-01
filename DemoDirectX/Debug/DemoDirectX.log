@@ -1,5 +1,2 @@
-﻿  PlayerRunningState.cpp
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(82): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(96): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(107): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+﻿  Animation.cpp
   DemoDirectX.vcxproj -> C:\Users\NTD\Desktop\colision\Debug\DemoDirectX.exe

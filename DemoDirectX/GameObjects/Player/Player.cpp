@@ -5,6 +5,7 @@
 #include "PlayerStandingState.h"
 #include "PlayerClingingState.h"
 #include "PlayerClingingJState.h"
+#include "PlayerDashState.h"
 #include "../../GameComponents/GameCollision.h"
 float check = 0.0;
 bool isDone = false;
@@ -16,6 +17,7 @@ Player::Player()
 	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.15f);	
 	mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
+	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f);
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -60,22 +62,37 @@ void Player::HandleKeyboard(std::map<int, bool> keys)
 
 void Player::OnKeyPressed(int key)
 {
-    if (key == VK_SPACE)
-    {
-        if (allowJump)
-        {
-            if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
-            {
-					this->SetState(new PlayerJumpingState(this->mPlayerData));
-            }
-            allowJump = false;
-        }
-		if (mCurrentState == PlayerState::Clinging)
+	switch (key)
+	{
+		case VK_SPACE:
+			{
+				if (allowJump)
+				{
+					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
+					{
+						this->SetState(new PlayerJumpingState(this->mPlayerData));
+					}
+					allowJump = false;
+				}
+				if (mCurrentState == PlayerState::Clinging)
+				{
+					this->SetState(new PlayerClingingJState(this->mPlayerData));
+
+				}
+			}
+		case 0x5A:
 		{
-			this->SetState(new PlayerClingingJState(this->mPlayerData));
+			if (allowdash)
+			{
+				this->SetState(new PlayerDashState(this->mPlayerData));
+				allowdash = false;
+			}
+		}
+		default:
+		{
 
 		}
-    }
+	}
 	
 }
 
@@ -83,11 +100,18 @@ void Player::OnKeyUp(int key)
 {
     if (key == VK_SPACE)
         allowJump = true;
+	if (key == 0x5A)
+		allowdash = true;
 }
 
 void Player::SetReverse(bool flag)
 {
     mCurrentReverse = flag;
+}
+
+bool Player::GetReverse()
+{
+	return mCurrentReverse;
 }
 
 void Player::SetCamera(Camera *camera)
@@ -171,6 +195,8 @@ void Player::changeAnimation(PlayerState::StateName state)
 		case PlayerState::ClingingJ:
 			mCurrentAnimation = mAnimationClingingJ;
 			break;
+		case PlayerState::Dash:
+			mCurrentAnimation = mAnimationDashing;
         default:
             break;
     }

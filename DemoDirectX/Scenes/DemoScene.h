@@ -32,7 +32,7 @@ protected:
     GameMap *mMap;
     Camera *mCamera;
     Player *mPlayer;
-
+	Sprite *map;
     std::map<int, bool> keys;
 };
 

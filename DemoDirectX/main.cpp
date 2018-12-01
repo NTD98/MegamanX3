@@ -66,7 +66,7 @@ int initWindow(int cmdShow)
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT,
         CW_USEDEFAULT,
-        GameGlobal::GetWidth(),
+        GameGlobal::GetHeight(),
         GameGlobal::GetHeight(),
         NULL,
         NULL,

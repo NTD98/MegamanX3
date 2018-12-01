@@ -8,7 +8,6 @@ Game::Game(int fps)
 	mFPS = fps;
 
 	SceneManager::GetInstance()->ReplaceScene(new DemoScene());
-
 	InitLoop();
 }
 
@@ -37,8 +36,9 @@ void Game::Render()
 		GameGlobal::GetCurrentSpriteHandler()->Begin(D3DXSPRITE_ALPHABLEND);
 
 		//draw here
+		
 		scene->Draw();
-
+		
 		//ket thuc ve
 		GameGlobal::GetCurrentSpriteHandler()->End();
 

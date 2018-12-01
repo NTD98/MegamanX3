@@ -187,6 +187,9 @@
     <ClCompile Include="GameObjects\Player\PlayerClingingJState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerDashState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -340,6 +343,9 @@
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Player\PlayerClingingJState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerDashState.h">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>

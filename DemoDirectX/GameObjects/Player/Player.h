@@ -50,6 +50,7 @@ public:
 	void changeAnimation(PlayerState::StateName state);
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
+	bool GetReverse();
 	bool isDone = false;
     bool allowMoveLeft;
     bool allowMoveRight;
@@ -66,13 +67,14 @@ protected:
 		*mAnimationJumping,
 		*mAnimationSpawning,
 		*mAnimationClinging,
-		*mAnimationClingingJ;
+		*mAnimationClingingJ,
+		*mAnimationDashing;
 
     
 
     PlayerState::StateName mCurrentState;
 
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-    bool allowJump, mCurrentReverse;;
+    bool allowJump, mCurrentReverse, allowdash=true;
 };
 

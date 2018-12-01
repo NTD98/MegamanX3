@@ -16,7 +16,8 @@ public:
         Die,
 		Spawning,
 		Clinging,
-		ClingingJ
+		ClingingJ,
+		Dash
     };
 
     ~PlayerState();

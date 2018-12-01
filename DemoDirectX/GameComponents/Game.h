@@ -4,7 +4,7 @@
 #include <d3d9.h>
 #include <Windows.h>
 #include <dinput.h>
-
+#include "../GameComponents/Sprite.h"
 #include "GameTime.h"
 
 #define KEYBOARD_BUFFERD_SIZE 1024
@@ -14,7 +14,6 @@ class Game
 public:
     Game(int fps = 60);
     ~Game();
-
 protected:
 
     PDIRECT3DSURFACE9       mBackground,
