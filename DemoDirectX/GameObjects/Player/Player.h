@@ -8,7 +8,7 @@
 #include "PlayerData.h"
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
-
+#include "bullet.h"
 class Player : public Entity
 {
 public:
@@ -48,13 +48,16 @@ public:
 
     void OnKeyUp(int key);
 	void changeAnimation(PlayerState::StateName state);
+	Animation* getCurrentAnimation();
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
 	bool GetReverse();
 	bool isDone = false;
     bool allowMoveLeft;
     bool allowMoveRight;
-
+	vector<Bullet*> getbulletlist();
+	void deletebullet();
+	PlayerData* getplayerdata();
 protected:
 
     Camera      *mCamera;
@@ -70,8 +73,7 @@ protected:
 		*mAnimationClingingJ,
 		*mAnimationDashing;
 
-    
-
+	vector <Bullet*> bulletlist;
     PlayerState::StateName mCurrentState;
 
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai

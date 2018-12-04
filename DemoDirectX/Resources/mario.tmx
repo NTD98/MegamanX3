@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="105" height="51" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="114">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="105" height="51" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="121">
  <tileset firstgid="1" source="1.tsx"/>
  <layer id="18" name="background" width="105" height="51">
   <data encoding="base64" compression="zlib">
@@ -12,10 +12,7 @@
   <object id="98" x="652" y="944" width="340" height="28"/>
   <object id="100" x="968" y="828" width="24" height="112"/>
   <object id="101" x="996" y="852" width="824" height="20"/>
-  <object id="102" x="916" y="1232" width="420" height="148"/>
-  <object id="103" x="1344" y="1084" width="324" height="308"/>
   <object id="104" x="1816" y="848" width="280" height="24"/>
-  <object id="105" x="1676" y="1384" width="540" height="116"/>
   <object id="106" x="2000" y="24" width="92" height="820"/>
   <object id="107" x="2608" y="28" width="72" height="1600"/>
   <object id="109" x="2092" y="584" width="124" height="112"/>
@@ -23,5 +20,12 @@
   <object id="111" x="2480" y="1380" width="120" height="128"/>
   <object id="112" x="4" y="1004" height="396"/>
   <object id="113" x="-340" y="1432"/>
+  <object id="114" x="916" y="1234.67" width="29.3333" height="189.333"/>
+  <object id="115" x="946.667" y="1233.33" width="389.333" height="41.3333"/>
+  <object id="116" x="1341.33" y="1082.67" width="6.66667" height="193.333"/>
+  <object id="117" x="1352" y="1084" width="318.667" height="13.3333"/>
+  <object id="118" x="1654.67" y="1100" width="16" height="308"/>
+  <object id="119" x="1680" y="1386.67" width="550.667" height="21.3333"/>
+  <object id="120" x="2204" y="1410.67" width="25.3333" height="64"/>
  </objectgroup>
 </map>

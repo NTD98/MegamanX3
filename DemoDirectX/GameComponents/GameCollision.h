@@ -11,9 +11,9 @@ public:
     GameCollision();
     //kiem tra va cham giua 2 hinh chu nhat
     static Entity::CollisionReturn RecteAndRect(RECT rect, RECT rect2);
-
+	static Entity::CollisionReturn RecteAndRectbullet(RECT rect, RECT rect2);
     static bool isCollide(RECT rect1, RECT rect2);
-
+	static bool iscollidebullet(RECT rect1, RECT rect2);
     //neu rectagle qua to thi va cham co the bi sai
     static Entity::SideCollisions getSideCollision(Entity *e1, Entity *e2);
 

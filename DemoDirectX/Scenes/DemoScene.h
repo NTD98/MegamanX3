@@ -24,7 +24,7 @@ public:
     void OnKeyDown(int keyCode);
     void OnKeyUp(int keyCode);
     void OnMouseDown(float x, float y);
-
+	bool iscolidebullet(RECT a, RECT b);
 protected:
     void checkCollision();
     void CheckCameraAndWorldMap();

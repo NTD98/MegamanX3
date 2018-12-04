@@ -35,6 +35,31 @@ Entity::CollisionReturn GameCollision::RecteAndRect(RECT rect1, RECT rect2)
     return result;
 }
 
+Entity::CollisionReturn GameCollision::RecteAndRectbullet(RECT rect1, RECT rect2)
+{
+	Entity::CollisionReturn result;
+
+	if (!iscollidebullet(rect1, rect2))
+	{
+		result.IsCollided = false;
+
+		return result;
+	}
+
+	result.IsCollided = true;
+
+	//chon max Left
+	result.RegionCollision.left = rect1.left > rect2.left ? rect1.left : rect2.left;
+	//chon max right
+	result.RegionCollision.right = rect1.right < rect2.right ? rect1.right : rect2.right;
+	//chon min bottom
+	result.RegionCollision.bottom = rect1.bottom < rect2.bottom ? rect1.bottom : rect2.bottom;
+	//chon max top
+	result.RegionCollision.top = rect1.top > rect2.top ? rect1.top : rect2.top;
+
+	return result;
+}
+
 bool GameCollision::PointAndRectangle(float x, float y, RECT rect)
 {
     if (x < rect.left || x > rect.right || y < rect.top || y > rect.bottom)
@@ -72,6 +97,13 @@ bool GameCollision::isCollide(RECT rect1, RECT rect2)
     }
 
     return true;
+}
+
+bool GameCollision::iscollidebullet(RECT rect1, RECT rect2)
+{
+	if (rect1.left > rect2.right || rect1.right < rect2.left || rect1.top < rect2.bottom || rect1.bottom > rect2.top)
+		return false;
+	return true;
 }
 
 Entity::SideCollisions GameCollision::getSideCollision(Entity *e1, Entity *e2)

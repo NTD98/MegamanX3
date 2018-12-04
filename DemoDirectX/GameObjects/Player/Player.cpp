@@ -7,6 +7,7 @@
 #include "PlayerClingingJState.h"
 #include "PlayerDashState.h"
 #include "../../GameComponents/GameCollision.h"
+
 float check = 0.0;
 bool isDone = false;
 Player::Player()
@@ -17,7 +18,7 @@ Player::Player()
 	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.15f);	
 	mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
-	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f);
+	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f,D3DCOLOR_XRGB(0,0,0));
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -48,7 +49,10 @@ void Player::Update(float dt)
     {
         this->mPlayerData->state->Update(dt);
     }
-
+	for each (Bullet* bullet in bulletlist)
+	{
+		bullet->Update(dt);
+	}
     Entity::Update(dt);
 }
 
@@ -79,6 +83,7 @@ void Player::OnKeyPressed(int key)
 					this->SetState(new PlayerClingingJState(this->mPlayerData));
 
 				}
+				break;
 			}
 		case 0x5A:
 		{
@@ -87,10 +92,17 @@ void Player::OnKeyPressed(int key)
 				this->SetState(new PlayerDashState(this->mPlayerData));
 				allowdash = false;
 			}
+			break;
+		}
+		case 0x58:
+		{
+			Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition(),mPlayerData->player->GetReverse());
+			bulletlist.insert(bulletlist.begin(),1,bullet);
+			break;
 		}
 		default:
 		{
-
+			break;
 		}
 	}
 	
@@ -114,6 +126,21 @@ bool Player::GetReverse()
 	return mCurrentReverse;
 }
 
+vector<Bullet*> Player::getbulletlist()
+{
+	return this->bulletlist;
+}
+
+void Player::deletebullet()
+{
+	this->bulletlist.pop_back();
+}
+
+PlayerData * Player::getplayerdata()
+{
+	return mPlayerData;
+}
+
 void Player::SetCamera(Camera *camera)
 {
     this->mCamera = camera;
@@ -130,11 +157,17 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
             GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
 
         mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+		for each (Bullet* bullet in bulletlist)
+		{
+			bool reverse = mPlayerData->player->GetReverse();
+			bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+		}
     }
     else
     {
         mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
     }        
+	
 }
 
 void Player::SetState(PlayerState *newState)
@@ -203,6 +236,11 @@ void Player::changeAnimation(PlayerState::StateName state)
 
     this->width = mCurrentAnimation->GetWidth();
     this->height = mCurrentAnimation->GetHeight();
+}
+
+Animation * Player::getCurrentAnimation()
+{
+	return mCurrentAnimation;
 }
 
 Player::MoveDirection Player::getMoveDirection()

@@ -62,8 +62,16 @@ void DemoScene::OnMouseDown(float x, float y)
 {
 }
 
+bool DemoScene::iscolidebullet(RECT rect1, RECT rect2)
+{
+	if (rect1.left > rect2.right || rect1.right < rect2.left)
+		return false;
+	return true;
+}
+
 void DemoScene::CheckCameraAndWorldMap()
 {
+	vector<Bullet*> bulletlist = mPlayer->getbulletlist();
     mCamera->SetPosition(mPlayer->GetPosition());
 
     if (mCamera->GetBound().left < 0)
@@ -92,20 +100,46 @@ void DemoScene::CheckCameraAndWorldMap()
         mCamera->SetPosition(mCamera->GetPosition().x, 
                                 mMap->GetHeight() - mCamera->GetHeight() / 2);
     }
+	if (bulletlist.size()==0)
+	{
+		
+	}
+	else
+	{
+		for (auto it = bulletlist.begin(); it != bulletlist.end();)
+		{
+			if (bulletlist.at(bulletlist.size() - 1)->GetBound().left > mCamera->GetBound().right|| bulletlist.at(bulletlist.size() - 1)->GetBound().right < mCamera->GetBound().left)
+			{
+				mPlayer->deletebullet();
+				break;
+			}
+			else
+			{
+				++it;
+			}
+		}
+	}
 }
 
 void DemoScene::checkCollision()
 {
-    /*su dung de kiem tra xem khi nao mario khong dung tren 1 object hoac
-    dung qua sat mep trai hoac phai cua object do thi se chuyen state la falling*/ 
     int widthBottom = 0;
 
     vector<Entity*> listCollision;
-
+	vector<Bullet*> bulletlist = mPlayer->getbulletlist();
     mMap->GetQuadTree()->getEntitiesCollideAble(listCollision, mPlayer);
-
+	
     for (size_t i = 0; i < listCollision.size(); i++)
     {
+		for (size_t j = 0; j < bulletlist.size(); j++)
+		{
+			Entity::CollisionReturn b = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),
+				listCollision.at(i)->GetBound());
+			if (b.IsCollided)
+			{
+				bulletlist.at(j)->OnCollision();
+			}
+		}
         Entity::CollisionReturn r = GameCollision::RecteAndRect(mPlayer->GetBound(), 
                                                     listCollision.at(i)->GetBound());
 

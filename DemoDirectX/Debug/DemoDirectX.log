@@ -1,2 +1,7 @@
-﻿  Animation.cpp
+﻿  bullet.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(78): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(79): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(80): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(81): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
   DemoDirectX.vcxproj -> C:\Users\NTD\Desktop\colision\Debug\DemoDirectX.exe

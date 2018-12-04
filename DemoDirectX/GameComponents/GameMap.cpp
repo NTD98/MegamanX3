@@ -5,6 +5,10 @@
 #include <d3d9.h>
 #include"GameGlobal.h"
 
+GameMap::GameMap()
+{
+}
+
 GameMap::GameMap(char* filePath)
 {
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
@@ -43,8 +47,8 @@ void GameMap::LoadMap(char* filePath)
     RECT r;
     r.left = 0;
     r.top = 0;
-    r.right = this->GetWidth();
-    r.bottom = this->GetHeight();
+	r.right = 1000;
+	r.bottom = 1000;
 
     mQuadTree = new QuadTree(1, r);
 

@@ -17,6 +17,7 @@
 class GameMap
 {
 public:
+	GameMap();
     GameMap(char* filePath);
     void SetCamera(Camera* camera);
     void Update(float dt);
