@@ -77,6 +77,6 @@ protected:
     PlayerState::StateName mCurrentState;
 
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-    bool allowJump, mCurrentReverse, allowdash=true;
+    bool allowJump, mCurrentReverse, allowdash=true, allowshoot=true;
 };
 

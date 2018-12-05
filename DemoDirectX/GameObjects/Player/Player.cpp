@@ -34,7 +34,7 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
-	
+	bulletlist = this->getbulletlist();
 	if (dt >= 1 / 60)
 	{
 		check += dt;
@@ -51,7 +51,8 @@ void Player::Update(float dt)
     }
 	for each (Bullet* bullet in bulletlist)
 	{
-		bullet->Update(dt);
+		mPlayerData->player->GetPosition();
+		bullet->Update(dt,mCurrentAnimation->GetPosition(),GetReverse());
 	}
     Entity::Update(dt);
 }
@@ -62,6 +63,8 @@ void Player::HandleKeyboard(std::map<int, bool> keys)
     {
         this->mPlayerData->state->HandleKeyboard(keys);
     }
+	if(bulletlist.size()!=0)
+	bulletlist.at(0)->HandleKeyboard(keys);
 }
 
 void Player::OnKeyPressed(int key)
@@ -96,8 +99,12 @@ void Player::OnKeyPressed(int key)
 		}
 		case 0x58:
 		{
-			Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition(),mPlayerData->player->GetReverse());
-			bulletlist.insert(bulletlist.begin(),1,bullet);
+			if (allowshoot)
+			{
+				Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition(), mPlayerData->player->GetReverse());
+				bulletlist.insert(bulletlist.begin(), 1, bullet);
+				allowshoot = false;
+			}
 			break;
 		}
 		default:
@@ -114,6 +121,8 @@ void Player::OnKeyUp(int key)
         allowJump = true;
 	if (key == 0x5A)
 		allowdash = true;
+	if (key == 0x58)
+		allowshoot = true;
 }
 
 void Player::SetReverse(bool flag)

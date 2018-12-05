@@ -1,7 +1,51 @@
-﻿  bullet.cpp
+﻿  Game.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\ntd\desktop\colision\demodirectx\gamecomponents\game.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gamecomponents\game.cpp(76): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
+  Player.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\player.cpp(204): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\player.cpp(206): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\player.cpp(246): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\player.cpp(247): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  PlayerClingingJState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerclingingjstate.cpp(97): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerclingingjstate.cpp(109): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerclingingjstate.cpp(121): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerclingingjstate.cpp(128): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerClingingState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerclingingstate.cpp(90): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerDashState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerdashstate.cpp(116): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerdashstate.cpp(130): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerdashstate.cpp(141): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerFallingState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerfallingstate.cpp(90): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerfallingstate.cpp(100): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerfallingstate.cpp(115): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerJumpingState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerjumpingstate.cpp(111): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerjumpingstate.cpp(123): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerjumpingstate.cpp(135): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerjumpingstate.cpp(142): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerRunningState.cpp
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(82): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(96): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\playerrunningstate.cpp(107): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerSpawingState.cpp
+  PlayerStandingState.cpp
+  bullet.cpp
 c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(78): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(79): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(80): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(81): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(8): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(106): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(107): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(108): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\gameobjects\player\bullet.cpp(109): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  DemoScene.cpp
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(94): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\ntd\desktop\colision\demodirectx\scenes\demoscene.cpp(101): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   DemoDirectX.vcxproj -> C:\Users\NTD\Desktop\colision\Debug\DemoDirectX.exe
