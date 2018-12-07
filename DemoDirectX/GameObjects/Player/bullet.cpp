@@ -8,7 +8,7 @@ Bullet::Bullet(D3DXVECTOR3 pos,bool reverse)
 	mChargeBullet1 = new Animation("Resources/megaman/chargedbullet.png", 9, 1, 9, 0.1);
 	bullet->SetPosition(pos);
 	this->vx =0;
-	this->SetPosition(bullet->GetPosition().x + bullet->GetImageInfo().Width / 2, bullet->GetPosition().y + bullet->GetImageInfo().Height / 2);
+	this->SetPosition(bullet->GetPosition().x +bullet->GetImageInfo().Width / 2, bullet->GetPosition().y + bullet->GetImageInfo().Height / 2);
 	this->SetWidth(bullet->GetImageInfo().Width);
 	this->SetHeight(bullet->GetImageInfo().Height);
 	this->Tag = Entity::EntityTypes::BulletP;

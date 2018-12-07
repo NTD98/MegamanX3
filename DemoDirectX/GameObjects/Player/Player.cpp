@@ -6,19 +6,21 @@
 #include "PlayerClingingState.h"
 #include "PlayerClingingJState.h"
 #include "PlayerDashState.h"
+#include "PlayerStandShootState.h"
 #include "../../GameComponents/GameCollision.h"
 
 float check = 0.0;
 bool isDone = false;
 Player::Player()
 {
-    mAnimationStanding = new Animation("Resources/megaman/pic10.png", 3, 1, 3, 0.2f);
-    mAnimationJumping = new Animation("Resources/megaman/pic4.png", 7, 1, 7, 0.1f);
-    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.15f);
-	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.15f);	
+    mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 1.0f);
+    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
+    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.1f);
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.2f);	
 	mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
 	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f,D3DCOLOR_XRGB(0,0,0));
+	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -239,6 +241,10 @@ void Player::changeAnimation(PlayerState::StateName state)
 			break;
 		case PlayerState::Dash:
 			mCurrentAnimation = mAnimationDashing;
+			break;
+		case PlayerState::StandShoot:
+			mCurrentAnimation = mAnimationStandShoot;
+			break;
         default:
             break;
     }
@@ -268,7 +274,7 @@ Player::MoveDirection Player::getMoveDirection()
 
 void Player::OnNoCollisionWithBottom()
 {
-    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ)
+    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ && mCurrentState !=PlayerState::StandShoot)
     {
         this->SetState(new PlayerFallingState(this->mPlayerData));
     }    

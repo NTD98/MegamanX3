@@ -17,7 +17,8 @@ public:
 		Spawning,
 		Clinging,
 		ClingingJ,
-		Dash
+		Dash,
+		StandShoot
     };
 
     ~PlayerState();

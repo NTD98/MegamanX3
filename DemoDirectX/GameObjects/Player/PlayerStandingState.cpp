@@ -22,6 +22,10 @@ void PlayerStandingState::HandleKeyboard(std::map<int, bool> keys)
         this->mPlayerData->player->SetState(new PlayerRunningState(this->mPlayerData));
         return;
     }
+	if (keys[0x58]) {
+		this->mPlayerData->player->SetState(new PlayerStandShootState(this->mPlayerData));
+		return;
+	}
 }
 
 PlayerState::StateName PlayerStandingState::GetState()

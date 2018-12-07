@@ -9,6 +9,7 @@
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
 #include "bullet.h"
+#include "PlayerStandShootState.h"
 class Player : public Entity
 {
 public:
@@ -71,7 +72,8 @@ protected:
 		*mAnimationSpawning,
 		*mAnimationClinging,
 		*mAnimationClingingJ,
-		*mAnimationDashing;
+		*mAnimationDashing,
+		*mAnimationStandShoot;
 
 	vector <Bullet*> bulletlist;
     PlayerState::StateName mCurrentState;
