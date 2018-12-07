@@ -10,7 +10,7 @@ public:
     void HandleKeyboard(std::map<int, bool> keys);
 
     virtual StateName GetState();
-
+	virtual StateName GetStateHaveShoot();
 protected:
 };
 

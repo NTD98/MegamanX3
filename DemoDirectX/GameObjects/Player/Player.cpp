@@ -7,6 +7,7 @@
 #include "PlayerClingingJState.h"
 #include "PlayerDashState.h"
 #include "PlayerStandShootState.h"
+#include "PlayerJumpShootState.h"
 #include "../../GameComponents/GameCollision.h"
 
 float check = 0.0;
@@ -21,6 +22,8 @@ Player::Player()
 	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
 	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f,D3DCOLOR_XRGB(0,0,0));
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
+	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
+	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.1f);
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -81,6 +84,7 @@ void Player::OnKeyPressed(int key)
 					{
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
+					
 					allowJump = false;
 				}
 				if (mCurrentState == PlayerState::Clinging)
@@ -101,6 +105,8 @@ void Player::OnKeyPressed(int key)
 		}
 		case 0x58:
 		{
+			allowActionAndShoot = true;
+			
 			if (allowshoot)
 			{
 				Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition(), mPlayerData->player->GetReverse());
@@ -181,19 +187,29 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 	
 }
 
-void Player::SetState(PlayerState *newState)
+void Player::SetState(PlayerState *newState,bool RunShoot)
 {
-    allowMoveLeft = true;
-    allowMoveRight = true;
+	allowMoveLeft = true;
+	allowMoveRight = true;
 
-    delete this->mPlayerData->state;
-
-    this->mPlayerData->state = newState;
-
-    this->changeAnimation(newState->GetState());
-
+	delete this->mPlayerData->state;
+	this->mPlayerData->state = newState;
+	if (RunShoot == true) {
+		this->changeAnimation(newState->GetStateHaveShoot());
+		RunShoot = false;
+	}
+	else {
+		if (allowActionAndShoot) {
+			this->changeAnimation(newState->GetStateHaveShoot());
+			allowActionAndShoot = false;
+		}
+		else {
+			this->changeAnimation(newState->GetState());
+		}
+	}
     mCurrentState = newState->GetState();
 }
+
 
 void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity::SideCollisions side)
 {
@@ -244,6 +260,12 @@ void Player::changeAnimation(PlayerState::StateName state)
 			break;
 		case PlayerState::StandShoot:
 			mCurrentAnimation = mAnimationStandShoot;
+			break;
+		case PlayerState::JumpShoot:
+			mCurrentAnimation = mAnimationJumpShoot;
+			break;
+		case PlayerState::RunnShoot:
+			mCurrentAnimation = mAnimationRunnShoot;
 			break;
         default:
             break;

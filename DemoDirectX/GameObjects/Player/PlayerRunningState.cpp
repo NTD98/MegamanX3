@@ -117,3 +117,8 @@ PlayerState::StateName PlayerRunningState::GetState()
 {
     return PlayerState::Running;
 }
+
+PlayerState::StateName PlayerRunningState::GetStateHaveShoot()
+{
+	return PlayerState::RunnShoot;
+}

@@ -10,7 +10,7 @@ public:
 
 
 	virtual StateName GetState();
-
+	virtual StateName GetStateHaveShoot();
 protected:
 };
 

@@ -30,3 +30,8 @@ PlayerState::StateName PlayerStandShootState::GetState()
 {
 	return PlayerState::StandShoot;
 }
+
+PlayerState::StateName PlayerStandShootState::GetStateHaveShoot()
+{
+	return PlayerState::StandShoot;
+}
