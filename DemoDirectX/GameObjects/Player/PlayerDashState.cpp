@@ -151,8 +151,3 @@ PlayerState::StateName PlayerDashState::GetState()
 {
 	return PlayerState::Dash;
 }
-
-PlayerState::StateName PlayerDashState::GetStateHaveShoot()
-{
-	return PlayerState::Dash;
-}

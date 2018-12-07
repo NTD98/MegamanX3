@@ -17,10 +17,7 @@ public:
 		Spawning,
 		Clinging,
 		ClingingJ,
-		Dash,
-		StandShoot,
-		RunnShoot,
-		JumpShoot
+		Dash
     };
 
     ~PlayerState();
@@ -33,7 +30,6 @@ public:
     virtual void OnCollision(Entity *impactor, Entity::SideCollisions side, Entity::CollisionReturn data);
 
     virtual StateName GetState() = 0;
-	virtual StateName GetStateHaveShoot() = 0;
 
 protected:
     PlayerState(PlayerData *playerData);

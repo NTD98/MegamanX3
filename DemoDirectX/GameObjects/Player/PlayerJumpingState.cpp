@@ -151,7 +151,3 @@ PlayerState::StateName PlayerJumpingState::GetState()
 {
     return PlayerState::Jumping;
 }
-PlayerState::StateName PlayerJumpingState::GetStateHaveShoot()
-{
-	return PlayerState::JumpShoot;
-}
