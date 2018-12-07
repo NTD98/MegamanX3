@@ -187,18 +187,13 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 	
 }
 
-void Player::SetState(PlayerState *newState,bool RunShoot)
+void Player::SetState(PlayerState *newState)
 {
 	allowMoveLeft = true;
 	allowMoveRight = true;
 
 	delete this->mPlayerData->state;
 	this->mPlayerData->state = newState;
-	if (RunShoot == true) {
-		this->changeAnimation(newState->GetStateHaveShoot());
-		RunShoot = false;
-	}
-	else {
 		if (allowActionAndShoot) {
 			this->changeAnimation(newState->GetStateHaveShoot());
 			allowActionAndShoot = false;
@@ -206,7 +201,6 @@ void Player::SetState(PlayerState *newState,bool RunShoot)
 		else {
 			this->changeAnimation(newState->GetState());
 		}
-	}
     mCurrentState = newState->GetState();
 }
 

@@ -1,6 +1,7 @@
 #include "PlayerRunningState.h"
 #include "PlayerStandingState.h"
 #include "PlayerFallingState.h"
+#include "PlayerRunningShootState.h"
 #include "../../GameComponents/GameCollision.h"
 #include "../../GameDefines/GameDefine.h"
 
@@ -21,6 +22,10 @@ PlayerRunningState::~PlayerRunningState()
 
 void PlayerRunningState::HandleKeyboard(std::map<int, bool> keys)
 {
+	if (keys[0x58]) {
+		this->mPlayerData->player->SetState(new PLayerRunningShootState(this->mPlayerData));
+		return;
+	}
     if (keys[VK_RIGHT])
     {
         if (mPlayerData->player->allowMoveRight)
@@ -120,5 +125,5 @@ PlayerState::StateName PlayerRunningState::GetState()
 
 PlayerState::StateName PlayerRunningState::GetStateHaveShoot()
 {
-	return PlayerState::RunnShoot;
+	return PlayerState::Running;
 }
