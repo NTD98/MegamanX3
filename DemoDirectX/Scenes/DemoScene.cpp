@@ -18,7 +18,7 @@ void DemoScene::LoadContent()
     mMap->SetCamera(mCamera);
 
     mPlayer = new Player();
-
+	//50/1340
     mPlayer->SetPosition(50,1340);
 
     mPlayer->SetCamera(mCamera);

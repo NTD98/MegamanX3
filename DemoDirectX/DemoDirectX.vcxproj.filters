@@ -193,6 +193,12 @@
     <ClCompile Include="GameObjects\Player\bullet.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerStandShootState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerRunningShootState.cpp">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -352,6 +358,12 @@
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Player\bullet.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerStandShootState.h">
+      <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerRunningShootState.h">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
   </ItemGroup>

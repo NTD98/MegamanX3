@@ -82,49 +82,6 @@ void Animation::Update(float dt)
 
 }
 
-void Animation::UpdateS(float dt)
-{
-	if (mTotalFrame <= 1)
-		return;
-	totaltime += dt;
-	if (totaltime <= mTotalFrame*mTimePerFrame)
-	{
-		if (mCurrentTotalTime >= mTimePerFrame)
-		{
-			mCurrentTotalTime = 0;
-			mCurrentIndex++;
-			mCurrentColumn++;
-
-			if (mCurrentIndex >= mTotalFrame)
-			{
-				mCurrentIndex = 0;
-				mCurrentColumn = 0;
-				mCurrentRow = 0;
-			}
-
-			if (mCurrentColumn >= mColumns)
-			{
-				mCurrentColumn = 0;
-				mCurrentRow++;
-
-				if (mCurrentRow >= mRows)
-					mCurrentRow = 0;
-			}
-
-			mRect.left = mCurrentColumn * mFrameWidth;
-			mRect.right = mRect.left + mFrameWidth;
-			mRect.top = mCurrentRow * mFrameHeight;
-			mRect.bottom = mRect.top + mFrameHeight;
-
-			SetSourceRect(mRect);
-		}
-		else
-		{
-			mCurrentTotalTime += dt;
-		}
-	}
-}
-
 void Animation::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale,
 	D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {

@@ -137,3 +137,8 @@ PlayerState::StateName PlayerClingingJState::GetState()
 {
 	return PlayerState::ClingingJ;
 }
+
+PlayerState::StateName PlayerClingingJState::GetStateHaveShoot()
+{
+	return PlayerState::ClingingJ;
+}

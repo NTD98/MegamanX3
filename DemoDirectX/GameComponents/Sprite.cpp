@@ -72,7 +72,7 @@ void Sprite::InitWithSprite(const char* filePath, RECT sourceRect, int width, in
         D3DPOOL_DEFAULT,
         D3DX_DEFAULT,
         D3DX_DEFAULT,
-		D3DCOLOR_XRGB(50,96,166),
+		D3DCOLOR_XRGB(255,255,255),
         &mImageInfo,
         NULL,
         &mTexture);
