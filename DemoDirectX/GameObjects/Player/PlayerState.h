@@ -20,7 +20,8 @@ public:
 		Dash,
 		StandShoot,
 		RunnShoot,
-		JumpShoot
+		JumpShoot,
+		DashShoot
     };
 
     ~PlayerState();

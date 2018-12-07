@@ -19,6 +19,11 @@ PlayerDashState::~PlayerDashState()
 
 void PlayerDashState::HandleKeyboard(std::map<int, bool> keys)
 {
+	if (keys[0x58]) {
+		//this->mPlayerData->player->SetState(new PlayerDashShootState(this->mPlayerData));
+		
+		return;
+	}
 	//if (keys[VK_RIGHT])
 	//{
 	//	if (mPlayerData->player->allowMoveRight)
@@ -64,41 +69,44 @@ void PlayerDashState::HandleKeyboard(std::map<int, bool> keys)
 
 void PlayerDashState::Update(float dt)
 {
+	
 	if (this->mPlayerData->player->GetReverse())
-	{
-		this->mPlayerData->player->SetReverse(true);
-		if (mPlayerData->player->allowMoveRight)
 		{
-			//di chuyen sang phai
-			if (this->mPlayerData->player->GetVx() >= -Define::PLAYER_MAX_DASHING_SPEED)
+			this->mPlayerData->player->SetReverse(true);
+			if (mPlayerData->player->allowMoveRight)
 			{
-				this->mPlayerData->player->AddVx(-acceleratorX);
-
-				if (this->mPlayerData->player->GetVx() < -Define::PLAYER_MAX_DASHING_SPEED)
+				//di chuyen sang phai
+				if (this->mPlayerData->player->GetVx() >= -Define::PLAYER_MAX_DASHING_SPEED)
 				{
-					this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+					this->mPlayerData->player->AddVx(-acceleratorX);
+
+					if (this->mPlayerData->player->GetVx() < -Define::PLAYER_MAX_DASHING_SPEED)
+					{
+						this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+					}
 				}
 			}
 		}
-	}
-	else
-	if (!this->mPlayerData->player->GetReverse())
-	{
-		this->mPlayerData->player->SetReverse(false);
-		if (mPlayerData->player->allowMoveLeft)
-		{
-			//di chuyen sang phai
-			if (this->mPlayerData->player->GetVx() < Define::PLAYER_MAX_DASHING_SPEED)
+		else
+			if (!this->mPlayerData->player->GetReverse())
 			{
-				this->mPlayerData->player->AddVx(acceleratorX);
-
-				if (this->mPlayerData->player->GetVx() >= Define::PLAYER_MAX_DASHING_SPEED)
+				this->mPlayerData->player->SetReverse(false);
+				if (mPlayerData->player->allowMoveLeft)
 				{
-					this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+					//di chuyen sang phai
+					if (this->mPlayerData->player->GetVx() < Define::PLAYER_MAX_DASHING_SPEED)
+					{
+						this->mPlayerData->player->AddVx(acceleratorX);
+
+						if (this->mPlayerData->player->GetVx() >= Define::PLAYER_MAX_DASHING_SPEED)
+						{
+							this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+						}
+					}
 				}
-			}
-		}
 	}
+	
+	
 }
 
 void PlayerDashState::OnCollision(Entity * impactor, Entity::SideCollisions side, Entity::CollisionReturn data)
@@ -154,5 +162,5 @@ PlayerState::StateName PlayerDashState::GetState()
 
 PlayerState::StateName PlayerDashState::GetStateHaveShoot()
 {
-	return PlayerState::Dash;
+	return PlayerState::DashShoot;
 }

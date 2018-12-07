@@ -76,12 +76,14 @@ protected:
 		*mAnimationDashing,
 		*mAnimationStandShoot,
 		*mAnimationJumpShoot,
-		*mAnimationRunnShoot;
+		*mAnimationRunnShoot,
+		*mAnimationDashShoot;
 
 	vector <Bullet*> bulletlist;
     PlayerState::StateName mCurrentState;
 
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = true, allowActionAndShoot = false;
+	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = false, allowActionAndShoot = false;
+	bool allowDashShoot = false;
 };
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "PlayerState.h"
 #include "Player.h"
+#include "PlayerDashShootState.h"
 
 class PlayerDashState : public PlayerState
 {
@@ -17,5 +18,6 @@ public:
 
 protected:
 	float acceleratorX;
+	
 };
 

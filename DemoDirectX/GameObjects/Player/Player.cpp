@@ -16,14 +16,15 @@ Player::Player()
 {
     mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 1.0f);
     mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
-    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.1f);
-	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.2f);	
+    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
 	mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
-	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.2f,D3DCOLOR_XRGB(0,0,0));
+	mAnimationDashing = new Animation("Resources/megaman/dash.png",2,1,2,0.1f);
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
 	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
 	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.1f);
+	mAnimationDashShoot = new Animation("Resources/megaman/dashshoot.png", 2, 1, 2, 0.1f);
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -98,7 +99,11 @@ void Player::OnKeyPressed(int key)
 		{
 			if (allowdash)
 			{
+				if (allowDashShoot) {
+					allowActionAndShoot = true;
+				}
 				this->SetState(new PlayerDashState(this->mPlayerData));
+				allowDashShoot=false;
 				allowdash = false;
 			}
 			break;
@@ -129,8 +134,10 @@ void Player::OnKeyUp(int key)
         allowJump = true;
 	if (key == 0x5A)
 		allowdash = true;
-	if (key == 0x58)
+	if (key == 0x58) {
 		allowshoot = true;
+		allowDashShoot = true;
+	}
 }
 
 void Player::SetReverse(bool flag)
@@ -260,6 +267,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 			break;
 		case PlayerState::RunnShoot:
 			mCurrentAnimation = mAnimationRunnShoot;
+			break;
+		case PlayerState::DashShoot:
+			mCurrentAnimation = mAnimationDashShoot;
 			break;
         default:
             break;
