@@ -80,7 +80,7 @@ void Player::OnKeyPressed(int key)
 			{
 				if (allowJump)
 				{
-					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
+					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing || mCurrentState==PlayerState::RunnShoot)
 					{
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
@@ -94,7 +94,7 @@ void Player::OnKeyPressed(int key)
 				}
 				break;
 			}
-		case 0x5A:// z button
+		case 0x5A:
 		{
 			if (allowdash)
 			{
@@ -103,7 +103,7 @@ void Player::OnKeyPressed(int key)
 			}
 			break;
 		}
-		case 0x58://x button
+		case 0x58:
 		{
 			allowActionAndShoot = true;
 			

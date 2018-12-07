@@ -23,7 +23,7 @@ Bullet::~Bullet()
 
 void Bullet::Update(float dt, D3DXVECTOR3 pos, bool isreversed)
 {
-	if (isDone < 0.3f)
+	if (isDone < 0.2f)
 	isDone += dt;
 	ChangeBulletType(dt);
 	if (!isPressed)
@@ -42,7 +42,7 @@ void Bullet::Update(float dt, D3DXVECTOR3 pos, bool isreversed)
 			}
 		}
 		else
-			if (isDone <= 0.3f)
+			if (isDone <= 0.2f)
 				destroyedbullet->Update(dt);
 	}
 	else
@@ -70,7 +70,7 @@ void Bullet::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 			}
 		}
 		else
-			if (isDone <= 0.3f)
+			if (isDone <= 0.2f)
 				destroyedbullet->Draw(D3DXVECTOR3(mCurrentAnimaion->GetPosition().x, mCurrentAnimaion->GetPosition().y, 0), sourceRect, scale, transform, angle, rotationCenter, colorKey);
 	}
 	

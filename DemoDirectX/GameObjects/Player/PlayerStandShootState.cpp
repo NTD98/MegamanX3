@@ -17,13 +17,21 @@ PlayerStandShootState::~PlayerStandShootState()
 
 void PlayerStandShootState::HandleKeyboard(std::map<int, bool> keys)
 {
-	if (keys[0x58]) {
+	if (keys[VK_LEFT] || keys[VK_RIGHT]) {
+		this->mPlayerData->player->SetState(new PlayerRunningState(this->mPlayerData));
 		return;
 	}
 	else {
-		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
-		return;
+		if (keys[0x58]) {
+			return;
+		}
+		else {
+			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+			return;
+		}
+		
 	}
+	
 }
 
 PlayerState::StateName PlayerStandShootState::GetState()
