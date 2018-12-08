@@ -33,6 +33,9 @@ protected:
     Camera *mCamera;
     Player *mPlayer;
 	Sprite *map;
+	Sprite *HealthBar,
+		*HealthPoint;
+	vector<Sprite*> Health;
     std::map<int, bool> keys;
 };
 

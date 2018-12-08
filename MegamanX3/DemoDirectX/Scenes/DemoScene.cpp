@@ -16,7 +16,12 @@ void DemoScene::LoadContent()
     mCamera->SetPosition(GameGlobal::GetWidth() / 2, 
                             mMap->GetHeight() - mCamera->GetHeight());
     mMap->SetCamera(mCamera);
-
+	HealthBar = new Sprite("Resources/megaman/EmptyHealth.png");
+	HealthPoint = new Sprite("Resources/megaman/HealthBar.png");
+	for (int i = 0; i < 16; i++)
+	{
+		Health.insert(Health.begin(), 1, HealthPoint);
+	}
     mPlayer = new Player();
 	//50/1340
     mPlayer->SetPosition(50,1340);
@@ -35,13 +40,27 @@ void DemoScene::Update(float dt)
     mPlayer->Update(dt);
 
     CheckCameraAndWorldMap();
+
+	HealthBar->SetPosition(D3DXVECTOR2(mCamera->GetPosition().x - 260, mCamera->GetPosition().y - 200));
 }
 
 void DemoScene::Draw()
 {
+	D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
+		GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
 	mMap->Draw(mPlayer->GetPosition().x / 32, mPlayer->GetPosition().y / 32);
 	
     mPlayer->Draw();
+
+	HealthBar->Draw(HealthBar->GetPosition(), RECT(), D3DXVECTOR2(1, 1), trans);
+	D3DXVECTOR3 pos;
+	for (int i = 0; i <mPlayer->getHealthPoint(); i++)
+	{
+		if (pos == D3DXVECTOR3())
+			pos = D3DXVECTOR3(HealthBar->GetPosition().x, HealthBar->GetPosition().y + 18, 0);
+		Health.at(i)->Draw(pos, RECT(), D3DXVECTOR2(1, 1), trans);
+		pos = pos + D3DXVECTOR3(0, -4, 0);
+	}
 }
 
 void DemoScene::OnKeyDown(int keyCode)

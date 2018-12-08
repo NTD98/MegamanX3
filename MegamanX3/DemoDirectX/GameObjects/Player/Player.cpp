@@ -174,6 +174,11 @@ bool Player::GetReverse()
 	return mCurrentReverse;
 }
 
+int Player::getHealthPoint()
+{
+	return HealthPoint;
+}
+
 vector<Bullet*> Player::getbulletlist()
 {
 	return this->bulletlist;
