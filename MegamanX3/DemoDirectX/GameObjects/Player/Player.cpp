@@ -62,8 +62,18 @@ void Player::Update(float dt)
     }
 	for each (Bullet* bullet in bulletlist)
 	{
-		mPlayerData->player->GetPosition();
-		bullet->Update(dt,mCurrentAnimation->GetPosition(),GetReverse());
+		if (mPlayerData->state->GetState() != PlayerState::Clinging)
+		{
+			if (mPlayerData->player->GetReverse())
+				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), true);
+			else
+				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, 5, 0), false);
+		}
+		else
+			if (mPlayerData->player->GetReverse())
+				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() /2, -5, 0), false);
+			else
+				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3((this->getCurrentAnimation()->GetWidth() / 2), 5, 0), true);
 	}
     Entity::Update(dt);
 }
@@ -119,8 +129,17 @@ void Player::OnKeyPressed(int key)
 			
 			if (allowshoot)
 			{
-				Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition(), mPlayerData->player->GetReverse());
-				bulletlist.insert(bulletlist.begin(), 1, bullet);
+				if (mPlayerData->player->GetReverse())
+				{
+					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition()-D3DXVECTOR3(this->getCurrentAnimation()->GetWidth()/2-10,100,0), true);
+					bulletlist.insert(bulletlist.begin(), 1, bullet);
+				}
+				else
+				{
+					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition()+ D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2+10,-100, 0), false);
+					bulletlist.insert(bulletlist.begin(), 1, bullet);
+				}
+				
 				allowshoot = false;
 			}
 			break;
