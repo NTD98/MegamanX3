@@ -21,7 +21,7 @@ public:
     GameMap(char* filePath);
     void SetCamera(Camera* camera);
     void Update(float dt);
-    void Draw();
+	void Draw(int beginX, int beginY);
     Tmx::Map* GetMap();
     RECT GetWorldMapBound();
     int GetWidth();

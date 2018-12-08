@@ -1,13 +1,14 @@
-﻿  Player.cpp
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(68): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(70): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(74): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(76): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(134): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(139): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(247): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(249): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(305): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(306): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  GameMap.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(55): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(68): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(72): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(174): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(183): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(202): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(204): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(222): warning C4244: 'argument': conversion from 'std::size_t' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(227): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(228): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

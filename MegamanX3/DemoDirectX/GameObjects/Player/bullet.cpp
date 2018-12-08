@@ -98,12 +98,14 @@ void Bullet::ChangeBulletType(float dt)
 	{
 		mChargeBullet2->SetPosition(mCurrentAnimaion->GetPosition());
 		mCurrentAnimaion = mChargeBullet2;
+		this->Tag = Entity::EntityTypes::BulletCharge2;
 		return;
 	}
 	if (ischarged >= 1.0f)
 	{
 		mChargeBullet1->SetPosition(mCurrentAnimaion->GetPosition());
 		mCurrentAnimaion = mChargeBullet1;
+		this->Tag = Entity::EntityTypes::BulletCharge1;
 		return;
 	}
 }

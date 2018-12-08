@@ -39,7 +39,7 @@ void DemoScene::Update(float dt)
 
 void DemoScene::Draw()
 {
-    mMap->Draw();
+	mMap->Draw(mPlayer->GetPosition().x / 32, mPlayer->GetPosition().y / 32);
 	
     mPlayer->Draw();
 }

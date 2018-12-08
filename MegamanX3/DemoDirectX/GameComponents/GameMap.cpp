@@ -156,11 +156,19 @@ void GameMap::Update(float dt)
     }
 }
 
-void GameMap::Draw()
+void GameMap::Draw(int beginX, int beginY)
 {
+	int maxX = 0, maxY = 0;
     D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
         GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-	
+	if (beginX < 10)
+		beginX = 0;
+	else
+		beginX -= 10;
+	if (beginY < 10)
+		beginY = 0;
+	else
+		beginY -= 10;
 
 #pragma region DRAW TILESET
     for (size_t i = 0; i < mMap->GetNumTileLayers(); i++)
@@ -183,11 +191,18 @@ void GameMap::Draw()
 
             int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
             int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
-
-            for (size_t m = 0; m < layer->GetHeight(); m++)
-            {
-                for (size_t n = 0; n < layer->GetWidth(); n++)
-                {
+			if (beginX + 22 > layer->GetWidth())
+				maxX = layer->GetWidth();
+			else
+				maxX = beginX + 22;
+			if (beginY + 22 > layer->GetHeight())
+				maxY = layer->GetHeight();
+			else
+				maxY = beginY + 22;
+			for (size_t m = beginY; m < maxY; m++)
+			{
+				for (size_t n = beginX; n < maxX; n++)
+				{
                     if (layer->GetTileTilesetIndex(n, m) != -1)
                     {
                         int tileID = layer->GetTileId(n, m);
