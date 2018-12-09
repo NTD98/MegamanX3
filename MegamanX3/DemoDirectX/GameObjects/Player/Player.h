@@ -23,6 +23,7 @@ public:
         None //dung im
     };
 
+
     void SetCamera(Camera *camera);
 
     void Update(float dt);
@@ -79,13 +80,15 @@ protected:
 		*mAnimationStandShoot,
 		*mAnimationJumpShoot,
 		*mAnimationRunnShoot,
-		*mAnimationDashShoot;
+		*mAnimationDashShoot,
+		*mAniamtionClingShoot,
+		*mAnimationClingJShoot;
 
 	vector <Bullet*> bulletlist;
     PlayerState::StateName mCurrentState;
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
 	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = true, allowActionAndShoot = false;
-	bool allowDashShoot = false;
+	bool allowDashShoot = false, allowClingShoot = false;
 };
 

@@ -1,4 +1,4 @@
-#include "Player.h"
+﻿#include "Player.h"
 #include "PlayerFallingState.h"
 #include "PlayerJumpingState.h"
 #include "PlayerSpawingState.h"
@@ -17,17 +17,23 @@ Player::Player()
     mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 0.2f);
     mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
     mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
-	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.2f);	
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
 	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
 	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.1f);
 	mAnimationDashShoot = new Animation("Resources/megaman/dashshoot.png", 2, 1, 2, 0.1f);
+	mAniamtionClingShoot = new Animation("Resources/megaman/ClingShoot.png", 3, 1, 3, 0.1f);
+	mAnimationClingJShoot = new Animation("Resources/megaman/ClingJShoot.png", 2, 1, 2, 0.1f);
+	mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
+	mAnimationClinging = new Animation("Resources/megaman/Cling.png", 3, 1, 3, 0.15f);
+	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
+
+
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
     this->vy = 0;
     this->SetState(new PlayerSpawingState(this->mPlayerData));
-
     allowJump = true;
 }
 
@@ -76,6 +82,7 @@ void Player::Update(float dt)
 				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3((this->getCurrentAnimation()->GetWidth() / 2), 5, 0), true);
 	}
     Entity::Update(dt);
+	
 }
 
 void Player::HandleKeyboard(std::map<int, bool> keys)
@@ -96,18 +103,24 @@ void Player::OnKeyPressed(int key)
 			{
 				if (allowJump)
 				{
-					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing || mCurrentState==PlayerState::RunnShoot)
+					
+					if (mCurrentState == PlayerState::RunnShoot) {  
+						allowActionAndShoot = true;
+					}
+					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing || mCurrentState==PlayerState::RunnShoot||mCurrentState==PlayerState::StandShoot)
 					{
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
-					
 					allowJump = false;
 				}
 				if (mCurrentState == PlayerState::Clinging)
 				{
+					if (allowClingShoot) {
+						allowActionAndShoot = true;
+					}
 					this->SetState(new PlayerClingingJState(this->mPlayerData));
-
 				}
+				
 				break;
 			}
 		case 0x5A:
@@ -126,7 +139,13 @@ void Player::OnKeyPressed(int key)
 		case 0x58:
 		{
 			allowActionAndShoot = true;
+
+			if (mCurrentState == PlayerState::Clinging) {
+				this->SetState(new PlayerClingingState(this->mPlayerData));
+			}
+
 			
+
 			if (allowshoot)
 			{
 				if (mPlayerData->player->GetReverse())
@@ -149,7 +168,6 @@ void Player::OnKeyPressed(int key)
 			break;
 		}
 	}
-	
 }
 
 void Player::OnKeyUp(int key)
@@ -161,6 +179,7 @@ void Player::OnKeyUp(int key)
 	if (key == 0x58) {
 		allowshoot = true;
 		allowDashShoot = true;
+		allowClingShoot = true;
 	}
 }
 
@@ -199,6 +218,8 @@ PlayerData * Player::getplayerdata()
 {
 	return mPlayerData;
 }
+
+
 
 void Player::SetCamera(Camera *camera)
 {
@@ -287,15 +308,12 @@ void Player::changeAnimation(PlayerState::StateName state)
 			mCurrentAnimation = mAnimationSpawning;
 			break;
 		case PlayerState::Clinging:
-			mAnimationClinging = new Animation("Resources/megaman/pic0.png", 3, 1, 3, 0.15f);
 			mCurrentAnimation = mAnimationClinging;
 			break;
 		case PlayerState::ClingingJ:
-			mAnimationClingingJ = new Animation("Resources/megaman/pic01.png", 2, 1, 2, 0.15f);
 			mCurrentAnimation = mAnimationClingingJ;
 			break;
 		case PlayerState::Dash:
-			mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
 			mCurrentAnimation = mAnimationDashing;
 			break;
 		case PlayerState::StandShoot:
@@ -309,6 +327,12 @@ void Player::changeAnimation(PlayerState::StateName state)
 			break;
 		case PlayerState::DashShoot:
 			mCurrentAnimation = mAnimationDashShoot;
+			break;
+		case PlayerState::ClingingShoot:
+			mCurrentAnimation = mAniamtionClingShoot;
+			break;
+		case PlayerState::ClingingJShoot:
+			mCurrentAnimation = mAnimationClingJShoot;
 			break;
         default:
             break;

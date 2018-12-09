@@ -21,7 +21,9 @@ public:
 		StandShoot,
 		RunnShoot,
 		JumpShoot,
-		DashShoot
+		DashShoot,
+		ClingingShoot,
+		ClingingJShoot
     };
 
     ~PlayerState();
