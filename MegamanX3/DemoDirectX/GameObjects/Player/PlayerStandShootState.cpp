@@ -1,6 +1,7 @@
 #include "PlayerStandShootState.h"
 #include "Player.h"
 #include "PlayerStandingState.h"
+#include "PlayerRunningShootState.h"
 #include "../../GameDefines/GameDefine.h"
 
 PlayerStandShootState::PlayerStandShootState(PlayerData *playerData)
@@ -18,7 +19,7 @@ PlayerStandShootState::~PlayerStandShootState()
 void PlayerStandShootState::HandleKeyboard(std::map<int, bool> keys)
 {
 	if (keys[VK_LEFT] || keys[VK_RIGHT]) {
-		this->mPlayerData->player->SetState(new PlayerRunningState(this->mPlayerData));
+		this->mPlayerData->player->SetState(new PLayerRunningShootState(this->mPlayerData));
 		return;
 	}
 	else {

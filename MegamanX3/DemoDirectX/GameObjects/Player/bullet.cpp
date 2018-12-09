@@ -5,7 +5,7 @@ Bullet::Bullet(D3DXVECTOR3 pos,bool reverse)
 {
 	bullet = new Animation("Resources/megaman/bullet.png",1,1,1,10);
 	destroyedbullet = new Animation("Resources/megaman/destroybullet.png",3,1,3,0.1);
-	mChargeBullet1 = new Animation("Resources/megaman/chargedbullet1.png", 9, 1, 9, 0.1);
+	mChargeBullet1 = new Animation("Resources/megaman/chargedbullet1.png", 8, 1, 8, 0.1);
 	mChargeBullet2 = new Animation("Resources/megaman/chargedbullet2.png", 5, 1, 5, 0.2);
 	bullet->SetPosition(pos);
 	this->vx =0;

@@ -21,7 +21,6 @@ PLayerRunningShootState::~PLayerRunningShootState()
 
 void PLayerRunningShootState::HandleKeyboard(std::map<int, bool> keys)
 {
-	
 	if (keys[VK_RIGHT])
 	{
 		if (mPlayerData->player->allowMoveRight)
@@ -60,6 +59,9 @@ void PLayerRunningShootState::HandleKeyboard(std::map<int, bool> keys)
 	}
 	else
 	{
+		if (keys[VK_SPACE]) {
+			
+		}
 		this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
 		return;
 	}
