@@ -9,7 +9,6 @@ void DemoScene::LoadContent()
 {
     //set mau backcolor cho scene o day la mau xanh
     mBackColor = 0x54acd2;
-
     mMap = new GameMap("Resources/mario.tmx");
 
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());

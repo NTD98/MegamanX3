@@ -4,7 +4,9 @@
 #include <windows.h>
 #include <d3d9.h>
 #include"GameGlobal.h"
-
+#include <fstream>
+#include <iostream>
+std::ofstream out("Entity.txt");
 GameMap::GameMap()
 {
 }
@@ -43,7 +45,6 @@ void GameMap::LoadMap(char* filePath)
 {
     mMap = new Tmx::Map();
     mMap->ParseFile(filePath);
-
     RECT r;
     r.left = 0;
     r.top = 0;
@@ -82,8 +83,15 @@ void GameMap::LoadMap(char* filePath)
             entity->Tag = Entity::EntityTypes::Static;
 
             mQuadTree->insertEntity(entity);
+			switch (entity->Tag)
+			{
+			case 4: out << "Static " << "x: " << std::to_string(entity->GetPosition().x)<<" "<<"y: "<< std::to_string(entity->GetPosition().y)<<" "<<"width "<< std::to_string(entity->GetWidth())<<" height "<< std::to_string(entity->GetHeight())<<"\n";
+			default:
+			break;
+			}
         }
     }
+	out.close();
 #pragma endregion
 }
 
