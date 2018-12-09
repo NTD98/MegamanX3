@@ -24,14 +24,15 @@ void DemoScene::LoadContent()
 	}
     mPlayer = new Player();
 	//50/1340
-    mPlayer->SetPosition(50,1340);
+    mPlayer->SetPosition(50, 900);
 
     mPlayer->SetCamera(mCamera);
 }
 
 void DemoScene::Update(float dt)
 {
-    checkCollision();
+	if (mPlayer->getState() != PlayerState::Spawning)
+		checkCollision();
 
     mMap->Update(dt);
 

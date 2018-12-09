@@ -57,6 +57,7 @@ public:
 	bool isDone = false;
     bool allowMoveLeft;
 	int getHealthPoint();
+	void spawning();
     bool allowMoveRight;
 	vector<Bullet*> getbulletlist();
 	void deletebullet();

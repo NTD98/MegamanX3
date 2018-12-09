@@ -1,10 +1,13 @@
-﻿  DemoScene.cpp
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
+﻿  Player.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(68): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(70): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(74): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(76): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(134): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(139): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(259): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(261): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(317): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(318): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

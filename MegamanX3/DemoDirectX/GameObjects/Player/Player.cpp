@@ -17,7 +17,7 @@ Player::Player()
     mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 0.2f);
     mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
     mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
-	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.2f);	
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
 	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
 	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.1f);
@@ -179,6 +179,12 @@ int Player::getHealthPoint()
 	return HealthPoint;
 }
 
+void Player::spawning()
+{
+	if (this->posY < 1320)
+		posY += 10;
+}
+
 vector<Bullet*> Player::getbulletlist()
 {
 	return this->bulletlist;
@@ -208,7 +214,8 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
     {
         D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
             GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-
+		if (mPlayerData->state->GetState() == PlayerState::Spawning)
+			this->spawning();
         mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
 		for each (Bullet* bullet in bulletlist)
 		{
