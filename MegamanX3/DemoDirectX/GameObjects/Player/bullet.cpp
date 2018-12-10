@@ -56,6 +56,7 @@ void Bullet::Update(float dt, D3DXVECTOR3 pos, bool isreversed)
 
 void Bullet::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey,bool isreverse)
 {
+	mCurrentAnimaion->FlipVertical(isreverse);
 	if (!isPressed) 
 	{
 		if (isdelete == false) 
