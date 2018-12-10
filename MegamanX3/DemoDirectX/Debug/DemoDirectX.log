@@ -1,6 +1,10 @@
-﻿  PlayerRunningState.cpp
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(87): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(101): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(112): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+﻿  bullet.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(108): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(120): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(121): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(122): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(123): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
