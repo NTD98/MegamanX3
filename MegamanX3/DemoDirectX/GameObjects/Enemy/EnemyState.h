@@ -10,7 +10,7 @@ public:
 	enum StateName
 	{
 		Standing,
-		Die,
+		Die, 
 		Shooting,
 		Jump
 	};

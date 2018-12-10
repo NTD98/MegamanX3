@@ -1,14 +1,6 @@
-﻿  GameMap.cpp
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(69): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(73): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(182): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(191): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(210): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(212): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(230): warning C4244: 'argument': conversion from 'std::size_t' to 'FLOAT', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(235): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(236): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+﻿  PlayerRunningState.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(87): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(101): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(112): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

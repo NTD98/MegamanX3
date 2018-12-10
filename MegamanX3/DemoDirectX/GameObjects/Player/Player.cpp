@@ -241,7 +241,7 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 		for each (Bullet* bullet in bulletlist)
 		{
 			bool reverse = mPlayerData->player->GetReverse();
-			bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+			bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey,reverse);
 		}
     }
     else
