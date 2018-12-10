@@ -81,7 +81,7 @@ void PlayerClingingState::OnCollision(Entity * impactor, Entity::SideCollisions 
 		case Entity::Right:
 		{
 			mPlayerData->player->SetReverse(false);
-			//this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left), 0);
+			this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left), 0);
 			this->mPlayerData->player->SetVx(0);
 			break;
 		}
