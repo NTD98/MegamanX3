@@ -1,4 +1,4 @@
-#include "PlayerDashState.h"
+﻿#include "PlayerDashState.h"
 #include "PlayerStandingState.h"
 #include "PlayerFallingState.h"
 #include "../../GameComponents/GameCollision.h"
@@ -121,9 +121,10 @@ void PlayerDashState::OnCollision(Entity * impactor, Entity::SideCollisions side
 				this->mPlayerData->player->allowMoveLeft = false;
 
 				//day Player ra phia ben phai de cho player khong bi xuyen qua object
-				this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left + 10, 0);
-
-				this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+				this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left + 1, 0);
+				//Nếu đụng vào tường thì không cho phép chạy và phải đứng yên 
+				//2 biến true và false ở dưới để thông báo cho state PlayerStandingState rằng vật đang va chạm vào hướng nào của player . (true = va chạm)
+				this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData, true, false));
 			}
 
 			return;
@@ -135,8 +136,10 @@ void PlayerDashState::OnCollision(Entity * impactor, Entity::SideCollisions side
 			if (this->mPlayerData->player->getMoveDirection() == Player::MoveToRight)
 			{
 				this->mPlayerData->player->allowMoveRight = false;
-				this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left + 10), 0);
-				this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+				this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left + 1), 0);
+				//Nếu đụng vào tường thì không cho phép chạy và phải đứng yên 
+				//2 biến true và false ở dưới để thông báo cho state PlayerStandingState rằng vật đang va chạm vào hướng nào của player . (true = va chạm)
+				this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData, false, true));
 			}
 			return;
 		}

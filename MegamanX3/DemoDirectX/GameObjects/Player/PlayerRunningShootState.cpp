@@ -83,9 +83,9 @@ void PLayerRunningShootState::OnCollision(Entity *impactor, Entity::SideCollisio
 			this->mPlayerData->player->allowMoveLeft = false;
 
 			//day Player ra phia ben phai de cho player khong bi xuyen qua object
-			this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left + 10, 0);
+			this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left + 1, 0);
 
-			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData,true,false));
 		}
 
 		return;
@@ -97,8 +97,8 @@ void PLayerRunningShootState::OnCollision(Entity *impactor, Entity::SideCollisio
 		if (this->mPlayerData->player->getMoveDirection() == Player::MoveToRight)
 		{
 			this->mPlayerData->player->allowMoveRight = false;
-			this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left + 10), 0);
-			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
+			this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left + 1), 0);
+			this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData,false,true));
 		}
 		return;
 	}

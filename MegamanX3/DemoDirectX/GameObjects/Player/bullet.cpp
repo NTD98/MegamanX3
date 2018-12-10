@@ -5,8 +5,8 @@ Bullet::Bullet(D3DXVECTOR3 pos,bool reverse)
 {
 	bullet = new Animation("Resources/megaman/bullet.png",1,1,1,10);
 	destroyedbullet = new Animation("Resources/megaman/destroybullet.png",3,1,3,0.1);
-	mChargeBullet1 = new Animation("Resources/megaman/chargedbullet1.png", 8, 1, 8, 0.1);
-	mChargeBullet2 = new Animation("Resources/megaman/chargedbullet2.png", 5, 1, 5, 0.1);
+	mChargeBullet1 = new Animation("Resources/megaman/chargedbullet1.png", 6, 1, 6, 0.1);
+	mChargeBullet2 = new Animation("Resources/megaman/chargedbullet2.png", 3, 1, 3, 0.1);
 	bullet->SetPosition(pos);
 	this->vx =0;
 	this->SetPosition(bullet->GetPosition().x +bullet->GetImageInfo().Width / 2, bullet->GetPosition().y + bullet->GetImageInfo().Height / 2);
@@ -56,12 +56,11 @@ void Bullet::Update(float dt, D3DXVECTOR3 pos, bool isreversed)
 
 void Bullet::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey,bool isreverse)
 {
-	mCurrentAnimaion->FlipVertical(isreverse);
-	if (!isPressed)
+	if (!isPressed) 
 	{
-		if (isdelete == false)
+		if (isdelete == false) 
 		{
-			if (isreverse == false)
+			if (isreverse == false) 
 			{
 				mCurrentAnimaion->Draw(D3DXVECTOR3(position.x + 2, position.y, 0), sourceRect, scale, transform, angle, rotationCenter, colorKey);
 				isreverse = false;

@@ -4,7 +4,7 @@
 class PlayerStandingState : public PlayerState
 {
 public:
-    PlayerStandingState(PlayerData *playerData);
+	PlayerStandingState(PlayerData *playerData, bool isMoveToLeft = false,bool isMoveToRight=false);
     ~PlayerStandingState();
 
     void HandleKeyboard(std::map<int, bool> keys);
@@ -12,5 +12,6 @@ public:
     virtual StateName GetState();
 	virtual StateName GetStateHaveShoot();
 protected:
+	bool AllowRunLeft = true, AllowRunRight = true;
 };
 
