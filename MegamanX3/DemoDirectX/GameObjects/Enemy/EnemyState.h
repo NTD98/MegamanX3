@@ -11,7 +11,8 @@ public:
 	{
 		Standing,
 		Die,
-		Shooting
+		Shooting,
+		Jump
 	};
 
 	~EnemyState();

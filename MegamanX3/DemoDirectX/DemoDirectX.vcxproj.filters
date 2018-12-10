@@ -41,6 +41,9 @@
     <Filter Include="FrameWork\GameObjects\MapObjects">
       <UniqueIdentifier>{47b142cd-294b-49c2-81a6-4db7d2457b95}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\GameObjects\Enemy">
+      <UniqueIdentifier>{966d6257-a4ec-4e7d-ac5b-3c1c9a9cc6fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -198,6 +201,15 @@
     </ClCompile>
     <ClCompile Include="GameObjects\Player\PlayerRunningShootState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\Enemy.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\EnemyData.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\EnemyState.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +377,15 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Player\PlayerRunningShootState.h">
       <Filter>FrameWork\GameObjects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\Enemy.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\EnemyData.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\EnemyState.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
