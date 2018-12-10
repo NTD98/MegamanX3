@@ -47,6 +47,10 @@ void PlayerClingingJState::Update(float dt)
 
 void PlayerClingingJState::HandleKeyboard(std::map<int, bool> keys)
 {
+	if (keys[0x58]) {
+		this->mPlayerData->player->changeAnimation(PlayerState::ClingingJShoot);
+	}
+	
 	if (keys[VK_LEFT])
 	{
 		mPlayerData->player->SetReverse(true);
@@ -138,7 +142,3 @@ PlayerState::StateName PlayerClingingJState::GetState()
 	return PlayerState::ClingingJ;
 }
 
-PlayerState::StateName PlayerClingingJState::GetStateHaveShoot()
-{
-	return PlayerState::ClingingJShoot;
-}

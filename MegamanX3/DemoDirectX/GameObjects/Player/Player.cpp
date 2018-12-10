@@ -6,8 +6,6 @@
 #include "PlayerClingingState.h"
 #include "PlayerClingingJState.h"
 #include "PlayerDashState.h"
-#include "PlayerStandShootState.h"
-#include "PlayerJumpShootState.h"
 #include "../../GameComponents/GameCollision.h"
 
 float check = 0.0;
@@ -103,11 +101,7 @@ void Player::OnKeyPressed(int key)
 			{
 				if (allowJump)
 				{
-					
-					if (mCurrentState == PlayerState::RunnShoot) {  
-						allowActionAndShoot = true;
-					}
-					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing || mCurrentState==PlayerState::RunnShoot||mCurrentState==PlayerState::StandShoot)
+					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing )
 					{
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
@@ -115,36 +109,23 @@ void Player::OnKeyPressed(int key)
 				}
 				if (mCurrentState == PlayerState::Clinging)
 				{
-					if (allowClingShoot) {
-						allowActionAndShoot = true;
-					}
 					this->SetState(new PlayerClingingJState(this->mPlayerData));
 				}
-				
 				break;
 			}
 		case 0x5A:
 		{
-			if (allowdash)
-			{
-				if (allowDashShoot) {
-					allowActionAndShoot = true;
+			if (mCurrentState != PlayerState::Clinging) {
+				if (allowdash)
+				{
+					this->SetState(new PlayerDashState(this->mPlayerData));
+					allowdash = false;
 				}
-				this->SetState(new PlayerDashState(this->mPlayerData));
-				allowDashShoot=false;
-				allowdash = false;
 			}
 			break;
 		}
 		case 0x58:
 		{
-			allowActionAndShoot = true;
-
-			if (mCurrentState == PlayerState::Clinging) {
-				this->SetState(new PlayerClingingState(this->mPlayerData));
-			}
-
-			
 
 			if (allowshoot)
 			{
@@ -155,10 +136,9 @@ void Player::OnKeyPressed(int key)
 				}
 				else
 				{
-					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition()+ D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2+10,-100, 0), false);
+					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2 + 10, -100, 0), false);
 					bulletlist.insert(bulletlist.begin(), 1, bullet);
 				}
-				
 				allowshoot = false;
 			}
 			break;
@@ -178,8 +158,6 @@ void Player::OnKeyUp(int key)
 		allowdash = true;
 	if (key == 0x58) {
 		allowshoot = true;
-		allowDashShoot = true;
-		allowClingShoot = true;
 	}
 }
 
@@ -258,14 +236,8 @@ void Player::SetState(PlayerState *newState)
 
 	delete this->mPlayerData->state;
 	this->mPlayerData->state = newState;
-		if (allowActionAndShoot) {
-			this->changeAnimation(newState->GetStateHaveShoot());
-			allowActionAndShoot = false;
-		}
-		else {
-			this->changeAnimation(newState->GetState());
-		}
-    mCurrentState = newState->GetState();
+	this->changeAnimation(newState->GetState());
+	mCurrentState = newState->GetState();
 }
 
 

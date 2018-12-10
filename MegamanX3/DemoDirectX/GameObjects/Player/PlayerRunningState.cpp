@@ -1,7 +1,6 @@
 ﻿#include "PlayerRunningState.h"
 #include "PlayerStandingState.h"
 #include "PlayerFallingState.h"
-#include "PlayerRunningShootState.h"
 #include "../../GameComponents/GameCollision.h"
 #include "../../GameDefines/GameDefine.h"
 
@@ -23,11 +22,7 @@ PlayerRunningState::~PlayerRunningState()
 void PlayerRunningState::HandleKeyboard(std::map<int, bool> keys)
 {
 	if (keys[0x58]) {
-		if (this->mPlayerData->player->allowMoveLeft == true && this->mPlayerData->player->allowMoveRight == true) {
-			this->mPlayerData->player->SetState(new PLayerRunningShootState(this->mPlayerData));
-			return;
-		}
-		return;
+		this->mPlayerData->player->changeAnimation(PlayerState::RunnShoot);
 	}
     if (keys[VK_RIGHT])
     {
@@ -87,7 +82,7 @@ void PlayerRunningState::OnCollision(Entity *impactor, Entity::SideCollisions si
                 this->mPlayerData->player->allowMoveLeft = false;
 
                 //day Player ra phia ben phai de cho player khong bi xuyen qua object
-                this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left+0.2, 0);
+                this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left+2, 0);
 				//Nếu đụng vào tường thì không cho phép chạy và phải đứng yên 
 				//2 biến true và false ở dưới để thông báo cho state PlayerStandingState rằng vật đang va chạm vào hướng nào của player . (true = va chạm)
                 this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData,true,false));
@@ -102,7 +97,7 @@ void PlayerRunningState::OnCollision(Entity *impactor, Entity::SideCollisions si
             if (this->mPlayerData->player->getMoveDirection() == Player::MoveToRight)
             {
                 this->mPlayerData->player->allowMoveRight = false;
-                this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left+0.2), 0);
+                this->mPlayerData->player->AddPosition(-(data.RegionCollision.right - data.RegionCollision.left+2), 0);
 				//Nếu đụng vào tường thì không cho phép chạy và phải đứng yên 
 				//2 biến true và false ở dưới để thông báo cho state PlayerStandingState rằng vật đang va chạm vào hướng nào của player . (true = va chạm)
                 this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData,false,true));
@@ -129,7 +124,4 @@ PlayerState::StateName PlayerRunningState::GetState()
     return PlayerState::Running;
 }
 
-PlayerState::StateName PlayerRunningState::GetStateHaveShoot()
-{
-	return PlayerState::Running;
-}
+

@@ -112,11 +112,9 @@
     <ClCompile Include="GameObjects\Player\PlayerData.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerFallingState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerJumpingState.cpp" />
-    <ClCompile Include="GameObjects\Player\PlayerRunningShootState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerRunningState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerSpawingState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerStandingState.cpp" />
-    <ClCompile Include="GameObjects\Player\PlayerStandShootState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
@@ -170,11 +168,9 @@
     <ClInclude Include="GameObjects\Player\PlayerData.h" />
     <ClInclude Include="GameObjects\Player\PlayerFallingState.h" />
     <ClInclude Include="GameObjects\Player\PlayerJumpingState.h" />
-    <ClInclude Include="GameObjects\Player\PlayerRunningShootState.h" />
     <ClInclude Include="GameObjects\Player\PlayerRunningState.h" />
     <ClInclude Include="GameObjects\Player\PlayerSpawingState.h" />
     <ClInclude Include="GameObjects\Player\PlayerStandingState.h" />
-    <ClInclude Include="GameObjects\Player\PlayerStandShootState.h" />
     <ClInclude Include="GameObjects\Player\PlayerState.h" />
     <ClInclude Include="MapReader\base64.h" />
     <ClInclude Include="MapReader\tinyxml2.h" />

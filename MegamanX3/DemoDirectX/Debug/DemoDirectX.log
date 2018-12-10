@@ -1,10 +1,135 @@
-﻿  bullet.cpp
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(108): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(120): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(121): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(122): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(123): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+﻿  DemoScene.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(100): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(113): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TmxUtil.cpp
+  TmxTileset.cpp
+  TmxTileOffset.cpp
+  TmxTileLayer.cpp
+  TmxTile.cpp
+  TmxTerrainArray.cpp
+  TmxTerrain.cpp
+  TmxPropertySet.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\mapreader\tmxpropertyset.cpp(87): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  TmxPolyline.cpp
+  TmxPolygon.cpp
+  TmxObjectGroup.cpp
+  TmxObject.cpp
+  TmxMap.cpp
+  TmxLayer.cpp
+  TmxImageLayer.cpp
+  TmxImage.cpp
+  TmxEllipse.cpp
+  tinyxml2.cpp
+  base64.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\mapreader\base64.cpp(96): warning C4267: '=': conversion from 'size_t' to 'unsigned char', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\mapreader\base64.cpp(113): warning C4267: '=': conversion from 'size_t' to 'unsigned char', possible loss of data
+  Generating Code...
+  Compiling...
+  main.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+  PlayerState.cpp
+  PlayerStandingState.cpp
+  PlayerSpawingState.cpp
+  PlayerRunningState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(85): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(100): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(113): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerJumpingState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(114): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(126): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(138): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(145): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerFallingState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(93): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(103): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(118): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerData.cpp
+  PlayerDashState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(122): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(137): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(150): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerClingingState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingstate.cpp(90): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingstate.cpp(96): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerClingingJState.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(101): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(113): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(125): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(132): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  Player.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(72): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(74): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(78): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(80): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(134): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(139): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(252): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(254): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(313): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\player.cpp(314): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  bullet.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(108): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(120): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(121): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(122): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(123): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  GameObject.cpp
+  BrickNormal.cpp
+  BrickGold.cpp
+  Brick.cpp
+  Entity.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(18): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(19): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(20): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(21): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(78): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(83): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(88): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\entity.cpp(93): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  EnemyState.cpp
+  EnemyData.cpp
+  Generating Code...
+  Compiling...
+  Enemy.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(60): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(62): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  SceneManager.cpp
+  Sprite.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\sprite.cpp(21): warning C4101: 'result': unreferenced local variable
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\sprite.cpp(136): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  Scene.cpp
+  QuadTree.cpp
+  GameTime.cpp
+  GameMap.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(56): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(69): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(80): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(182): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(191): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(210): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(212): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(230): warning C4244: 'argument': conversion from 'std::size_t' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(235): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamemap.cpp(236): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  GameGlobal.cpp
+  GameCollision.cpp
+  Game.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\game.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\game.cpp(76): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
+  Camera.cpp
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\camera.cpp(37): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\camera.cpp(39): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  Animation.cpp
+  Generating Code...
+c:\users\danhypc\desktop\megamanx3\megamanx3\demodirectx\gamecomponents\gamecollision.cpp(150): warning C4715: 'GameCollision::getSideCollision': not all control paths return a value
+  miniz.c
+  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
+  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

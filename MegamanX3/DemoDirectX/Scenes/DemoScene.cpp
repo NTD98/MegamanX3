@@ -23,7 +23,7 @@ void DemoScene::LoadContent()
 	}
     mPlayer = new Player();
 	//50/1340
-    mPlayer->SetPosition(50, 900);
+    mPlayer->SetPosition(80, 900);
 
     mPlayer->SetCamera(mCamera);
 }
