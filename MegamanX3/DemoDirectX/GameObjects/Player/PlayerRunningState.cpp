@@ -1,6 +1,7 @@
 ﻿#include "PlayerRunningState.h"
 #include "PlayerStandingState.h"
 #include "PlayerFallingState.h"
+#include "PlayerDashState.h"
 #include "../../GameComponents/GameCollision.h"
 #include "../../GameDefines/GameDefine.h"
 
@@ -21,6 +22,10 @@ PlayerRunningState::~PlayerRunningState()
 
 void PlayerRunningState::HandleKeyboard(std::map<int, bool> keys)
 {
+	if (keys[0x5A]) {
+		this->mPlayerData->player->SetState(new PlayerDashState(this->mPlayerData));
+		return;
+	}
 	if (keys[0x58]) {
 		this->mPlayerData->player->changeAnimation(PlayerState::RunnShoot);
 	}

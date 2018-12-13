@@ -13,7 +13,6 @@ public:
         Running,
         Falling,
         Jumping,
-        Die,
 		Spawning,
 		Clinging,
 		ClingingJ,
@@ -23,7 +22,8 @@ public:
 		JumpShoot,
 		DashShoot,
 		ClingingShoot,
-		ClingingJShoot
+		ClingingJShoot,
+		Dead
     };
 
     ~PlayerState();

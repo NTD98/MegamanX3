@@ -11,6 +11,7 @@
 #include "../GameComponents/GameMap.h"
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
+#include "../GameObjects/Player/PlayerDeadState.h"
 
 class DemoScene : public Scene
 {
@@ -25,6 +26,7 @@ public:
     void OnKeyUp(int keyCode);
     void OnMouseDown(float x, float y);
 	bool iscolidebullet(RECT a, RECT b);
+	void isDead();
 protected:
     void checkCollision();
     void CheckCameraAndWorldMap();

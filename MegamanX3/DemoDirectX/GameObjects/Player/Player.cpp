@@ -13,18 +13,19 @@ bool isDone = false;
 Player::Player()
 {
     mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 0.2f);
-    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
+    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.05f);
     mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
 	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
 	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
-	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.1f);
+	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.05f);
 	mAnimationDashShoot = new Animation("Resources/megaman/dashshoot.png", 2, 1, 2, 0.1f);
 	mAniamtionClingShoot = new Animation("Resources/megaman/ClingShoot.png", 3, 1, 3, 0.1f);
 	mAnimationClingJShoot = new Animation("Resources/megaman/ClingJShoot.png", 2, 1, 2, 0.1f);
 	mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
 	mAnimationClinging = new Animation("Resources/megaman/Cling.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
+	mAnimationDead = new Animation("Resources/megaman/Dead.png", 7, 1, 7, 0.1f);
 
 
     this->mPlayerData = new PlayerData();
@@ -113,17 +114,6 @@ void Player::OnKeyPressed(int key)
 				}
 				break;
 			}
-		case 0x5A:
-		{
-			if (mCurrentState != PlayerState::Clinging) {
-				if (allowdash)
-				{
-					this->SetState(new PlayerDashState(this->mPlayerData));
-					allowdash = false;
-				}
-			}
-			break;
-		}
 		case 0x58:
 		{
 
@@ -154,8 +144,6 @@ void Player::OnKeyUp(int key)
 {
     if (key == VK_SPACE)
         allowJump = true;
-	if (key == 0x5A)
-		allowdash = true;
 	if (key == 0x58) {
 		allowshoot = true;
 	}
@@ -305,6 +293,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 			break;
 		case PlayerState::ClingingJShoot:
 			mCurrentAnimation = mAnimationClingJShoot;
+			break;
+		case PlayerState::Dead:
+			mCurrentAnimation = mAnimationDead;
 			break;
         default:
             break;

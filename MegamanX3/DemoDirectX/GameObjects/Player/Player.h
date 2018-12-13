@@ -81,7 +81,8 @@ protected:
 		*mAnimationRunnShoot,
 		*mAnimationDashShoot,
 		*mAniamtionClingShoot,
-		*mAnimationClingJShoot;
+		*mAnimationClingJShoot,
+		*mAnimationDead;
 
 	vector <Bullet*> bulletlist;
     PlayerState::StateName mCurrentState;

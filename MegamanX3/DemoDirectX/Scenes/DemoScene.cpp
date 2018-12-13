@@ -8,8 +8,8 @@ DemoScene::DemoScene()
 void DemoScene::LoadContent()
 {
     //set mau backcolor cho scene o day la mau xanh
-    mBackColor = 0x54acd2;
-    mMap = new GameMap("Resources/mario.tmx");
+    mBackColor = 0x000000;
+    mMap = new GameMap("Resources/Man1_1.tmx");
 
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
     mCamera->SetPosition(GameGlobal::GetWidth() / 2, 
@@ -23,7 +23,7 @@ void DemoScene::LoadContent()
 	}
     mPlayer = new Player();
 	//50/1340
-    mPlayer->SetPosition(80, 900);
+    mPlayer->SetPosition(90.00, 1854.00);
 
     mPlayer->SetCamera(mCamera);
 }
@@ -86,6 +86,13 @@ bool DemoScene::iscolidebullet(RECT rect1, RECT rect2)
 	if (rect1.left > rect2.right || rect1.right < rect2.left)
 		return false;
 	return true;
+}
+
+void DemoScene::isDead()
+{
+	if (mPlayer->getHealthPoint()==0) {
+		mPlayer->SetState(new PlayerDeadState(mPlayer->getplayerdata()));
+	}
 }
 
 void DemoScene::CheckCameraAndWorldMap()
