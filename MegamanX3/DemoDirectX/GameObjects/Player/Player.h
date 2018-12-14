@@ -9,7 +9,6 @@
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
 #include "bullet.h"
-#include "PlayerStandShootState.h"
 class Player : public Entity
 {
 public:
@@ -89,7 +88,6 @@ protected:
     PlayerState::StateName mCurrentState;
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = true, allowActionAndShoot = false;
-	bool allowDashShoot = false, allowClingShoot = false;
+	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = true;
 };
 

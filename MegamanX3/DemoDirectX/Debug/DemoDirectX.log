@@ -1,16 +1,41 @@
-<<<<<<< HEAD
-﻿  PlayerDeadState.cpp
+﻿  PlayerClingingJState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(101): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(113): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(125): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingjstate.cpp(132): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  DemoScene.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(51): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(107): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(120): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(127): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  PlayerStandingState.cpp
+  PlayerSpawingState.cpp
+  PlayerRunningState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(90): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(105): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerrunningstate.cpp(118): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerJumpingState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(114): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(126): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(138): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerjumpingstate.cpp(145): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerFallingState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(93): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(103): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerfallingstate.cpp(118): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerDeadState.cpp
+  PlayerDashState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(122): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(137): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerdashstate.cpp(150): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  PlayerClingingState.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingstate.cpp(82): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingstate.cpp(90): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\playerclingingstate.cpp(96): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+  Generating Code...
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
-=======
-﻿  bullet.cpp
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(7): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(108): warning C4305: 'argument': truncation from 'double' to 'float'
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(120): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(121): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(122): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\gameobjects\player\bullet.cpp(123): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
->>>>>>> parent of 8cb0450... PlayerState ver2 final

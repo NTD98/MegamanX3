@@ -23,11 +23,7 @@ void DemoScene::LoadContent()
 	}
     mPlayer = new Player();
 	//50/1340
-<<<<<<< HEAD
     mPlayer->SetPosition(90.00, 1854.00);
-=======
-    mPlayer->SetPosition(50, 900);
->>>>>>> parent of 8cb0450... PlayerState ver2 final
 
     mPlayer->SetCamera(mCamera);
 }

@@ -28,6 +28,12 @@ void PlayerClingingState::Update(float dt)
 
 void PlayerClingingState::HandleKeyboard(std::map<int, bool> keys)
 {
+	if (keys[0x58]) {
+		this->mPlayerData->player->changeAnimation(PlayerState::ClingingShoot);
+	}
+	else {
+		this->mPlayerData->player->changeAnimation(PlayerState::Clinging);
+	}
 	if (keys[VK_RIGHT])
 	{
 		//di chuyen sang phai
@@ -73,7 +79,7 @@ void PlayerClingingState::OnCollision(Entity * impactor, Entity::SideCollisions 
 		case Entity::Left:
 		{
 			mPlayerData->player->SetReverse(true);
-			//this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left, 0);
+			this->mPlayerData->player->AddPosition(data.RegionCollision.right - data.RegionCollision.left, 0);
 			this->mPlayerData->player->SetVx(0);
 			break;
 		}
@@ -96,9 +102,4 @@ void PlayerClingingState::OnCollision(Entity * impactor, Entity::SideCollisions 
 PlayerState::StateName PlayerClingingState::GetState()
 {
 	return PlayerState::Clinging;
-}
-
-PlayerState::StateName PlayerClingingState::GetStateHaveShoot()
-{
-	return PlayerState::ClingingShoot;
 }

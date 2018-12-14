@@ -15,7 +15,6 @@ public:
     void OnCollision(Entity *impactor, Entity::SideCollisions side, Entity::CollisionReturn data);
 
     virtual StateName GetState();
-	virtual StateName GetStateHaveShoot();
 
 protected:
     float acceleratorY;
