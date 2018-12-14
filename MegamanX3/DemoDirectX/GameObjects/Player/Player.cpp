@@ -13,7 +13,7 @@ bool isDone = false;
 Player::Player()
 {
     mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 0.2f);
-    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.05f);
+    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
     mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
 	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
 	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
@@ -34,6 +34,9 @@ Player::Player()
     this->vy = 0;
     this->SetState(new PlayerSpawingState(this->mPlayerData));
     allowJump = true;
+
+	mlistFlashEffect = new PlayerFlashDashEffect[5];
+	
 }
 
 Player::~Player()
@@ -42,6 +45,10 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
+	for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
+		mlistFlashEffect[i].Update(dt,mPlayerData->player->GetPosition(),mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
+	}
+
 	bulletlist = this->getbulletlist();
 	if (dt >= 1 / 60)
 	{
@@ -197,10 +204,14 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
     mCurrentAnimation->FlipVertical(mCurrentReverse);
     mCurrentAnimation->SetPosition(this->GetPosition());
 
+	
+
+
     if (mCamera)
     {
         D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
             GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+
 		if (mPlayerData->state->GetState() == PlayerState::Spawning)
 			this->spawning();
         mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
@@ -208,6 +219,11 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 		{
 			bool reverse = mPlayerData->player->GetReverse();
 			bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey,reverse);
+		}
+		if (mPlayerData->state->GetState()==PlayerState::Dash || mPlayerData->state->GetState()==PlayerState::DashShoot) {
+			for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
+				mlistFlashEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+			}
 		}
     }
     else

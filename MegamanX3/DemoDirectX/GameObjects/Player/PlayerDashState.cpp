@@ -7,8 +7,7 @@ PlayerDashState::PlayerDashState(PlayerData * playerData)
 {
 	this->mPlayerData = playerData;
 
-	acceleratorX = 20.0f;
-
+	acceleratorX = 15.0f;
 	this->mPlayerData->player->allowMoveLeft = true;
 	this->mPlayerData->player->allowMoveRight = true;
 }
@@ -22,52 +21,11 @@ void PlayerDashState::HandleKeyboard(std::map<int, bool> keys)
 	if (keys[0x58]) {
 		this->mPlayerData->player->changeAnimation(PlayerState::DashShoot);
 	}
-	//if (keys[VK_RIGHT])
-	//{
-	//	if (mPlayerData->player->allowMoveRight)
-	//	{
-	//		mPlayerData->player->SetReverse(false);
-
-	//		//di chuyen sang phai
-	//		if (this->mPlayerData->player->GetVx() < Define::PLAYER_MAX_DASHING_SPEED)
-	//		{
-	//			this->mPlayerData->player->AddVx(acceleratorX);
-
-	//			if (this->mPlayerData->player->GetVx() >= Define::PLAYER_MAX_DASHING_SPEED)
-	//			{
-	//				this->mPlayerData->player->SetVx(Define::PLAYER_MAX_DASHING_SPEED);
-	//			}
-	//		}
-	//	}
-	//}
-	//else if (keys[VK_LEFT])
-	//{
-	//	if (mPlayerData->player->allowMoveLeft)
-	//	{
-	//		mPlayerData->player->SetReverse(true);
-
-	//		//di chuyen sang trai
-	//		if (this->mPlayerData->player->GetVx() > -Define::PLAYER_MAX_DASHING_SPEED)
-	//		{
-	//			this->mPlayerData->player->AddVx(-acceleratorX);
-
-	//			if (this->mPlayerData->player->GetVx() < -Define::PLAYER_MAX_DASHING_SPEED)
-	//			{
-	//				this->mPlayerData->player->SetVx(-Define::PLAYER_MAX_DASHING_SPEED);
-	//			}
-	//		}
-	//	}
-	//}
-	//else
-	//{
-	//	this->mPlayerData->player->SetState(new PlayerStandingState(this->mPlayerData));
-	//	return;
-	//}
+	
 }
 
 void PlayerDashState::Update(float dt)
 {
-	
 	if (this->mPlayerData->player->GetReverse())
 		{
 			this->mPlayerData->player->SetReverse(true);

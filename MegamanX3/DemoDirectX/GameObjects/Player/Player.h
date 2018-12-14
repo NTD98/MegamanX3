@@ -9,6 +9,7 @@
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
 #include "bullet.h"
+#include "../PlayerFlashDashEffect.h"
 class Player : public Entity
 {
 public:
@@ -54,16 +55,17 @@ public:
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
 	bool GetReverse();
+	bool isDead = false;
 	bool isDone = false;
     bool allowMoveLeft;
 	int getHealthPoint();
 	void spawning();
     bool allowMoveRight;
-	vector<Bullet*> getbulletlist();
+	vector<Bullet*> getbulletlist(); 
 	void deletebullet();
 	PlayerData* getplayerdata();
+	PlayerFlashDashEffect *mlistFlashEffect;
 protected:
-
     Camera      *mCamera;
 
     PlayerData *mPlayerData;
@@ -85,9 +87,11 @@ protected:
 		*mAnimationDead;
 
 	vector <Bullet*> bulletlist;
+	
     PlayerState::StateName mCurrentState;
+	
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-	bool allowJump, mCurrentReverse, allowdash = true, allowshoot = true;
+	bool allowJump, mCurrentReverse, allowshoot = true;
 };
 

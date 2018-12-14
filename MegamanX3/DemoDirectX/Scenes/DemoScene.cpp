@@ -5,6 +5,7 @@ DemoScene::DemoScene()
     LoadContent();
 }
 
+
 void DemoScene::LoadContent()
 {
     //set mau backcolor cho scene o day la mau xanh
@@ -30,6 +31,7 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+	
 	if (mPlayer->getState() != PlayerState::Spawning)
 		checkCollision();
 

@@ -12,12 +12,12 @@
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
 #include "../GameObjects/Player/PlayerDeadState.h"
+#include "../GameObjects/PlayerFlashDashEffect.h"
 
 class DemoScene : public Scene
 {
 public:
     DemoScene();
-
     void Update(float dt);
     void LoadContent();
     void Draw();

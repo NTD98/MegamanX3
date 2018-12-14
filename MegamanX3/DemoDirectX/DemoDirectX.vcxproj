@@ -96,6 +96,7 @@
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Enemy\Enemy.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyData.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyState.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Player\bullet.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerDeadState.cpp" />
     <ClCompile Include="GameObjects\Player\Player.cpp" />
@@ -153,6 +155,7 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
     <ClInclude Include="GameObjects\Enemy\Enemy.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyData.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyState.h" />
@@ -197,6 +200,7 @@
     <ClInclude Include="MapReader\TmxUtil.h" />
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scenes\DemoScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +208,9 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
     <None Include="MapReader\Tmx.h.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DemoDirectX.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
