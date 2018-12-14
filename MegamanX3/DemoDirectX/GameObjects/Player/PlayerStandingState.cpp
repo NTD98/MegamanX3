@@ -64,12 +64,22 @@ void PlayerStandingState::HandleKeyboard(std::map<int, bool> keys)
 		}
 	}
 	
+	
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::StandShoot);
-		return;
-	}
-	else {
-		this->mPlayerData->player->changeAnimation(PlayerState::Standing);
+		//Nếu Player đang va chạm  vào tường bên trái và bắn => truyền một biến cho state PlayerStandShootState thông báo 
+		// rằng không cho phép chạy state PlayerRuningState về phía bên trái
+		if (AllowRunLeft == false) {
+			this->mPlayerData->player->SetState(new PlayerStandShootState(this->mPlayerData, true,false));
+			return;
+		}
+		//Nếu Player đang va chạm  vào tường bên phải và bắn=> truyền một biến cho state PlayerStandShootState thông báo 
+		// rằng không cho phép chạy state PlayerRuningState về phía bên phải
+		if (AllowRunRight == false) {
+			this->mPlayerData->player->SetState(new PlayerStandShootState(this->mPlayerData, false,true));
+			return;
+		}
+		//Trường hợp không va chạm thì chạy và bắn tự do 
+		this->mPlayerData->player->SetState(new PlayerStandShootState(this->mPlayerData, false, false));
 		return;
 	}
 	return;
@@ -80,4 +90,8 @@ PlayerState::StateName PlayerStandingState::GetState()
     return PlayerState::Standing;
 }
 
+PlayerState::StateName PlayerStandingState::GetStateHaveShoot()
+{
+	return PlayerState::Standing;
+}
 

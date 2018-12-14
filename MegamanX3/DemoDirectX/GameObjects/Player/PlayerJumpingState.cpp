@@ -62,9 +62,6 @@ void PlayerJumpingState::Update(float dt)
 
 void PlayerJumpingState::HandleKeyboard(std::map<int, bool> keys)
 {
-	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::JumpShoot);
-	}
     if (keys[VK_RIGHT])
     {
         mPlayerData->player->SetReverse(false);
@@ -154,4 +151,7 @@ PlayerState::StateName PlayerJumpingState::GetState()
 {
     return PlayerState::Jumping;
 }
-
+PlayerState::StateName PlayerJumpingState::GetStateHaveShoot()
+{
+	return PlayerState::JumpShoot;
+}

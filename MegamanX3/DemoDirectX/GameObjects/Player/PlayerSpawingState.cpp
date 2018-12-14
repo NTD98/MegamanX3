@@ -19,3 +19,7 @@ PlayerState::StateName PlayerSpawingState::GetState()
 	return PlayerState::Spawning;
 }
 
+PlayerState::StateName PlayerSpawingState::GetStateHaveShoot()
+{
+	return PlayerState::Spawning;
+}
