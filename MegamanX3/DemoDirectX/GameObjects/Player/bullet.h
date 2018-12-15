@@ -5,7 +5,6 @@
 #include "../../GameComponents/GameGlobal.h"
 #include "../Entity.h"
 #include "../../GameComponents/Sprite.h"
-#include "../../GameComponents/Animation.h"
 class Bullet :public Entity
 {
 public:

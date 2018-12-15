@@ -42,7 +42,10 @@
       <UniqueIdentifier>{47b142cd-294b-49c2-81a6-4db7d2457b95}</UniqueIdentifier>
     </Filter>
     <Filter Include="FrameWork\GameObjects\Enemy">
-      <UniqueIdentifier>{966d6257-a4ec-4e7d-ac5b-3c1c9a9cc6fe}</UniqueIdentifier>
+      <UniqueIdentifier>{f03ee426-0599-4329-a863-0ac2e2adb688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\GameObjects\Effect">
+      <UniqueIdentifier>{6af2c7ad-6388-40cb-b97e-5b7bbcb8ab9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -199,20 +202,38 @@
     <ClCompile Include="GameObjects\Enemy\Enemy.cpp">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\EnemyBullet.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="GameObjects\Enemy\EnemyData.cpp">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Enemy\EnemyState.cpp">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\Gunner.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\GunnerFallingState.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\GunnerJumpingState.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\GunnerShootingState.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\GunnerStandingState.cpp">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="GameObjects\Player\PlayerDeadState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>FrameWork\GameObjects\Effect</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>FrameWork\GameObjects\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -378,23 +399,38 @@
     <ClInclude Include="GameObjects\Enemy\Enemy.h">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\EnemyBullet.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="GameObjects\Enemy\EnemyData.h">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Enemy\EnemyState.h">
       <Filter>FrameWork\GameObjects\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\Gunner.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\GunnerFallingState.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\GunnerJumpingState.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\GunnerShootingState.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\GunnerStandingState.h">
+      <Filter>FrameWork\GameObjects\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="GameObjects\Player\PlayerDeadState.h">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>FrameWork\GameObjects\Effect</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h">
-      <Filter>Header Files</Filter>
+      <Filter>FrameWork\GameObjects\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -404,10 +440,5 @@
     </None>
     <None Include="ClassDiagram1.cd" />
     <None Include="ClassDiagram2.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="DemoDirectX.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>

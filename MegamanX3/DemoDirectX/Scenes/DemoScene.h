@@ -12,7 +12,7 @@
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
 #include "../GameObjects/Player/PlayerDeadState.h"
-
+#include "../GameObjects/Enemy/EnemyBullet.h"
 class DemoScene : public Scene
 {
 public:
@@ -20,7 +20,7 @@ public:
     void Update(float dt);
     void LoadContent();
     void Draw();
-
+	void EnemyAction();
     void OnKeyDown(int keyCode);
     void OnKeyUp(int keyCode);
     void OnMouseDown(float x, float y);
@@ -29,13 +29,15 @@ public:
 protected:
     void checkCollision();
     void CheckCameraAndWorldMap();
-
+	float duration = 0.0f;
     GameMap *mMap;
     Camera *mCamera;
     Player *mPlayer;
 	Sprite *map;
 	Sprite *HealthBar,
 		*HealthPoint;
+	vector<Gunner*> mlistGunners;
+	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
     std::map<int, bool> keys;
 };

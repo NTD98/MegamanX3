@@ -12,7 +12,8 @@ public:
 		Standing,
 		Die,
 		Shooting,
-		Jump
+		Jumping,
+		Falling
 	};
 
 	~EnemyState();

@@ -31,6 +31,7 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+	duration += dt;
 	
 	if (mPlayer->getState() != PlayerState::Spawning)
 		checkCollision();
@@ -44,6 +45,11 @@ void DemoScene::Update(float dt)
     CheckCameraAndWorldMap();
 
 	HealthBar->SetPosition(D3DXVECTOR2(mCamera->GetPosition().x - 260, mCamera->GetPosition().y - 200));
+
+	EnemyAction();
+
+	for (int i = 0; i < mlistenemybullets.size(); i++)
+		mlistenemybullets.at(i)->Update(dt);
 }
 
 void DemoScene::Draw()
@@ -62,6 +68,56 @@ void DemoScene::Draw()
 			pos = D3DXVECTOR3(HealthBar->GetPosition().x, HealthBar->GetPosition().y + 18, 0);
 		Health.at(i)->Draw(pos, RECT(), D3DXVECTOR2(1, 1), trans);
 		pos = pos + D3DXVECTOR3(0, -4, 0);
+	}
+
+	for (int i = 0; i < mlistenemybullets.size(); i++)
+		mlistenemybullets.at(i)->Draw(trans);
+}
+
+void DemoScene::EnemyAction()
+{
+	for (int i = 0; i < mlistGunners.size(); i++)
+	{
+		if (duration >= 2.0f)
+		{
+			if (std::abs(mlistGunners.at(i)->GetPosition().x - mPlayer->GetPosition().x) < 150)
+			{
+				if (mlistGunners.at(i)->getisdone() >= 0.8f)
+					mlistGunners.at(i)->Standing();
+				if (mlistGunners.at(i)->getState() != EnemyState::Standing)
+					continue;
+				if (mlistGunners.at(i)->getshoottime() >= 3.0f&&mlistGunners.at(i)->getisdone() <= 0.8f&&mlistGunners.at(i)->getjumptime() >= 1.0f)
+				{
+					int direction;
+					bool reverse;
+					if ((mlistGunners.at(i)->GetPosition().x<mPlayer->GetPosition().x))
+						reverse = true;
+					else
+						reverse = false;
+
+					EnemyBullet* ebullet = new EnemyBullet();
+					if (reverse)
+						direction = 1;
+					else
+						direction = -1;
+					ebullet->Spawn(1, mlistGunners.at(i)->GetPosition().x, mlistGunners.at(i)->GetPosition().y, direction*GunnerDefine::BULLET_SPEED_X_1, -GunnerDefine::BULLET_SPEED_Y_1);
+					mlistenemybullets.push_back(ebullet);
+					mlistGunners.at(i)->Shooting(mPlayer->GetPosition(), reverse);
+					mlistGunners.at(i)->setisdone();
+					mlistGunners.at(i)->setshoottime();
+					continue;
+				}
+				else
+					if (mlistGunners.at(i)->getjumptime() >= 3.0f&&mlistGunners.at(i)->getshoottime() >= 2.0f)
+					{
+						mlistGunners.at(i)->Jumpping(mPlayer->GetPosition());
+						mlistGunners.at(i)->setjumptime();
+						mlistGunners.at(i)->setisdone();
+					}
+			}
+			else
+				mlistGunners.at(i)->Standing();
+		}
 	}
 }
 
@@ -156,9 +212,59 @@ void DemoScene::checkCollision()
     vector<Entity*> listCollision;
 	vector<Bullet*> bulletlist = mPlayer->getbulletlist();
     mMap->GetQuadTree()->getEntitiesCollideAble(listCollision, mPlayer);
-	
+	//player and player's bullet
     for (size_t i = 0; i < listCollision.size(); i++)
     {
+		for (int j = 0; j < mlistGunners.size(); j++)
+		{
+			int widthBottomE = 0;
+			Entity::CollisionReturn g = GameCollision::RecteAndRect(mlistGunners.at(j)->GetBound(),
+				listCollision.at(i)->GetBound());
+			if (g.IsCollided)
+			{
+				Entity::SideCollisions sideEnemy = GameCollision::getSideCollision(mlistGunners.at(j), g);
+
+				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(listCollision.at(i), g);
+				if (mlistGunners.at(j)->getState() == EnemyState::Jumping)
+					int a = 0;
+				mlistGunners.at(j)->OnCollision(listCollision.at(i), g, sideEnemy);
+				listCollision.at(i)->OnCollision(mlistGunners.at(j), g, sideImpactor);
+				if (sideEnemy == Entity::Bottom || sideEnemy == Entity::BottomLeft
+					|| sideEnemy == Entity::BottomRight)
+				{
+					int bot = g.RegionCollision.right - g.RegionCollision.left;
+
+					if (bot > widthBottomE)
+						widthBottomE = bot;
+				}
+				if (widthBottomE < 8)
+					mlistGunners.at(j)->OnNoCollisionWithBottom();
+				mlistGunners.at(j)->OnCollision(listCollision.at(i), g, sideEnemy);
+			}
+		}
+		//enemy bullet
+		for (int i = 0; i < mlistenemybullets.size(); i++)
+		{
+			Entity::CollisionReturn r = GameCollision::RecteAndRect(mlistenemybullets.at(i)->GetBound(),
+				listCollision.at(i)->GetBound());
+			Entity::CollisionReturn g = GameCollision::RecteAndRect(mlistenemybullets.at(i)->GetBound(),
+				mPlayer->GetBound());
+			if (r.IsCollided)
+			{
+				Entity::SideCollisions sidebullet = GameCollision::getSideCollision(mlistenemybullets.at(i), r);
+				mlistenemybullets.at(i)->OnCollision(listCollision.at(i), sidebullet);
+			}
+			if (g.IsCollided)
+			{
+				//lay phia va cham cua Entity so voi Player
+				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, r);
+
+				//lay phia va cham cua Player so voi Entity
+				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(i), r);
+
+				//mlistenemybullets.at(i)->OnCollision()
+			}
+		}
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
 			Entity::CollisionReturn b = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),

@@ -24,12 +24,12 @@ GameMap::~GameMap()
 {
     delete mMap;
 
-    for (size_t i = 0; i < mListBricks.size(); i++)
-    {
-        if (mListBricks[i])
-            delete mListBricks[i];
-    }
-    mListBricks.clear();
+	for (size_t i = 0; i < mListGunners.size(); i++)
+	{
+		if (mListGunners[i])
+			delete mListGunners[i];
+	}
+	mListGunners.clear();
 
     for (size_t i = 0; i < mListTileset.size(); i++)
     {
@@ -63,7 +63,70 @@ void GameMap::LoadMap(char* filePath)
 
     //khoi tao cac khoi Brick (vien gach)
 
+	for (size_t i = 0; i < GetMap()->GetNumTileLayers(); i++)
+	{
+		const Tmx::TileLayer *layer = mMap->GetTileLayer(i);
 
+		if (layer->IsVisible())
+			continue;
+
+		//xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
+
+		if (layer->GetName() == "gunner")
+		{
+			for (size_t j = 0; j < mMap->GetNumTilesets(); j++)
+			{
+				const Tmx::Tileset *tileSet = mMap->GetTileset(j);
+
+				int tileWidth = mMap->GetTileWidth();
+				int tileHeight = mMap->GetTileHeight();
+
+				int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
+				int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
+
+				for (size_t m = 0; m < layer->GetHeight(); m++)
+				{
+					for (size_t n = 0; n < layer->GetWidth(); n++)
+					{
+						if (layer->GetTileTilesetIndex(n, m) != -1)
+						{
+							int tileID = layer->GetTileId(n, m);
+
+							int y = tileID / tileSetWidth;
+							int x = tileID - y * tileSetWidth;
+
+							RECT sourceRECT;
+							sourceRECT.top = y * tileHeight;
+							sourceRECT.bottom = sourceRECT.top + tileHeight;
+							sourceRECT.left = x * tileWidth;
+							sourceRECT.right = sourceRECT.left + tileWidth;
+
+							RECT bound;
+							bound.left = n * tileWidth;
+							bound.top = m * tileHeight;
+							bound.right = bound.left + tileWidth;
+							bound.bottom = bound.top + tileHeight;
+
+							D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
+
+							Brick *brick = nullptr;
+							Gunner *gunner = nullptr;
+							if (layer->GetName() == "gunner")
+							{
+								gunner = new Gunner(position);
+								gunner->Tag = Entity::EntityTypes::Enemy;
+								mListGunners.push_back(gunner);
+							}
+
+
+							if (brick)
+								mQuadTree->insertEntity(brick);
+						}
+					}
+				}
+			}
+		}
+	}
 #pragma region -OBJECTGROUP, STATIC OBJECT-
 
     for (size_t i = 0; i < mMap->GetNumObjectGroups(); i++)
@@ -158,10 +221,10 @@ bool GameMap::IsBoundBottom()
 
 void GameMap::Update(float dt)
 {
-    for (size_t i = 0; i < mListBricks.size(); i++)
-    {
-        mListBricks[i]->Update(dt);
-    }
+	for (size_t i = 0; i < mListGunners.size(); i++)
+	{
+		mListGunners[i]->Update(dt);
+	}
 }
 
 void GameMap::Draw(int beginX, int beginY)
@@ -251,7 +314,10 @@ void GameMap::Draw(int beginX, int beginY)
         }
     }
 #pragma endregion
-
+	for (size_t i = 0; i < mListGunners.size(); i++)
+	{
+		mListGunners[i]->Draw(trans);
+	}
 #pragma endregion
 }
 
@@ -260,12 +326,12 @@ std::map<int, Sprite*> GameMap::getListTileSet()
     return mListTileset;
 }
 
-std::vector<Brick*> GameMap::GetListBrick()
-{
-    return mListBricks;
-}
-
 QuadTree * GameMap::GetQuadTree()
 {
     return mQuadTree;
+}
+
+vector<Gunner*> GameMap::getEnemy()
+{
+	return mListGunners;
 }

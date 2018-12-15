@@ -1,5 +1,5 @@
 #include "Enemy.h"
-
+#include "GunnerFallingState.h"
 Enemy::Enemy()
 {
 }
@@ -15,10 +15,22 @@ void Enemy::SetCamera(Camera * camera)
 
 void Enemy::Update(float dt)
 {
-	if (this->mEnemyData->state)
+	if (this->mEnemyData->state->GetState()!=EnemyState::Shooting)
 	{
 		this->mEnemyData->state->Update(dt);
+		mCurrentAnimation->Update(dt);
 	}
+	else
+	{
+		this->mEnemyData->state->Update(dt);
+		mCurrentAnimation->Update(dt);
+	}
+	if (this->mEnemyData->state->GetState() != EnemyState::Jumping)
+		Jumptime += dt;
+	if (this->mEnemyData->state->GetState() != EnemyState::Shooting)
+		Shoottime += dt;
+	if (this->mEnemyData->state->GetState() == EnemyState::Shooting)
+		isdoneAnimation += dt;
 	Entity::Update(dt);
 }
 
@@ -39,6 +51,13 @@ void Enemy::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXV
 	}
 }
 
+void Enemy::Draw(D3DXVECTOR2 transform)
+{
+	mCurrentAnimation->SetPosition(D3DXVECTOR3(posX, posY, 0));
+	mCurrentAnimation->FlipVertical(mCurrentReverse);
+	mCurrentAnimation->Draw(D3DXVECTOR2(transform));
+}
+
 void Enemy::SetState(EnemyState * newState)
 {
 	delete this->mEnemyData->state;
@@ -52,6 +71,29 @@ void Enemy::SetState(EnemyState * newState)
 
 void Enemy::OnCollision(Entity * impactor, Entity::CollisionReturn data, Entity::SideCollisions side)
 {
+	this->mEnemyData->state->OnCollision(impactor, side, data);
+}
+
+Enemy::MoveDirection Enemy::getMoveDirection()
+{
+	if (this->vx > 0)
+	{
+		return MoveDirection::MoveToRight;
+	}
+	else if (this->vx < 0)
+	{
+		return MoveDirection::MoveToLeft;
+	}
+
+	return MoveDirection::None;
+}
+
+void Enemy::OnNoCollisionWithBottom()
+{
+	if (mCurrentState != EnemyState::Jumping && mCurrentState != EnemyState::Falling )//&& mCurrentState != EnemyState::Standing)
+	{
+		this->SetState(new GunnerFallingState(this->mEnemyData));
+	}
 }
 
 RECT Enemy::GetBound()
@@ -72,11 +114,62 @@ EnemyState::StateName Enemy::getState()
 
 void Enemy::changeAnimation(EnemyState::StateName state)
 {
+	switch (state)
+	{
+	case EnemyState::Standing:
+		mCurrentAnimation = mAnimationStanding;
+		break;
+
+	case EnemyState::Shooting:
+		mCurrentAnimation = mAnimationShooting;
+		break;
+	case EnemyState::Jumping:
+		mCurrentAnimation = mAnimationJumping;
+		break;
+	case EnemyState::Falling:
+		mCurrentAnimation = mAnimationShooting;
+		break;
+	default:
+		break;
+	}
+
+	this->width = mCurrentAnimation->GetWidth();
+	this->height = mCurrentAnimation->GetHeight();
 }
 
 Animation * Enemy::getCurrentAnimation()
 {
 	return mCurrentAnimation;
+}
+
+void Enemy::setjumptime()
+{
+	this->Jumptime = 0.0f;
+}
+
+float Enemy::getjumptime()
+{
+	return this->Jumptime;
+}
+
+void Enemy::setshoottime()
+{
+	this->Shoottime = 0.0f;
+}
+
+float Enemy::getshoottime()
+{
+	return this->Shoottime;
+}
+
+float Enemy::getisdone()
+{
+	return this->isdoneAnimation;
+}
+
+void Enemy::setisdone()
+{
+	this->isdoneAnimation = 0.0f;
 }
 
 void Enemy::SetReverse(bool flag)
@@ -87,6 +180,11 @@ void Enemy::SetReverse(bool flag)
 bool Enemy::GetReverse()
 {
 	return mCurrentReverse;
+}
+
+void Enemy::setJump(bool allowjump)
+{
+	this->allowjump = allowjump;
 }
 
 int Enemy::getHealthPoint()

@@ -25,13 +25,13 @@ public:
 	void Update(float dt);
 
 	void Draw(D3DXVECTOR3 position = D3DXVECTOR3(), RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
-
+	void Draw(D3DXVECTOR2 transform);
 	void SetState(EnemyState *newState);
 
 	void OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity::SideCollisions side);
 
 	MoveDirection getMoveDirection();
-
+	void OnNoCollisionWithBottom();
 	RECT GetBound();
 
 	EnemyState::StateName Enemy::getState();
@@ -39,20 +39,30 @@ public:
 	void changeAnimation(EnemyState::StateName state);
 	Animation* getCurrentAnimation();
 	//true thi se lat nguoc anh theo truc y
+	void setjumptime();
+	float getjumptime();
+	void setshoottime();
+	float getshoottime();
+	float getisdone();
+	void setisdone();
 	void SetReverse(bool flag);
 	bool GetReverse();
+	void setJump(bool allowjump);
 	bool isDone = false;
 	bool allowMoveLeft;
 	bool allowMoveRight;
 	int getHealthPoint();
+	float isdoneAnimation = 0.0f;
 	EnemyData* getEnemydata();
+	bool allowjump = true;
 protected:
-
+	float Jumptime=0.0f,Shoottime=0.0f;
 	Camera * mCamera;
 
 	EnemyData *mEnemyData;
 
 	Animation   *mCurrentAnimation,
+		*mAnimationShooting,
 		*mAnimationStanding,
 		*mAnimationJumping;
 	int HealthPoint = 16;
