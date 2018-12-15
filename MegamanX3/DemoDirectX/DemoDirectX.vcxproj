@@ -97,6 +97,7 @@
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
+    <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp" />
     <ClCompile Include="GameObjects\Enemy\Enemy.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyData.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyState.cpp" />
@@ -105,7 +106,6 @@
     <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
-    <ClCompile Include="GameObjects\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Player\bullet.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerDeadState.cpp" />
     <ClCompile Include="GameObjects\Player\Player.cpp" />
@@ -156,6 +156,7 @@
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
+    <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h" />
     <ClInclude Include="GameObjects\Enemy\Enemy.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyData.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyState.h" />

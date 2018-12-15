@@ -34,9 +34,8 @@ Player::Player()
     this->vy = 0;
     this->SetState(new PlayerSpawingState(this->mPlayerData));
     allowJump = true;
-
 	mlistFlashEffect = new PlayerFlashDashEffect[5];
-	
+	mlistSmokeEffect = new PlayerSmokeDashEffect[9];
 }
 
 Player::~Player()
@@ -45,6 +44,10 @@ Player::~Player()
 
 void Player::Update(float dt)
 {
+	for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
+		mlistSmokeEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
+	}
+
 	for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
 		mlistFlashEffect[i].Update(dt,mPlayerData->player->GetPosition(),mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
 	}
@@ -223,6 +226,9 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 		if (mPlayerData->state->GetState()==PlayerState::Dash || mPlayerData->state->GetState()==PlayerState::DashShoot) {
 			for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
 				mlistFlashEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+			}
+			for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
+				mlistSmokeEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
 			}
 		}
     }

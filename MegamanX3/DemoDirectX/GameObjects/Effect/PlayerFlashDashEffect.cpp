@@ -1,46 +1,46 @@
 #include "PlayerFlashDashEffect.h"
 
-PlayerEffect::PlayerEffect()
+PlayerFlashDashEffect::PlayerFlashDashEffect()
 {
-	mPlayerEffectDash = new Animation("Resources/megaman/EffectDash.png", 5, 1, 5, 0.05f);
+	mPlayerFlashDash = new Animation("Resources/megaman/flashdash.png", 5, 1, 5, 0.05f);
 }
 
-PlayerEffect::~PlayerEffect()
+PlayerFlashDashEffect::~PlayerFlashDashEffect()
 {
 
 }
 
-void PlayerEffect::SetPos(float posX,float posY)
+void PlayerFlashDashEffect::SetPos(float posX,float posY)
 {
 	this->SetPosition(posX,posY);
 }
 
-void PlayerEffect::Update(float dt, D3DXVECTOR3 pos, bool isreverse, int PlayerSizeWidth, int PlayerSizeHeight)
+void PlayerFlashDashEffect::Update(float dt, D3DXVECTOR3 pos, bool isreverse, int PlayerSizeWidth, int PlayerSizeHeight)
 {
 	if (isreverse == false)
 	{
-		mPlayerEffectDash->Update(dt);
-		mPlayerEffectDash->SetPosition(D3DXVECTOR3(pos.x - PlayerSizeWidth / 2 , (pos.y + PlayerSizeHeight / 2) - mPlayerEffectDash->GetHeight() / 2, 0));
+		mPlayerFlashDash->Update(dt);
+		mPlayerFlashDash->SetPosition(D3DXVECTOR3(pos.x - PlayerSizeWidth / 2 , (pos.y + PlayerSizeHeight / 2) - mPlayerFlashDash->GetHeight() / 2, 0));
 	}
 	else
 	{
 
-		mPlayerEffectDash->Update(dt);
-		mPlayerEffectDash->SetPosition(D3DXVECTOR3(pos.x + PlayerSizeWidth / 2 , (pos.y + PlayerSizeHeight / 2) - mPlayerEffectDash->GetHeight() / 2, 0));
+		mPlayerFlashDash->Update(dt);
+		mPlayerFlashDash->SetPosition(D3DXVECTOR3(pos.x + PlayerSizeWidth / 2 , (pos.y + PlayerSizeHeight / 2) - mPlayerFlashDash->GetHeight() / 2, 0));
 	}
 }
 
-void PlayerEffect::Draw(bool isreverse , D3DXVECTOR2 Trans)
+void PlayerFlashDashEffect::Draw(bool isreverse , D3DXVECTOR2 Trans)
 {
-	mPlayerEffectDash->FlipVertical(isreverse);
+	mPlayerFlashDash->FlipVertical(isreverse);
 	if (isreverse)
 	{
-		mPlayerEffectDash->Draw(Trans);
+		mPlayerFlashDash->Draw(Trans);
 		isreverse = false;
 	}
 	else
 	{
-		mPlayerEffectDash->Draw(Trans);
+		mPlayerFlashDash->Draw(Trans);
 		isreverse = true;
 	}
 }

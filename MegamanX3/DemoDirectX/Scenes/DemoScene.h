@@ -12,7 +12,6 @@
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
 #include "../GameObjects/Player/PlayerDeadState.h"
-#include "../GameObjects/PlayerFlashDashEffect.h"
 
 class DemoScene : public Scene
 {

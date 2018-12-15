@@ -1,13 +1,13 @@
 #include "Animation.h"
 D3DCOLOR check;
-Animation::Animation()
-{
-
-}
 
 Animation::Animation(const char* filePath, int totalFrame, int rows, int columns, float timePerFrame, D3DCOLOR colorKey)
 {
 	InitWithAnimation(filePath, totalFrame, rows, columns, timePerFrame, colorKey);
+}
+
+Animation::Animation()
+{
 }
 
 void Animation::InitWithAnimation(const char* filePath, int totalFrame, int rows, int columns, float timePerFrame, D3DCOLOR colorKey)

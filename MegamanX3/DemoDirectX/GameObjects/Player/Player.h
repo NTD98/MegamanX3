@@ -9,7 +9,9 @@
 #include "PlayerState.h"
 #include "PlayerRunningState.h"
 #include "bullet.h"
-#include "../PlayerFlashDashEffect.h"
+#include "../Effect/PlayerFlashDashEffect.h"
+#include "../Effect//PlayerSmokeDashEffect.h"
+
 class Player : public Entity
 {
 public:
@@ -65,6 +67,8 @@ public:
 	void deletebullet();
 	PlayerData* getplayerdata();
 	PlayerFlashDashEffect *mlistFlashEffect;
+	PlayerSmokeDashEffect *mlistSmokeEffect;
+	
 protected:
     Camera      *mCamera;
 

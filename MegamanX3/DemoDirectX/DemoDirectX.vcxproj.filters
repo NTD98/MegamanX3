@@ -208,10 +208,10 @@
     <ClCompile Include="GameObjects\Player\PlayerDeadState.cpp">
       <Filter>FrameWork\GameObjects\Player</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\PlayerFlashDashEffect.cpp">
+    <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp">
+    <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -391,6 +391,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

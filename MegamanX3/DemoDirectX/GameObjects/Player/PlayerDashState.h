@@ -15,6 +15,6 @@ public:
 	
 
 protected:
-	float acceleratorX;
+	float acceleratorX, dtSmoke, dtSmokeAnimation;
 };
 
