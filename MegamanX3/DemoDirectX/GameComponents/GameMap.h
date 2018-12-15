@@ -12,8 +12,8 @@
 #include "GameGlobal.h"
 #include "GameCollision.h"
 #include "QuadTree.h"
-#include "../GameObjects/MapObjects/Brick.h"
 #include "../GameObjects/Enemy/Gunner.h"
+#include "../GameObjects/MapObjects/Elevator.h"
 class GameMap
 {
 public:
@@ -48,7 +48,7 @@ private:
     QuadTree                        *mQuadTree;
 	std::vector<Gunner*>			mListGunners;
 	Sprite *map;
-    Sprite                          *mSpriteBricks, *mSpriteBrickGold;
+	std::vector<Elevator*>			mlistElevator;
 };
 
 #endif

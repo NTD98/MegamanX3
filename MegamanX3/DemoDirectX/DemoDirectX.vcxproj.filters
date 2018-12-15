@@ -235,6 +235,9 @@
     <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp">
       <Filter>FrameWork\GameObjects\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\Elevator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -431,6 +434,9 @@
     </ClInclude>
     <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h">
       <Filter>FrameWork\GameObjects\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\Elevator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

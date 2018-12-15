@@ -33,6 +33,7 @@ Player::Player()
     this->vx = 0;
     this->vy = 0;
     this->SetState(new PlayerSpawingState(this->mPlayerData));
+	this->Tag = Entity::EntityTypes::Player;
     allowJump = true;
 	mlistFlashEffect = new PlayerFlashDashEffect[5];
 	mlistSmokeEffect = new PlayerSmokeDashEffect[9];
@@ -253,7 +254,23 @@ void Player::SetState(PlayerState *newState)
 
 void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity::SideCollisions side)
 {
-    this->mPlayerData->state->OnCollision(impactor, side, data);
+	this->mPlayerData->state->OnCollision(impactor, side, data);
+	if (impactor->Tag == Entity::Elevator && side == SideCollisions::Bottom) {
+		this->mPlayerData->player->AddPosition(0, data.RegionCollision.top - data.RegionCollision.bottom + 2);
+
+	}
+
+	//Nếu nhân vật đang đứng im trên tháng máy mà ko chịu xuống , khi thang máy đâm vào tường phía trên thì nhân vật bị văng ra 
+	if (mCurrentState == PlayerState::Standing) {
+		if (impactor->Tag == Entity::Static && side == SideCollisions::Top) {
+			if (this->mPlayerData->player->GetReverse() == false) {
+				this->mPlayerData->player->AddPosition(5, 0);
+			}
+			else {
+				this->mPlayerData->player->AddPosition(-5, 0);
+			}
+		}
+	}
 }
 
 RECT Player::GetBound()

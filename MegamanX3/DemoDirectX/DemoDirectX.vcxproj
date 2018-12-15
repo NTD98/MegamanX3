@@ -111,6 +111,7 @@
     <ClCompile Include="GameObjects\MapObjects\Brick.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickGold.cpp" />
     <ClCompile Include="GameObjects\MapObjects\BrickNormal.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
     <ClCompile Include="GameObjects\Player\bullet.cpp" />
     <ClCompile Include="GameObjects\Player\Player.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="GameObjects\MapObjects\Brick.h" />
     <ClInclude Include="GameObjects\MapObjects\BrickGold.h" />
     <ClInclude Include="GameObjects\MapObjects\BrickNormal.h" />
+    <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
     <ClInclude Include="GameObjects\Player\bullet.h" />
     <ClInclude Include="GameObjects\Player\Player.h" />

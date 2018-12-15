@@ -6,6 +6,8 @@ namespace Define
 	const float PLAYER_MAX_DASHING_SPEED = 600.0f; //van toc luot lon nhat
 	const float PLAYER_MAX_RUNNING_SPEED = 350.0f; //toc do chay nhanh nhat cua player
 	const float PLAYER_BOTTOM_RANGE_FALLING = 6.0f; // do dai va cham voi bottom neu nhu va cham bottom nho hon thi player se bi roi xuong
+	const float ELEVATOR_POSITION_STOP = 700.0f;
+	const float ELEVATOR_UP_VELOCITY = -70.0f;
 }
 namespace GunnerDefine {
 	const float BULLET_SPEED_X_1 = 70.0f;

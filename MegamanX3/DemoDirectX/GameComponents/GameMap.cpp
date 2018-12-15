@@ -1,6 +1,4 @@
 #include "GameMap.h"
-#include "../GameObjects/MapObjects/BrickGold.h"
-#include "../GameObjects/MapObjects/BrickNormal.h"
 #include <windows.h>
 #include <d3d9.h>
 #include"GameGlobal.h"
@@ -22,14 +20,14 @@ GameMap::GameMap(char* filePath)
 
 GameMap::~GameMap()
 {
-    delete mMap;
+	delete mMap;
 
-	for (size_t i = 0; i < mListGunners.size(); i++)
+	for (size_t i = 0; i < mlistElevator.size(); i++)
 	{
-		if (mListGunners[i])
-			delete mListGunners[i];
+		if (mlistElevator[i])
+			delete mlistElevator[i];
 	}
-	mListGunners.clear();
+	mlistElevator.clear();
 
     for (size_t i = 0; i < mListTileset.size(); i++)
     {
@@ -109,7 +107,6 @@ void GameMap::LoadMap(char* filePath)
 
 							D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
 
-							Brick *brick = nullptr;
 							Gunner *gunner = nullptr;
 							if (layer->GetName() == "gunner")
 							{
@@ -117,10 +114,6 @@ void GameMap::LoadMap(char* filePath)
 								gunner->Tag = Entity::EntityTypes::Enemy;
 								mListGunners.push_back(gunner);
 							}
-
-
-							if (brick)
-								mQuadTree->insertEntity(brick);
 						}
 					}
 				}
@@ -145,6 +138,14 @@ void GameMap::LoadMap(char* filePath)
             entity->SetHeight(object->GetHeight());
             entity->Tag = Entity::EntityTypes::Static;
 
+			float posX = object->GetX() + object->GetWidth() / 2;
+			float posY = object->GetY() + object->GetHeight() / 2;
+			//elevator
+			if (object->GetId() == 309) {
+				Elevator *elevator = new Elevator(posX, posY);
+				mlistElevator.push_back(elevator);
+				mQuadTree->insertEntity(elevator);
+			}
             mQuadTree->insertEntity(entity);
 			switch (entity->Tag)
 			{
@@ -224,6 +225,10 @@ void GameMap::Update(float dt)
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		mListGunners[i]->Update(dt);
+	}
+	for (size_t i = 0; i < mlistElevator.size(); i++)
+	{
+		mlistElevator[i]->Update(dt);
 	}
 }
 
@@ -314,11 +319,17 @@ void GameMap::Draw(int beginX, int beginY)
         }
     }
 #pragma endregion
+#pragma region DRAW MAP OBJECT
+	for (size_t i = 0; i < mlistElevator.size(); i++)
+	{
+		mlistElevator[i]->Draw(trans);
+	}
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		mListGunners[i]->Draw(trans);
 	}
 #pragma endregion
+	
 }
 
 std::map<int, Sprite*> GameMap::getListTileSet()
