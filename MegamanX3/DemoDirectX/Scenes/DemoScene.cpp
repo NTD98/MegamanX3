@@ -10,7 +10,7 @@ void DemoScene::LoadContent()
 {
     //set mau backcolor cho scene o day la mau xanh
     mBackColor = 0x000000;
-    mMap = new GameMap("Resources/Man1_1.tmx");
+    mMap = new GameMap("Resources/mario.tmx");
 
     mCamera = new Camera(GameGlobal::GetWidth(), GameGlobal::GetHeight());
     mCamera->SetPosition(GameGlobal::GetWidth() / 2, 
@@ -22,9 +22,10 @@ void DemoScene::LoadContent()
 	{
 		Health.insert(Health.begin(), 1, HealthPoint);
 	}
+	mlistGunners = mMap->getEnemy();
     mPlayer = new Player();
 	//50/1340
-    mPlayer->SetPosition(90.00, 1854.00);
+    mPlayer->SetPosition(90.00, 1350.00);
     mPlayer->SetCamera(mCamera);
 }
 
@@ -77,7 +78,6 @@ void DemoScene::EnemyAction()
 {
 	for (int i = 0; i < mlistGunners.size(); i++)
 	{
-
 		if (std::abs(mlistGunners.at(i)->GetPosition().x - mPlayer->GetPosition().x) < 150)
 		{
 			if (mlistGunners.at(i)->getisdone() >= 0.8f)
@@ -125,6 +125,7 @@ void DemoScene::EnemyAction()
 				}
 		}
 		else
+			if (mlistGunners.at(i)->getisdone() >= 0.8f)
 			mlistGunners.at(i)->Standing();
 
 	}

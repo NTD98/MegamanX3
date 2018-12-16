@@ -47,7 +47,7 @@ private:
     LPD3DXSPRITE                    mSpriteHandler;
     Camera                          *mCamera;
     QuadTree                        *mQuadTree;
-	std::vector<Enemy*>			mListGunners;
+	std::vector<Enemy*>				mListGunners;
 	Sprite *map;
 	std::vector<Elevator*>			mlistElevator;
 };
