@@ -13,13 +13,14 @@ class EnemyBullet : public Entity
 {
 public:
 	EnemyBullet();
+	EnemyBullet(int headgunner);
 	~EnemyBullet();
 	void Spawn(int type, float posx, float posy, float vx, float vy);
 	void Update(float dt);
 	void OnCollision(Entity * other, SideCollisions side);
 	void Draw(D3DXVECTOR2 transform = D3DXVECTOR2());
 	Sprite *mSprite1;
-	Animation *mAnimation2, *mHelitBullet;
+	Animation *mAnimation2, *mHeadGunnerBullet;
 	Animation *mExplosion=NULL;
 	bool wasBorn = false;		//Đã được sinh ra hay chưa
 	int typeBullet = 0;

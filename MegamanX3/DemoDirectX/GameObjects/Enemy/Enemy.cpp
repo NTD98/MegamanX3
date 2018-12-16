@@ -193,6 +193,22 @@ int Enemy::getHealthPoint()
 	return HealthPoint;
 }
 
+void Enemy::Shooting(D3DXVECTOR3 pos, bool isreverse)
+{
+}
+
+void Enemy::Standing()
+{
+}
+
+void Enemy::Jumpping(D3DXVECTOR3 pos)
+{
+}
+
+void Enemy::Falling()
+{
+}
+
 EnemyData * Enemy::getEnemydata()
 {
 	return mEnemyData;

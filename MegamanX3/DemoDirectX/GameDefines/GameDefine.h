@@ -12,8 +12,8 @@ namespace Define
 namespace GunnerDefine {
 	const float BULLET_SPEED_X_1 = 70.0f;
 	const float BULLET_SPEED_Y_1 = 100.0f;
-	const float BULLET_SPEED_X_2 = 10.0f;
-	const float BULLET_SPEED_Y_2 = 150.0f;
+	const float BULLET_SPEED_X_2 = 150.0f;
+	const float BULLET_SPEED_Y_2 = 50.0f;
 	const float BULLET_ACCELERATOR_Y = 3.0f;
 	const float ACCELERATOR_Y = 10.0f;
 	const float JUMP_SPEED_Y = 200;

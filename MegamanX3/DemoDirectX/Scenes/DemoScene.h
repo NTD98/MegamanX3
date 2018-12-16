@@ -36,7 +36,7 @@ protected:
 	Sprite *map;
 	Sprite *HealthBar,
 		*HealthPoint;
-	vector<Gunner*> mlistGunners;
+	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
     std::map<int, bool> keys;

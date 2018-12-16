@@ -54,6 +54,7 @@ void Animation::Update(float dt)
 
 		if (mCurrentIndex >= mTotalFrame)
 		{
+			isEndAnimate = true;
 			mCurrentIndex = 0;
 			mCurrentColumn = 0;
 			mCurrentRow = 0;

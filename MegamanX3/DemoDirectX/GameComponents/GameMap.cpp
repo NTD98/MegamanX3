@@ -116,16 +116,24 @@ void GameMap::LoadMap(char* filePath)
 							if (layer->GetName() == "gunner")
 							{
 								Gunner *gunner = new Gunner(position);
-							    gunner->Tag = Entity::EntityTypes::Enemy;
+							    gunner->Tag = Entity::EntityTypes::Gunner;
 								mListGunners.push_back(gunner);
 								
 							}
+							else
 							//elevator
 							if (layer->GetName() == "elevator") {
 								Elevator *elevator = new Elevator(position);
 								mlistElevator.push_back(elevator);
 								mQuadTree->insertEntity(elevator);
 							}
+							else
+								if (layer->GetName() == "headgunner")
+								{
+									HeadGunner *headgunner = new HeadGunner(position);
+									headgunner->Tag = Entity::EntityTypes::HeadGunner;
+									mListGunners.push_back(headgunner);
+								}
 						}
 					}
 				}
@@ -345,7 +353,7 @@ QuadTree * GameMap::GetQuadTree()
     return mQuadTree;
 }
 
-vector<Gunner*> GameMap::getEnemy()
+vector<Enemy*> GameMap::getEnemy()
 {
 	return mListGunners;
 }

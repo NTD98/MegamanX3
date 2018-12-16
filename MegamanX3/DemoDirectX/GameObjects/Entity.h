@@ -32,7 +32,7 @@ public:
 
     enum EntityTypes
     {
-		None, Enemy, Player, Static, BulletP, BulletCharge1, BulletCharge2,EnemyBullet, Elevator
+		None, Enemy, Player, Static, BulletP, BulletCharge1, BulletCharge2,EnemyBullet, Elevator,Gunner,HeadGunner
     };
 
     EntityTypes Tag; //Tag de nhan vien loai Entity

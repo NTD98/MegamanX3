@@ -77,46 +77,56 @@ void DemoScene::EnemyAction()
 {
 	for (int i = 0; i < mlistGunners.size(); i++)
 	{
-		if (duration >= 2.0f)
-		{
-			if (std::abs(mlistGunners.at(i)->GetPosition().x - mPlayer->GetPosition().x) < 150)
-			{
-				if (mlistGunners.at(i)->getisdone() >= 0.8f)
-					mlistGunners.at(i)->Standing();
-				if (mlistGunners.at(i)->getState() != EnemyState::Standing)
-					continue;
-				if (mlistGunners.at(i)->getshoottime() >= 3.0f&&mlistGunners.at(i)->getisdone() <= 0.8f&&mlistGunners.at(i)->getjumptime() >= 1.0f)
-				{
-					int direction;
-					bool reverse;
-					if ((mlistGunners.at(i)->GetPosition().x<mPlayer->GetPosition().x))
-						reverse = true;
-					else
-						reverse = false;
 
-					EnemyBullet* ebullet = new EnemyBullet();
-					if (reverse)
-						direction = 1;
-					else
-						direction = -1;
+		if (std::abs(mlistGunners.at(i)->GetPosition().x - mPlayer->GetPosition().x) < 150)
+		{
+			if (mlistGunners.at(i)->getisdone() >= 0.8f)
+				mlistGunners.at(i)->Standing();
+			if (mlistGunners.at(i)->getState() != EnemyState::Standing)
+				continue;
+			if (mlistGunners.at(i)->getshoottime() >= 3.0f&&mlistGunners.at(i)->getisdone() <= 0.8f&&mlistGunners.at(i)->getjumptime() >= 1.0f)
+			{
+				int direction;
+				bool reverse;
+				if ((mlistGunners.at(i)->GetPosition().x<mPlayer->GetPosition().x))
+					reverse = true;
+				else
+					reverse = false;
+				if (reverse)
+					direction = 1;
+				else
+					direction = -1;
+				EnemyBullet* ebullet = new EnemyBullet();
+				if (mlistGunners.at(i)->Tag == Entity::EntityTypes::HeadGunner)
+				{
+					ebullet = new EnemyBullet(1);
+					ebullet->Spawn(2, mlistGunners.at(i)->GetPosition().x, mlistGunners.at(i)->GetPosition().y, direction*GunnerDefine::BULLET_SPEED_X_2, -GunnerDefine::BULLET_SPEED_Y_2);
+				}
+				else if (mlistGunners.at(i)->Tag == Entity::EntityTypes::Gunner)
+				{
 					ebullet->Spawn(1, mlistGunners.at(i)->GetPosition().x, mlistGunners.at(i)->GetPosition().y, direction*GunnerDefine::BULLET_SPEED_X_1, -GunnerDefine::BULLET_SPEED_Y_1);
-					mlistenemybullets.push_back(ebullet);
-					mlistGunners.at(i)->Shooting(mPlayer->GetPosition(), reverse);
-					mlistGunners.at(i)->setisdone();
-					mlistGunners.at(i)->setshoottime();
-					continue;
 				}
 				else
-					if (mlistGunners.at(i)->getjumptime() >= 3.0f&&mlistGunners.at(i)->getshoottime() >= 2.0f)
-					{
-						mlistGunners.at(i)->Jumpping(mPlayer->GetPosition());
-						mlistGunners.at(i)->setjumptime();
-						mlistGunners.at(i)->setisdone();
-					}
+					EnemyBullet* ebullet = new EnemyBullet();
+
+				mlistenemybullets.push_back(ebullet);
+				mlistGunners.at(i)->Shooting(mPlayer->GetPosition(), reverse);
+				mlistGunners.at(i)->setisdone();
+				mlistGunners.at(i)->setshoottime();
+
+				continue;
 			}
 			else
-				mlistGunners.at(i)->Standing();
+				if (mlistGunners.at(i)->getjumptime() >= 3.0f&&mlistGunners.at(i)->getshoottime() >= 2.0f)
+				{
+					mlistGunners.at(i)->Jumpping(mPlayer->GetPosition());
+					mlistGunners.at(i)->setjumptime();
+					mlistGunners.at(i)->setisdone();
+				}
 		}
+		else
+			mlistGunners.at(i)->Standing();
+
 	}
 }
 
@@ -242,27 +252,30 @@ void DemoScene::checkCollision()
 			}
 		}
 		//enemy bullet
-		for (int i = 0; i < mlistenemybullets.size(); i++)
+		for (int j = 0; j < mlistenemybullets.size(); j++)
 		{
-			Entity::CollisionReturn r = GameCollision::RecteAndRect(mlistenemybullets.at(i)->GetBound(),
+			Entity::CollisionReturn e = GameCollision::RecteAndRect(mlistenemybullets.at(j)->GetBound(),
 				listCollision.at(i)->GetBound());
-			Entity::CollisionReturn g = GameCollision::RecteAndRect(mlistenemybullets.at(i)->GetBound(),
+			Entity::CollisionReturn g = GameCollision::RecteAndRect(mlistenemybullets.at(j)->GetBound(),
 				mPlayer->GetBound());
-			if (r.IsCollided)
+			if (e.IsCollided)
 			{
-				Entity::SideCollisions sidebullet = GameCollision::getSideCollision(mlistenemybullets.at(i), r);
-				mlistenemybullets.at(i)->OnCollision(listCollision.at(i), sidebullet);
+				Entity::SideCollisions sidebullet = GameCollision::getSideCollision(mlistenemybullets.at(j), e);
+				mlistenemybullets.at(j)->OnCollision(listCollision.at(i), sidebullet);
+				if (mlistenemybullets.at(0)->mExplosion->isEndAnimate)
+					mlistenemybullets.erase(mlistenemybullets.begin());
 			}
-			if (g.IsCollided)
-			{
-				//lay phia va cham cua Entity so voi Player
-				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, r);
+			else
+				if (g.IsCollided)
+				{
+					//lay phia va cham cua Entity so voi Player
+					Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, g);
 
-				//lay phia va cham cua Player so voi Entity
-				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(i), r);
+					//lay phia va cham cua Player so voi Entity
+					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(j), g);
 
-				//mlistenemybullets.at(i)->OnCollision()
-			}
+					//mlistenemybullets.at(i)->OnCollision()
+				}
 		}
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{

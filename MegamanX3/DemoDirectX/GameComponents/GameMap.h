@@ -14,6 +14,7 @@
 #include "QuadTree.h"
 #include "../GameObjects/Enemy/Gunner.h"
 #include "../GameObjects/MapObjects/Elevator.h"
+#include "../GameObjects/Enemy/HeadGunner.h"
 class GameMap
 {
 public:
@@ -29,7 +30,7 @@ public:
     int GetTileWidth();
     int GetTileHeight();
     std::map<int, Sprite*> getListTileSet();
-	vector<Gunner*> getEnemy();
+	vector<Enemy*> getEnemy();
     bool IsBoundLeft(); //kiem tra luc nay Camera o vi bien ben trai so voi WorldMap
     bool IsBoundRight(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     bool IsBoundTop(); // kiem tra xem co o vi tri bien ben trai worldmap khong
@@ -46,7 +47,7 @@ private:
     LPD3DXSPRITE                    mSpriteHandler;
     Camera                          *mCamera;
     QuadTree                        *mQuadTree;
-	std::vector<Gunner*>			mListGunners;
+	std::vector<Enemy*>			mListGunners;
 	Sprite *map;
 	std::vector<Elevator*>			mlistElevator;
 };

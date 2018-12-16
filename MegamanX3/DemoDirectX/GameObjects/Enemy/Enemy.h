@@ -52,6 +52,10 @@ public:
 	bool allowMoveLeft;
 	bool allowMoveRight;
 	int getHealthPoint();
+	virtual void Shooting(D3DXVECTOR3 pos, bool isreverse);
+	virtual void Standing();
+	virtual void Jumpping(D3DXVECTOR3 pos);
+	virtual void Falling();
 	float isdoneAnimation = 0.0f;
 	EnemyData* getEnemydata();
 	bool allowjump = true;
