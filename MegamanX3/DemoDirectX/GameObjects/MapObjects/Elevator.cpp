@@ -1,10 +1,10 @@
 #include "Elevator.h"
 
 
-Elevator::Elevator(float posx, float posy)
+Elevator::Elevator(D3DXVECTOR3 pos)
 {
 	mAnimation = new Animation("Resources/MapObject/elevator.png", 2, 1, 2, 0.05f);
-	this->SetPosition(posx, posy);
+	this->SetPosition(pos.x, pos.y);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
 	this->Tag = Entity::EntityTypes::Elevator;

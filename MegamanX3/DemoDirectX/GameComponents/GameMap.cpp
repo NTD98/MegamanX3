@@ -22,6 +22,13 @@ GameMap::~GameMap()
 {
 	delete mMap;
 
+	for (size_t i = 0; i < mListGunners.size(); i++)
+	{
+		if (mListGunners[i])
+			delete mListGunners[i];
+	}
+	mListGunners.clear();
+
 	for (size_t i = 0; i < mlistElevator.size(); i++)
 	{
 		if (mlistElevator[i])
@@ -70,8 +77,6 @@ void GameMap::LoadMap(char* filePath)
 
 		//xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
 
-		if (layer->GetName() == "gunner")
-		{
 			for (size_t j = 0; j < mMap->GetNumTilesets(); j++)
 			{
 				const Tmx::Tileset *tileSet = mMap->GetTileset(j);
@@ -107,17 +112,23 @@ void GameMap::LoadMap(char* filePath)
 
 							D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
 
-							Gunner *gunner = nullptr;
+							//gunner
 							if (layer->GetName() == "gunner")
 							{
-								gunner = new Gunner(position);
-								gunner->Tag = Entity::EntityTypes::Enemy;
+								Gunner *gunner = new Gunner(position);
+							    gunner->Tag = Entity::EntityTypes::Enemy;
 								mListGunners.push_back(gunner);
+								
+							}
+							//elevator
+							if (layer->GetName() == "elevator") {
+								Elevator *elevator = new Elevator(position);
+								mlistElevator.push_back(elevator);
+								mQuadTree->insertEntity(elevator);
 							}
 						}
 					}
 				}
-			}
 		}
 	}
 #pragma region -OBJECTGROUP, STATIC OBJECT-
@@ -138,14 +149,6 @@ void GameMap::LoadMap(char* filePath)
             entity->SetHeight(object->GetHeight());
             entity->Tag = Entity::EntityTypes::Static;
 
-			float posX = object->GetX() + object->GetWidth() / 2;
-			float posY = object->GetY() + object->GetHeight() / 2;
-			//elevator
-			if (object->GetId() == 309) {
-				Elevator *elevator = new Elevator(posX, posY);
-				mlistElevator.push_back(elevator);
-				mQuadTree->insertEntity(elevator);
-			}
             mQuadTree->insertEntity(entity);
 			switch (entity->Tag)
 			{

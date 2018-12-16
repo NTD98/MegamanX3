@@ -15,6 +15,7 @@ void Enemy::SetCamera(Camera * camera)
 
 void Enemy::Update(float dt)
 {
+	//?
 	if (this->mEnemyData->state->GetState()!=EnemyState::Shooting)
 	{
 		this->mEnemyData->state->Update(dt);
