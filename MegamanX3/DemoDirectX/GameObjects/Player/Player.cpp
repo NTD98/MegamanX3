@@ -19,7 +19,7 @@ Player::Player()
     this->vx = 0;
     this->vy = 0;
     this->SetState(new PlayerSpawingState(this->mPlayerData));
-	this->Tag = Entity::EntityTypes::Player;
+	this->Tag = Entity::EntityTypes::Megaman;
     allowJump = true;
 	mlistFlashEffect = new PlayerFlashDashEffect[5];
 	mlistSmokeEffect = new PlayerSmokeDashEffect[9];

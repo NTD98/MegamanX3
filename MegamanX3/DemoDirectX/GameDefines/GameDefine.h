@@ -19,3 +19,7 @@ namespace GunnerDefine {
 	const float JUMP_SPEED_Y = 200;
 	const float JUMP_SPEED_X = 50;
 }
+namespace GenjiboDefine {
+	const float SPEED_X = 100.0f;
+	const float SPEED_Y = 100.0f;
+}

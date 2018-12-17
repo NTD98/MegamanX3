@@ -4,7 +4,9 @@
 #include <vector>
 #include <d3dx9.h>
 #include <d3d9.h>
-
+#include "../GameObjects/Player/PlayerDameState.h"
+#include "../GameObjects/Effect/PlayerDeathEffect.h"
+//#include "../GameObjects/Player/PlayerClingingState.h"
 #include "../GameComponents/Scene.h"
 #include "../GameComponents/Sprite.h"
 #include "../GameComponents/Animation.h"
@@ -12,9 +14,7 @@
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
 #include "../GameObjects/Enemy/EnemyBullet.h"
-#include "../GameObjects/Player/PlayerDameState.h"
-#include "../GameObjects/Effect/PlayerDeathEffect.h"
-#include "../GameObjects/Player/PlayerClingingState.h"
+#include "../GameObjects/Boss/Genjibo.h"
 class DemoScene : public Scene
 {
 public:
@@ -28,7 +28,9 @@ public:
     void OnMouseDown(float x, float y);
 	bool iscolidebullet(RECT a, RECT b);
 	void isDead();
+	vector<Entity*> getMapObject();
 protected:
+	vector<Entity*> mapobject;
     void checkCollision();
     void CheckCameraAndWorldMap();
 	float duration = 0.0f;
@@ -38,6 +40,7 @@ protected:
 	Sprite *map;
 	Sprite *HealthBar,
 		*HealthPoint;
+	Genjibo* genjibo;
 	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;

@@ -32,7 +32,7 @@ void Elevator::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3
 void Elevator::OnCollision(Entity * impactor, CollisionReturn data, SideCollisions side)
 {
 
-	if (impactor->Tag == Entity::EntityTypes::Player && SideCollisions::Top == side) {
+	if (impactor->Tag == Entity::EntityTypes::Megaman && SideCollisions::Top == side) {
 		this->SetVy(Define::ELEVATOR_UP_VELOCITY);
 	}
 }

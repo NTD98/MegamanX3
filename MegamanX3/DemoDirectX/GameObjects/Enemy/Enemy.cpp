@@ -39,18 +39,21 @@ void Enemy::Update(float dt)
 
 void Enemy::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
-	mCurrentAnimation->FlipVertical(mCurrentReverse);
-	mCurrentAnimation->SetPosition(this->GetPosition());
+	if (!isAlive)
+	{
+		mCurrentAnimation->FlipVertical(mCurrentReverse);
+		mCurrentAnimation->SetPosition(this->GetPosition());
 
-	if (mCamera)
-	{
-		D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
-			GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-		mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
-	}
-	else
-	{
-		mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+		if (mCamera)
+		{
+			D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
+				GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+			mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+		}
+		else
+		{
+			mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
+		}
 	}
 }
 
@@ -212,6 +215,8 @@ void Enemy::setHealthPoint(Entity::EntityTypes entityTypes)
 		break;
 	}
 	this->HealthPoint -= healthDown;
+	if (this->HealthPoint <= 0)
+		this->isAlive = false;
 }
 void Enemy::Shooting(D3DXVECTOR3 pos, bool isreverse)
 {

@@ -16,6 +16,7 @@ HeadGunner::HeadGunner(D3DXVECTOR3 pos)
 	mCurrentAnimation->SetPosition(pos);
 	SetWidth(mCurrentAnimation->GetWidth());
 	SetHeight(mCurrentAnimation->GetHeight());
+	isAlive = true;
 }
 
 HeadGunner::~HeadGunner()

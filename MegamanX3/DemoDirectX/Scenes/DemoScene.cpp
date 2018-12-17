@@ -1,5 +1,8 @@
 #include "DemoScene.h"
 #include "../GameDefines/GameDefine.h"
+#include "../GameObjects/Player/PlayerClingingState.h"
+
+
 DemoScene::DemoScene()
 {
     LoadContent();
@@ -30,6 +33,8 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+	if(genjibo)
+	genjibo->Update(dt, mPlayer, this->getMapObject());
 	duration += dt;
 	
 	if (mPlayer->getState() != PlayerState::Spawning)
@@ -72,6 +77,8 @@ void DemoScene::Draw()
 
 	for (int i = 0; i < mlistenemybullets.size(); i++)
 		mlistenemybullets.at(i)->Draw(trans);
+	if(genjibo)
+	genjibo->Draw(trans);
 }
 
 void DemoScene::EnemyAction()
@@ -163,6 +170,11 @@ void DemoScene::isDead()
 	
 }
 
+vector<Entity*> DemoScene::getMapObject()
+{
+		return mapobject;
+}
+
 void DemoScene::CheckCameraAndWorldMap()
 {
 	vector<Bullet*> bulletlist = mPlayer->getbulletlist();
@@ -222,6 +234,7 @@ void DemoScene::checkCollision()
 	vector<Entity*> listCollision;
 	vector<Bullet*> bulletlist = mPlayer->getbulletlist();
 	mMap->GetQuadTree()->getEntitiesCollideAble(listCollision, mPlayer);
+	mapobject = listCollision;
 	//player and player's bullet
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
@@ -311,11 +324,11 @@ void DemoScene::checkCollision()
 		}
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
-			Entity::CollisionReturn b = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),listCollision.at(i)->GetBound());
-			if (b.IsCollided)
-			{
-				//bulletlist.at(j)->OnCollision();
-			}
+			//Entity::CollisionReturn b = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),listCollision.at(i)->GetBound());
+			//if (b.IsCollided)
+			//{
+			//	//bulletlist.at(j)->OnCollision();
+			//}
 			for (int h = 0; h < mlistGunners.size(); h++) {
 				Entity::CollisionReturn PlayerBulletVsBot = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistGunners.at(h)->GetBound());
 				if (PlayerBulletVsBot.IsCollided) {
@@ -323,11 +336,36 @@ void DemoScene::checkCollision()
 					mlistGunners.at(h)->setHealthPoint(bulletlist.at(j)->Tag);
 					int a = 4;
 					if (mlistGunners.at(h)->getHealthPoint() <=0 ) {
-						//Xoa con bot !
+						mlistGunners.at(h)->isAlive = false;
 					}
 				}
 			}
-			
+			if (genjibo)
+			{
+				Entity::CollisionReturn ex = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),
+					genjibo->GetBound());
+				if (ex.IsCollided)
+				{
+					Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(genjibo, ex);
+
+					//lay phia va cham cua Player so voi Entity
+					genjibo->OnCollision(bulletlist.at(j), sidePlayer);
+					bulletlist.at(j)->OnCollision();
+				}
+			}
+		}
+		if (genjibo)
+		{
+			Entity::CollisionReturn genji = GameCollision::RecteAndRect(genjibo->GetBound(),
+				listCollision.at(i)->GetBound());
+			if (genji.IsCollided)
+			{
+				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(genjibo, genji);
+
+				//lay phia va cham cua Player so voi Entity
+				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(listCollision.at(i), genji);
+				genjibo->OnCollision(listCollision.at(i), sidePlayer);
+			}
 		}
 		Entity::CollisionReturn r = GameCollision::RecteAndRect(mPlayer->GetBound(),
 			listCollision.at(i)->GetBound());

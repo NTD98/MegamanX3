@@ -247,6 +247,7 @@ void GameMap::Update(float dt)
 {
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
+		if (mListGunners[i]->isAlive)
 		mListGunners[i]->Update(dt);
 	}
 	for (size_t i = 0; i < mlistElevator.size(); i++)
@@ -349,6 +350,7 @@ void GameMap::Draw(int beginX, int beginY)
 	}
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
+		if(mListGunners[i]->isAlive)
 		mListGunners[i]->Draw(trans);
 	}
 #pragma endregion

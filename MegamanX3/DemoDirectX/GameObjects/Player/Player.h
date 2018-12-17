@@ -76,6 +76,7 @@ public:
 	PlayerSmokeDashEffect *mlistSmokeEffect;
 	PlayerState::StateName mCurrentState;
 	float dtBeDame = 0, dtTimeNoDame = 0;
+	vector <Bullet*> bulletlist;
 protected:
     Camera      *mCamera;
 
@@ -111,8 +112,6 @@ protected:
 		*mAnimationNoDameDashShoot,
 		*mAniamtionNoDameClingShoot,
 		*mAnimationNoDameClingJShoot;
-
-	vector <Bullet*> bulletlist;
 	
    
 	

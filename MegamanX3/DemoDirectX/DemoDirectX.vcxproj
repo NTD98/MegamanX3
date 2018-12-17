@@ -87,6 +87,7 @@
   <ItemGroup>
     <ClCompile Include="GameComponents\Animation.cpp" />
     <ClCompile Include="GameComponents\Camera.cpp" />
+    <ClCompile Include="GameComponents\CollisionManager.cpp" />
     <ClCompile Include="GameComponents\Game.cpp" />
     <ClCompile Include="GameComponents\GameCollision.cpp" />
     <ClCompile Include="GameComponents\GameGlobal.cpp" />
@@ -96,6 +97,7 @@
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
     <ClCompile Include="GameObjects\Effect\DeathCircle.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDeathEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
@@ -154,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="GameComponents\Animation.h" />
     <ClInclude Include="GameComponents\Camera.h" />
+    <ClInclude Include="GameComponents\CollisionManager.h" />
     <ClInclude Include="GameComponents\Game.h" />
     <ClInclude Include="GameComponents\GameCollision.h" />
     <ClInclude Include="GameComponents\GameGlobal.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Boss\Genjibo.h" />
     <ClInclude Include="GameObjects\Effect\DeathCircle.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDeathEffect.h" />
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
