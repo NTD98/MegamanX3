@@ -52,7 +52,7 @@ public:
 	bool allowMoveLeft;
 	bool allowMoveRight;
 	int getHealthPoint();
-	int setHealthPoint();
+	void setHealthPoint(Entity::EntityTypes entityType);
 	float isdoneAnimation = 0.0f;
 	EnemyData* getEnemydata();
 	bool allowjump = true;

@@ -8,7 +8,6 @@ DemoScene::DemoScene()
 
 void DemoScene::LoadContent()
 {
-    //set mau backcolor cho scene o day la mau xanh
     mBackColor = 0x000000;
     mMap = new GameMap("Resources/Man1_1.tmx");
 
@@ -255,18 +254,20 @@ void DemoScene::checkCollision()
 			}
 			if (botVsPlayer.IsCollided)
 			{
-
+				//lay phia va cham cua Entity so voi Player
+				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, botVsPlayer);
+				//lay phia va cham cua Player so voi Entity
+				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistGunners.at(j), botVsPlayer);
 				if (this->mPlayer->isTimeNoDame == false) {
-					if (this->mPlayer->isSetHealth == true && this->mPlayer->getState() != PlayerState::BeDame) {
-						this->mPlayer->setHealthPoint();
-						this->mPlayer->isSetHealth = false;
+						if (this->mPlayer->isSetHealth == true) {
+							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag,true);
+							this->mPlayer->isSetHealth = false;
+						}
+						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
 					}
-					this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
-				}
-				if (this->mPlayer->getHealthPoint() == 0) {
-					mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
-				}			
-				
+					if (this->mPlayer->getHealthPoint() <= 0) {
+						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
+					}
 			}
 			
 
@@ -297,29 +298,34 @@ void DemoScene::checkCollision()
 					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(j), g);
 					
 					if (this->mPlayer->isTimeNoDame == false) {
-						if (this->mPlayer->isSetHealth == true && this->mPlayer->getState() != PlayerState::BeDame) {
-							this->mPlayer->setHealthPoint();
+						if (this->mPlayer->isSetHealth == true) {
+							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag,false);
 							this->mPlayer->isSetHealth = false;
 						}
-						
 						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
-						this->mPlayer->isTimeNoDame = true;
-						
 					}
-					if (this->mPlayer->getHealthPoint() == 0) {
+					if (this->mPlayer->getHealthPoint() <= 0) {
 						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
 					}
-					//mlistenemybullets.at(i)->OnCollision()
 				}
 		}
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
-			
 			Entity::CollisionReturn b = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),listCollision.at(i)->GetBound());
-			
 			if (b.IsCollided)
 			{
-				bulletlist.at(j)->OnCollision();
+				//bulletlist.at(j)->OnCollision();
+			}
+			for (int h = 0; h < mlistGunners.size(); h++) {
+				Entity::CollisionReturn PlayerBulletVsBot = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistGunners.at(h)->GetBound());
+				if (PlayerBulletVsBot.IsCollided) {
+					bulletlist.at(j)->OnCollision();
+					mlistGunners.at(h)->setHealthPoint(bulletlist.at(j)->Tag);
+					int a = 4;
+					if (mlistGunners.at(h)->getHealthPoint() <=0 ) {
+						//Xoa con bot !
+					}
+				}
 			}
 			
 		}
@@ -350,7 +356,8 @@ void DemoScene::checkCollision()
 			}
 			if ((sidePlayer == Entity::Right || sidePlayer == Entity::Left) && mPlayer->getState() == PlayerState::Jumping)
 			{
-				mPlayer->changeAnimation(PlayerState::Clinging);
+				//mPlayer->changeAnimation(PlayerState::Clinging);
+				mPlayer->SetState(new PlayerClingingState(this->mPlayer->getplayerdata()));
 			}
 		}
 	}

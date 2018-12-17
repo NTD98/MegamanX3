@@ -24,7 +24,7 @@ void PlayerDameState::OnCollision(Entity * impactor, Entity::SideCollisions side
 
 void PlayerDameState::Update(float dt)
 {
-	if (this->mPlayerData->player->isTimeNoDame == false) //Trang thai bat kha xam pham
+	if (this->mPlayerData->player->isTimeNoDame == false) // Khong o trong trang thai bat kha xam pham
 	{
 		this->mPlayerData->player->isTimeNoDame = true;
 		this->isOnCollision = true;

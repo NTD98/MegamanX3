@@ -81,15 +81,12 @@ void Player::Update(float dt)
 	}
 	if (this->isTimeNoDame == true) {
 		if (dtTimeNoDame > 2.0f) {
+			this->mPlayerData->player->changeAnimation(mCurrentState);
 			this->isTimeNoDame = false;
 		}
 		else {
 			if (dtTimeNoDame != 0) {//Trong khoảng thời gian vô hiệu hóa nhận dame thì chuyển aniamtion nhấp nháy 
 				this->mPlayerData->player->noDameChangeAnimation(mCurrentState);
-			}
-			else {
-				this->mPlayerData->player->changeAnimation(mCurrentState);
-				this->isTimeNoDame = false;//Set lại biến thời gian vô hiệu hóa nhận dame
 			}
 		}
 	}
@@ -229,9 +226,24 @@ int Player::getHealthPoint()
 }
 
 
-void Player::setHealthPoint()
+void Player::setHealthPoint(Entity::EntityTypes entityTypes,bool isEnemy)
 {
-	this->HealthPoint -= 1;
+	int healthDown = 0;
+	switch (entityTypes)
+	{
+	case Entity::EntityTypes::Gunner:
+		healthDown = 1;
+		break;
+	case Entity::EntityTypes::HeadGunner:
+		healthDown = 2;
+		break;
+	default:
+		break;
+	}
+	if (isEnemy == true) {
+		healthDown++;
+	}
+	this->HealthPoint -= healthDown;
 }
 
 
@@ -318,7 +330,6 @@ void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity:
 	if (impactor->Tag == Entity::Elevator && side == SideCollisions::Bottom) {
 		this->mPlayerData->player->AddPosition(0, data.RegionCollision.top - data.RegionCollision.bottom + 2);
 	}
-
 	//Nếu nhân vật đang đứng im trên tháng máy mà ko chịu xuống , khi thang máy đâm vào tường phía trên thì nhân vật bị văng ra 
 	if (mCurrentState == PlayerState::Standing) {
 		if (impactor->Tag == Entity::Static && side == SideCollisions::Top) {

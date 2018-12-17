@@ -194,9 +194,24 @@ int Enemy::getHealthPoint()
 {
 	return HealthPoint;
 }
-int Enemy::setHealthPoint()
+void Enemy::setHealthPoint(Entity::EntityTypes entityTypes)
 {
-	return HealthPoint -= 4;
+	int healthDown = 0;
+	switch (entityTypes)
+	{
+	case Entity::EntityTypes::BulletP:
+		healthDown = 4;
+		break;
+	case Entity::EntityTypes::BulletCharge1:
+		healthDown = 10;
+		break;
+	case Entity::EntityTypes::BulletCharge2:
+		healthDown = 20;
+		break;
+	default:
+		break;
+	}
+	this->HealthPoint -= healthDown;
 }
 void Enemy::Shooting(D3DXVECTOR3 pos, bool isreverse)
 {

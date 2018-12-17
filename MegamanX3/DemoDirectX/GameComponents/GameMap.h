@@ -36,7 +36,7 @@ public:
     bool IsBoundTop(); // kiem tra xem co o vi tri bien ben trai worldmap khong
     bool IsBoundBottom(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     ~GameMap();
-
+	void deleteBot(int iBot);
     QuadTree* GetQuadTree();
 
 private:

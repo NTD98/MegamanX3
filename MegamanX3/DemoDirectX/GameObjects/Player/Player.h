@@ -64,8 +64,9 @@ public:
 	bool isTimeNoDame = false;
 	bool isSetHealth = false;
     bool allowMoveLeft;
+	bool allowJump, mCurrentReverse, allowshoot = true;
 	int getHealthPoint();
-	void setHealthPoint();
+	void setHealthPoint(Entity::EntityTypes entityTypes,bool isEnemy);
 	void spawning();
     bool allowMoveRight;
 	vector<Bullet*> getbulletlist(); 
@@ -117,9 +118,6 @@ protected:
 	
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
-	bool allowJump, mCurrentReverse, allowshoot = true;
-	
-
 	void InitAni();
 	
 };

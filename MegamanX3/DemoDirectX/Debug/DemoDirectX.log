@@ -1,18 +1,15 @@
-﻿  PlayerDameState.cpp
-  Player.cpp
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(138): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(140): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(144): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(146): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(190): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(195): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(322): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(341): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(343): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(397): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(398): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(460): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\player\player.cpp(461): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  DemoScene.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(79): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(175): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(182): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(188): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(195): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(228): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(276): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(319): warning C4018: '<': signed/unsigned mismatch
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

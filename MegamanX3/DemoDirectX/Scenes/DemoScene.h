@@ -14,6 +14,7 @@
 #include "../GameObjects/Enemy/EnemyBullet.h"
 #include "../GameObjects/Player/PlayerDameState.h"
 #include "../GameObjects/Effect/PlayerDeathEffect.h"
+#include "../GameObjects/Player/PlayerClingingState.h"
 class DemoScene : public Scene
 {
 public:
