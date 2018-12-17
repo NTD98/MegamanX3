@@ -96,6 +96,8 @@
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Effect\DeathCircle.cpp" />
+    <ClCompile Include="GameObjects\Effect\PlayerDeathEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp" />
     <ClCompile Include="GameObjects\Enemy\Enemy.cpp" />
@@ -117,9 +119,9 @@
     <ClCompile Include="GameObjects\Player\Player.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerClingingJState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerClingingState.cpp" />
+    <ClCompile Include="GameObjects\Player\PlayerDameState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerDashState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerData.cpp" />
-    <ClCompile Include="GameObjects\Player\PlayerDeadState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerFallingState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerJumpingState.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerRunningState.cpp" />
@@ -162,6 +164,8 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Effect\DeathCircle.h" />
+    <ClInclude Include="GameObjects\Effect\PlayerDeathEffect.h" />
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
     <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h" />
     <ClInclude Include="GameObjects\Enemy\Enemy.h" />
@@ -183,9 +187,9 @@
     <ClInclude Include="GameObjects\Player\Player.h" />
     <ClInclude Include="GameObjects\Player\PlayerClingingJState.h" />
     <ClInclude Include="GameObjects\Player\PlayerClingingState.h" />
+    <ClInclude Include="GameObjects\Player\PlayerDameState.h" />
     <ClInclude Include="GameObjects\Player\PlayerDashState.h" />
     <ClInclude Include="GameObjects\Player\PlayerData.h" />
-    <ClInclude Include="GameObjects\Player\PlayerDeadState.h" />
     <ClInclude Include="GameObjects\Player\PlayerFallingState.h" />
     <ClInclude Include="GameObjects\Player\PlayerJumpingState.h" />
     <ClInclude Include="GameObjects\Player\PlayerRunningState.h" />

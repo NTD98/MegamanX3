@@ -6,28 +6,14 @@
 #include "PlayerClingingState.h"
 #include "PlayerClingingJState.h"
 #include "PlayerDashState.h"
+#include "PlayerDameState.h"
 #include "../../GameComponents/GameCollision.h"
 
 float check = 0.0;
 bool isDone = false;
 Player::Player()
 {
-    mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1,3 , 0.2f);
-    mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
-    mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
-	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);	
-	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
-	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
-	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.05f);
-	mAnimationDashShoot = new Animation("Resources/megaman/dashshoot.png", 2, 1, 2, 0.1f);
-	mAniamtionClingShoot = new Animation("Resources/megaman/ClingShoot.png", 3, 1, 3, 0.1f);
-	mAnimationClingJShoot = new Animation("Resources/megaman/ClingJShoot.png", 2, 1, 2, 0.1f);
-	mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
-	mAnimationClinging = new Animation("Resources/megaman/Cling.png", 3, 1, 3, 0.15f);
-	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
-	mAnimationDead = new Animation("Resources/megaman/Dead.png", 7, 1, 7, 0.1f);
-
-
+	InitAni();
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -43,8 +29,72 @@ Player::~Player()
 {
 }
 
+void Player::InitAni()
+{
+	//Trạng thái bình thường của nhân vật
+	mAnimationStanding = new Animation("Resources/megaman/standing.png", 3, 1, 3, 0.2f);
+	mAnimationJumping = new Animation("Resources/megaman/pic3.png", 7, 1, 7, 0.1f);
+	mAnimationRunning = new Animation("Resources/megaman/pic2.png", 11, 1, 11, 0.05f);
+	mAnimationSpawning = new Animation("Resources/megaman/pic7.png", 7, 1, 7, 0.1f);
+	mAnimationStandShoot = new Animation("Resources/megaman/standShoot.png", 2, 1, 2, 0.5f);
+	mAnimationJumpShoot = new Animation("Resources/megaman/JumpShoot.png", 6, 1, 6, 0.1f);
+	mAnimationRunnShoot = new Animation("Resources/megaman/RunnShoot.png", 10, 1, 10, 0.05f);
+	mAnimationDashShoot = new Animation("Resources/megaman/dashshoot.png", 2, 1, 2, 0.1f);
+	mAniamtionClingShoot = new Animation("Resources/megaman/ClingShoot.png", 3, 1, 3, 0.1f);
+	mAnimationClingJShoot = new Animation("Resources/megaman/ClingJShoot.png", 2, 1, 2, 0.1f);
+	mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
+	mAnimationClinging = new Animation("Resources/megaman/Cling.png", 3, 1, 3, 0.15f);
+	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
+	mAnimationDead = new Animation("Resources/megaman/Dead.png", 7, 1, 7, 0.1f);
+	mAniamtionBeDame = new Animation("Resources/megaman/beDame.png", 10, 1, 10, 0.1f);
+
+	//Trạng thái vô hiệu dame của nhân vật
+	mAnimationNoDameStand = new Animation("Resources/megaman/noDameStand.png", 2, 1, 2, 0.03f);
+	mAnimationNoDameRun = new Animation("Resources/megaman/noDameRun.png", 22, 1, 22, 0.03f);
+	mAnimationNoDameJumping = new Animation("Resources/megaman/noDameJump.png", 14, 1, 14, 0.1f);
+	mAnimationNoDameStandShoot = new Animation("Resources/megaman/noDameStandShoot.png", 4, 1, 4, 0.5f);
+	mAnimationNoDameJumpShoot = new Animation("Resources/megaman/noDameJumpShoot.png", 12, 1, 12, 0.1f);
+	mAnimationNoDameRunnShoot = new Animation("Resources/megaman/noDameRunShoot.png", 20, 1, 20, 0.05f);
+	mAnimationNoDameDashShoot = new Animation("Resources/megaman/noDameDashShoot.png", 4, 1, 4, 0.1f);
+	mAniamtionNoDameClingShoot = new Animation("Resources/megaman/noDameClingShoot.png", 6, 1, 6, 0.1f);
+	mAnimationNoDameClingJShoot = new Animation("Resources/megaman/noDameClingJShoot.png", 4, 1, 4, 0.1f);
+	mAnimationNoDameDashing = new Animation("Resources/megaman/noDameDash.png", 4, 1, 4, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
+	mAnimationNoDameClinging = new Animation("Resources/megaman/noDameCling.png", 6, 1, 6, 0.15f);
+	mAnimationNoDameClingingJ = new Animation("Resources/megaman/noDameClingJ.png", 4, 1, 4, 0.15f);
+}
+
 void Player::Update(float dt)
 {
+	if (mCurrentState == PlayerState::BeDame) { //Nếu đang bị trạng thái ăn dame thì tăng biến thời gian bị dame
+		this->dtBeDame += dt;
+	}
+
+	if (mCurrentState == PlayerState::BeDame && dtBeDame >= 0.3f) { // Sau 1s load state ăn dame thì chuyển về Stand 
+		this->SetState(new PlayerStandingState(this->mPlayerData));
+		dtBeDame = 0;
+	}
+	if (isTimeNoDame == true) {//Nếu trong thời gian không ăn dame thì tăng biến thời gian không ăn dame
+		dtTimeNoDame += dt;
+	}
+	else {
+		dtTimeNoDame = 0;
+	}
+	if (this->isTimeNoDame == true) {
+		if (dtTimeNoDame > 2.0f) {
+			this->isTimeNoDame = false;
+		}
+		else {
+			if (dtTimeNoDame != 0) {//Trong khoảng thời gian vô hiệu hóa nhận dame thì chuyển aniamtion nhấp nháy 
+				this->mPlayerData->player->noDameChangeAnimation(mCurrentState);
+			}
+			else {
+				this->mPlayerData->player->changeAnimation(mCurrentState);
+				this->isTimeNoDame = false;//Set lại biến thời gian vô hiệu hóa nhận dame
+			}
+		}
+	}
+	
+
 	for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
 		mlistSmokeEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
 	}
@@ -67,6 +117,7 @@ void Player::Update(float dt)
 		mCurrentAnimation->Update(dt);
 		break;
 	}
+	
 	if (check >= 0.15 * 7 && isDone == false)
 	{
 		this->SetState(new PlayerStandingState(this->mPlayerData));
@@ -130,17 +181,19 @@ void Player::OnKeyPressed(int key)
 
 			if (allowshoot)
 			{
-				if (mPlayerData->player->GetReverse())
-				{
-					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition()-D3DXVECTOR3(this->getCurrentAnimation()->GetWidth()/2-10,100,0), true);
-					bulletlist.insert(bulletlist.begin(), 1, bullet);
-				}
-				else
-				{
-					Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2 + 10, -100, 0), false);
-					bulletlist.insert(bulletlist.begin(), 1, bullet);
-				}
+				if (this->mPlayerData->player->getState() != PlayerState::BeDame){
+					if (mPlayerData->player->GetReverse())
+					{
+						Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2 - 10,100,0), true);
+						bulletlist.insert(bulletlist.begin(), 1, bullet);
+					}
+					else
+					{
+						Bullet* bullet = new Bullet(this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2 + 10, -100, 0), false);
+						bulletlist.insert(bulletlist.begin(), 1, bullet);
+					}
 				allowshoot = false;
+				}
 			}
 			break;
 		}
@@ -175,6 +228,14 @@ int Player::getHealthPoint()
 	return HealthPoint;
 }
 
+
+void Player::setHealthPoint()
+{
+	this->HealthPoint -= 1;
+}
+
+
+
 void Player::spawning()
 {
 	if (this->posY < 1320)
@@ -198,6 +259,8 @@ PlayerData * Player::getplayerdata()
 
 
 
+
+
 void Player::SetCamera(Camera *camera)
 {
     this->mCamera = camera;
@@ -207,9 +270,6 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 {
     mCurrentAnimation->FlipVertical(mCurrentReverse);
     mCurrentAnimation->SetPosition(this->GetPosition());
-
-	
-
 
     if (mCamera)
     {
@@ -257,7 +317,6 @@ void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity:
 	this->mPlayerData->state->OnCollision(impactor, side, data);
 	if (impactor->Tag == Entity::Elevator && side == SideCollisions::Bottom) {
 		this->mPlayerData->player->AddPosition(0, data.RegionCollision.top - data.RegionCollision.bottom + 2);
-
 	}
 
 	//Nếu nhân vật đang đứng im trên tháng máy mà ko chịu xuống , khi thang máy đâm vào tường phía trên thì nhân vật bị văng ra 
@@ -282,6 +341,58 @@ RECT Player::GetBound()
     rect.bottom = rect.top + mCurrentAnimation->GetHeight();
 
     return rect;
+}
+void Player::noDameChangeAnimation(PlayerState::StateName state)
+{
+	switch (state)
+	{
+	case PlayerState::Running:
+		mCurrentAnimation = mAnimationNoDameRun;
+		break;
+
+	case PlayerState::Standing:
+		mCurrentAnimation = mAnimationNoDameStand;
+		break;
+	case PlayerState::Falling:
+		mCurrentAnimation = mAnimationNoDameJumping;
+		break;
+
+	case PlayerState::Jumping:
+		mCurrentAnimation = mAnimationNoDameJumping;
+		break;
+	case PlayerState::Clinging:
+		mCurrentAnimation = mAnimationNoDameClinging;
+		break;
+	case PlayerState::ClingingJ:
+		mCurrentAnimation = mAnimationNoDameClingingJ;
+		break;
+	case PlayerState::Dash:
+		mCurrentAnimation = mAnimationNoDameDashing;
+		break;
+	case PlayerState::StandShoot:
+		mCurrentAnimation = mAnimationNoDameStandShoot;
+		break;
+	case PlayerState::JumpShoot:
+		mCurrentAnimation = mAnimationNoDameJumpShoot;
+		break;
+	case PlayerState::RunnShoot:
+		mCurrentAnimation = mAnimationNoDameRunnShoot;
+		break;
+	case PlayerState::DashShoot:
+		mCurrentAnimation = mAnimationNoDameDashShoot;
+		break;
+	case PlayerState::ClingingShoot:
+		mCurrentAnimation = mAniamtionNoDameClingShoot;
+		break;
+	case PlayerState::ClingingJShoot:
+		mCurrentAnimation = mAnimationNoDameClingJShoot;
+		break;
+	default:
+		break;
+	}
+
+	this->width = mCurrentAnimation->GetWidth();
+	this->height = mCurrentAnimation->GetHeight();
 }
 
 void Player::changeAnimation(PlayerState::StateName state)
@@ -336,6 +447,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 		case PlayerState::Dead:
 			mCurrentAnimation = mAnimationDead;
 			break;
+		case PlayerState::BeDame:
+			mCurrentAnimation = mAniamtionBeDame;
+			break;
         default:
             break;
     }
@@ -359,7 +473,6 @@ Player::MoveDirection Player::getMoveDirection()
     {
         return MoveDirection::MoveToLeft;
     }
-
     return MoveDirection::None;
 }
 

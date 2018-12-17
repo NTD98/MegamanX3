@@ -3,7 +3,7 @@
 
 EnemyBullet::EnemyBullet()
 {
-	mSprite1 = new Sprite("Resources/EnemyBullet.png");
+	mSprite1 = new Sprite("Resources/enemy/EnemyBullet.png");
  
 	this->Tag = EntityTypes::None;
 	wasBorn = false;

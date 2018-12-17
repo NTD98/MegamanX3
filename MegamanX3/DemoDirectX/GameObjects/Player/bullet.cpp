@@ -81,7 +81,6 @@ void Bullet::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 
 void Bullet::OnCollision()
 {
-
 	//D3DXVECTOR3 pos = mCurrentAnimaion->GetPosition();
 	////this->bullet->~Sprite();
 	//destroyedbullet->SetPosition(pos);

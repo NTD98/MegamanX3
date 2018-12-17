@@ -21,7 +21,7 @@ public:
 	void Draw(D3DXVECTOR2 transform = D3DXVECTOR2());
 	Sprite *mSprite1;
 	Animation *mAnimation2, *mHeadGunnerBullet;
-	Animation *mExplosion=NULL;
+	Animation *mExplosion = NULL;
 	bool wasBorn = false;		//Đã được sinh ra hay chưa
 	int typeBullet = 0;
 	float ay;

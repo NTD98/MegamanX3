@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "PlayerFallingState.h"
 #include "PlayerDashState.h"
-#include "PlayerDeadState.h"
 #include "../../GameDefines/GameDefine.h"
 
 PlayerStandingState::PlayerStandingState(PlayerData *playerData, bool isMoveToLeft,bool isMoveToRight)
@@ -36,10 +35,6 @@ PlayerStandingState::~PlayerStandingState()
 
 void PlayerStandingState::HandleKeyboard(std::map<int, bool> keys)
 {
-	if (keys[0x44]) {
-		this->mPlayerData->player->SetState(new PlayerDeadState(this->mPlayerData));
-		return;
-	}
 
 	if (AllowRunLeft == false || AllowRunRight == false) {
 		//Do nothing

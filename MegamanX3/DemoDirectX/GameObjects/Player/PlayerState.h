@@ -23,7 +23,9 @@ public:
 		DashShoot,
 		ClingingShoot,
 		ClingingJShoot,
-		Dead
+		Dead,
+		BeDame,
+		NoDame
     };
 
     ~PlayerState();

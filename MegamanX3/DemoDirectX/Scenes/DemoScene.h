@@ -11,8 +11,9 @@
 #include "../GameComponents/GameMap.h"
 #include "../GameComponents/Camera.h"
 #include "../GameObjects/Player/Player.h"
-#include "../GameObjects/Player/PlayerDeadState.h"
 #include "../GameObjects/Enemy/EnemyBullet.h"
+#include "../GameObjects/Player/PlayerDameState.h"
+#include "../GameObjects/Effect/PlayerDeathEffect.h"
 class DemoScene : public Scene
 {
 public:
@@ -39,6 +40,7 @@ protected:
 	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
+	PlayerDeathEffect *mAnimationDeathEffect;
     std::map<int, bool> keys;
 };
 

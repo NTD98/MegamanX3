@@ -22,6 +22,7 @@ GameMap::~GameMap()
 {
 	delete mMap;
 
+
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		if (mListGunners[i])
@@ -118,15 +119,15 @@ void GameMap::LoadMap(char* filePath)
 								Gunner *gunner = new Gunner(position);
 							    gunner->Tag = Entity::EntityTypes::Gunner;
 								mListGunners.push_back(gunner);
-								
+								//mQuadTree->insertEntity(gunner);
 							}
 							else
 							//elevator
-							if (layer->GetName() == "elevator") {
-								Elevator *elevator = new Elevator(position);
-								mlistElevator.push_back(elevator);
-								mQuadTree->insertEntity(elevator);
-							}
+								if (layer->GetName() == "elevator") {
+									Elevator *elevator = new Elevator(position);
+									mlistElevator.push_back(elevator);
+									mQuadTree->insertEntity(elevator);
+								}
 							else
 								if (layer->GetName() == "headgunner")
 								{

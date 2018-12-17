@@ -22,6 +22,7 @@ public:
     {
         MoveToLeft, //chay tu phai sang trai
         MoveToRight, //chay tu trai sang phai
+		jumping,
         None //dung im
     };
 
@@ -53,14 +54,18 @@ public:
 
     void OnKeyUp(int key);
 	void changeAnimation(PlayerState::StateName state);
+	void noDameChangeAnimation(PlayerState::StateName state);
 	Animation* getCurrentAnimation();
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
 	bool GetReverse();
 	bool isDead = false;
 	bool isDone = false;
+	bool isTimeNoDame = false;
+	bool isSetHealth = false;
     bool allowMoveLeft;
 	int getHealthPoint();
+	void setHealthPoint();
 	void spawning();
     bool allowMoveRight;
 	vector<Bullet*> getbulletlist(); 
@@ -68,7 +73,8 @@ public:
 	PlayerData* getplayerdata();
 	PlayerFlashDashEffect *mlistFlashEffect;
 	PlayerSmokeDashEffect *mlistSmokeEffect;
-	
+	PlayerState::StateName mCurrentState;
+	float dtBeDame = 0, dtTimeNoDame = 0;
 protected:
     Camera      *mCamera;
 
@@ -88,14 +94,33 @@ protected:
 		*mAnimationDashShoot,
 		*mAniamtionClingShoot,
 		*mAnimationClingJShoot,
-		*mAnimationDead;
+		*mAnimationDead,
+		*mAniamtionBeDame,
+
+		// No being dame
+		*mAnimationNoDameStand,
+		*mAnimationNoDameRun,
+		*mAnimationNoDameJumping,
+		*mAnimationNoDameClinging,
+		*mAnimationNoDameClingingJ,
+		*mAnimationNoDameDashing,
+		*mAnimationNoDameStandShoot,
+		*mAnimationNoDameJumpShoot,
+		*mAnimationNoDameRunnShoot,
+		*mAnimationNoDameDashShoot,
+		*mAniamtionNoDameClingShoot,
+		*mAnimationNoDameClingJShoot;
 
 	vector <Bullet*> bulletlist;
 	
-    PlayerState::StateName mCurrentState;
+   
 	
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
 	bool allowJump, mCurrentReverse, allowshoot = true;
+	
+
+	void InitAni();
+	
 };
 

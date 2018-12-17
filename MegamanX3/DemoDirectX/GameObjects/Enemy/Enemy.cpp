@@ -15,6 +15,8 @@ void Enemy::SetCamera(Camera * camera)
 
 void Enemy::Update(float dt)
 {
+	if (HealthPoint <= 0)
+		isAlive = false;
 	//?
 	if (this->mEnemyData->state->GetState()!=EnemyState::Shooting)
 	{
@@ -192,7 +194,10 @@ int Enemy::getHealthPoint()
 {
 	return HealthPoint;
 }
-
+int Enemy::setHealthPoint()
+{
+	return HealthPoint -= 4;
+}
 void Enemy::Shooting(D3DXVECTOR3 pos, bool isreverse)
 {
 }
@@ -208,6 +213,7 @@ void Enemy::Jumpping(D3DXVECTOR3 pos)
 void Enemy::Falling()
 {
 }
+
 
 EnemyData * Enemy::getEnemydata()
 {

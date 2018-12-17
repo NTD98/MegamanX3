@@ -142,6 +142,7 @@ void PlayerJumpingState::OnCollision(Entity *impactor, Entity::SideCollisions si
 
         case Entity::BottomRight: case Entity::BottomLeft: case Entity::Bottom:
         {
+			if(mPlayerData->state->GetState()!=PlayerState::BeDame)
             this->mPlayerData->player->AddPosition(0, -(data.RegionCollision.bottom - data.RegionCollision.top));
         }
 
