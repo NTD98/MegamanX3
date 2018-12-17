@@ -250,6 +250,9 @@
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Enemy\Helit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -460,6 +463,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Boss\Genjibo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Enemy\Helit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

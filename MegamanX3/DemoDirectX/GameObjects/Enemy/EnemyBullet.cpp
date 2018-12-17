@@ -38,7 +38,7 @@ void EnemyBullet::Spawn(int type,float posx, float posy, float vx, float vy)
 		this->SetHeight(mHeadGunnerBullet->GetHeight());
 	}
 	wasBorn = true;
-	this->Tag = EntityTypes::EnemyBullet;
+	this->Tag = EntityTypes::EnemyBullets;
 
 }
 

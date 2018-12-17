@@ -127,7 +127,8 @@ void Animation::InitWithAnimation(const char* filePath, int totalFrame, int rows
 	//width - height luc nay la cua spritesheet
 	mFrameWidth = GetWidth() / mColumns;
 	mFrameHeight = GetHeight() / mRows;
-
+	mWidth = mFrameWidth;
+	mHeight = mFrameHeight;
 	SetWidth(mFrameWidth);
 	SetHeight(mFrameHeight);
 

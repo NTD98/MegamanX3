@@ -8,6 +8,12 @@ DemoScene::DemoScene()
     LoadContent();
 }
 
+void DemoScene::generate()
+{
+	Helit* helit = new Helit(793, 1263);
+	listhelit.push_back(helit);
+}
+
 
 void DemoScene::LoadContent()
 {
@@ -29,6 +35,7 @@ void DemoScene::LoadContent()
 	//50/1340
     mPlayer->SetPosition(90.00, 1854.00);
     mPlayer->SetCamera(mCamera);
+	generate();
 }
 
 void DemoScene::Update(float dt)
@@ -36,7 +43,10 @@ void DemoScene::Update(float dt)
 	if(genjibo)
 	genjibo->Update(dt, mPlayer, this->getMapObject());
 	duration += dt;
-	
+	for (int i = 0; i < listhelit.size(); i++)
+	{
+		listhelit.at(i)->Update(dt, mPlayer, this->getMapObject());
+	}
 	if (mPlayer->getState() != PlayerState::Spawning)
 		checkCollision();
 
@@ -79,6 +89,10 @@ void DemoScene::Draw()
 		mlistenemybullets.at(i)->Draw(trans);
 	if(genjibo)
 	genjibo->Draw(trans);
+	for (int i = 0; i < listhelit.size(); i++)
+	{
+		listhelit.at(i)->Draw(trans);
+	}
 }
 
 void DemoScene::EnemyAction()
@@ -337,6 +351,10 @@ void DemoScene::checkCollision()
 					int a = 4;
 					if (mlistGunners.at(h)->getHealthPoint() <=0 ) {
 						mlistGunners.at(h)->isAlive = false;
+						std::vector<Enemy*>::iterator pos = mlistGunners.begin();
+						for (int m = 1; m < h; m++)
+							pos++;
+						mlistGunners.erase(pos);
 					}
 				}
 			}

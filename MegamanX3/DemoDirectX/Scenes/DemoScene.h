@@ -6,7 +6,7 @@
 #include <d3d9.h>
 #include "../GameObjects/Player/PlayerDameState.h"
 #include "../GameObjects/Effect/PlayerDeathEffect.h"
-//#include "../GameObjects/Player/PlayerClingingState.h"
+#include "../GameObjects/Player/PlayerClingingState.h"
 #include "../GameComponents/Scene.h"
 #include "../GameComponents/Sprite.h"
 #include "../GameComponents/Animation.h"
@@ -15,10 +15,12 @@
 #include "../GameObjects/Player/Player.h"
 #include "../GameObjects/Enemy/EnemyBullet.h"
 #include "../GameObjects/Boss/Genjibo.h"
+#include "../GameObjects/Enemy/Helit.h"
 class DemoScene : public Scene
 {
 public:
     DemoScene();
+	void generate();
     void Update(float dt);
     void LoadContent();
     void Draw();
@@ -44,6 +46,7 @@ protected:
 	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
+	vector<Helit*> listhelit;
 	PlayerDeathEffect *mAnimationDeathEffect;
     std::map<int, bool> keys;
 };
