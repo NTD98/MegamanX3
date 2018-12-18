@@ -17,6 +17,7 @@ HeadGunner::HeadGunner(D3DXVECTOR3 pos)
 	SetWidth(mCurrentAnimation->GetWidth());
 	SetHeight(mCurrentAnimation->GetHeight());
 	isAlive = true;
+	this->HealthPoint = 28;
 }
 
 HeadGunner::~HeadGunner()

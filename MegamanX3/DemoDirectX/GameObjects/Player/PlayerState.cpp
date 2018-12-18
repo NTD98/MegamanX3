@@ -20,6 +20,10 @@ void PlayerState::Update(float dt)
 
 }
 
+void PlayerState::Draw(D3DXVECTOR2 transform)
+{
+}
+
 void PlayerState::HandleKeyboard(std::map<int, bool> keys)
 {
 

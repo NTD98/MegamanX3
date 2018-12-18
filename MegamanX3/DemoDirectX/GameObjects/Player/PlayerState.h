@@ -23,14 +23,15 @@ public:
 		DashShoot,
 		ClingingShoot,
 		ClingingJShoot,
-		Dead,
 		BeDame,
-		NoDame
+		NoDame,
+		Death
     };
 
     ~PlayerState();
 
     virtual void Update(float dt);
+	virtual void Draw(D3DXVECTOR2 transform);
 
     virtual void HandleKeyboard(std::map<int, bool> keys);
 

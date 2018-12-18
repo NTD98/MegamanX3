@@ -59,7 +59,7 @@ public:
     //true thi se lat nguoc anh theo truc y
     void SetReverse(bool flag);
 	bool GetReverse();
-	bool isDead = false;
+	bool isAlive;
 	bool isDone = false;
 	bool isTimeNoDame = false;
 	bool isSetHealth = false;
@@ -96,8 +96,8 @@ protected:
 		*mAnimationDashShoot,
 		*mAniamtionClingShoot,
 		*mAnimationClingJShoot,
-		*mAnimationDead,
 		*mAniamtionBeDame,
+		*mAnimationBeforeDeath,
 
 		// No being dame
 		*mAnimationNoDameStand,

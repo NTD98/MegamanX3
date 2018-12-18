@@ -5,7 +5,6 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 #include "../GameObjects/Player/PlayerDameState.h"
-#include "../GameObjects/Effect/PlayerDeathEffect.h"
 #include "../GameObjects/Player/PlayerClingingState.h"
 #include "../GameComponents/Scene.h"
 #include "../GameComponents/Sprite.h"
@@ -18,6 +17,7 @@
 #include "../GameObjects/Enemy/Helit.h"
 #include "../GameObjects/Player/PlayerStandingState.h"
 #include "../GameObjects/Boss/Byte.h"
+#include "../GameObjects/Player/PlayerFallingState.h"
 class DemoScene : public Scene
 {
 public:
@@ -31,7 +31,7 @@ public:
     void OnKeyUp(int keyCode);
     void OnMouseDown(float x, float y);
 	bool iscolidebullet(RECT a, RECT b);
-	void isDead();
+	
 	vector<Entity*> getMapObject();
 protected:
 	vector<Entity*> mapobject;
@@ -50,7 +50,7 @@ protected:
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
 	vector<Helit*> listhelit;
-	PlayerDeathEffect *mAnimationDeathEffect;
     std::map<int, bool> keys;
+	bool isBeforeDeath = false;
 };
 

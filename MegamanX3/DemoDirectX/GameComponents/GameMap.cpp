@@ -46,18 +46,6 @@ GameMap::~GameMap()
 
     delete mQuadTree;
 }
-
-void GameMap::deleteBot(int iBot)
-{
-	for (size_t i = 0; i < mListGunners.size(); i++)
-	{
-		if (i == iBot) {
-			if (mListGunners[i])
-				delete mListGunners[i];
-		}
-	}
-}
-
 void GameMap::LoadMap(char* filePath)
 {
     mMap = new Tmx::Map();

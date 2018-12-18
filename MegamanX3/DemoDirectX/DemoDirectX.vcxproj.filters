@@ -241,9 +241,6 @@
     <ClCompile Include="GameObjects\Effect\DeathCircle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameObjects\Effect\PlayerDeathEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameComponents\CollisionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -257,6 +254,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameObjects\Boss\Byte.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\Player\PlayerDeathState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -462,9 +462,6 @@
     <ClInclude Include="GameObjects\Effect\DeathCircle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameObjects\Effect\PlayerDeathEffect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameComponents\CollisionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -478,6 +475,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Boss\Byte.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Player\PlayerDeathState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

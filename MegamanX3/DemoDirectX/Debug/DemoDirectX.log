@@ -1,19 +1,22 @@
 ﻿  DemoScene.cpp
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(25): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(48): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(67): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(76): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(90): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(96): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(104): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(205): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(212): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(218): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(225): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(259): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(297): warning C4553: '==': operator has no effect; did you intend '='?
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(312): warning C4018: '<': signed/unsigned mismatch
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(341): warning C4553: '==': operator has no effect; did you intend '='?
-d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(360): warning C4018: '<': signed/unsigned mismatch
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(69): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(106): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(204): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(211): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(217): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(258): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(309): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(354): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  PlayerDameState.cpp
+  Player.cpp
+  Game.cpp
+  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
+  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

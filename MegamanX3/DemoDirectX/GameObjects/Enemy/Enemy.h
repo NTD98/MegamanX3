@@ -57,6 +57,7 @@ public:
 	EnemyData* getEnemydata();
 	bool allowjump = true;
 	bool isAlive;
+	int HealthPoint;
 	virtual void Shooting(D3DXVECTOR3 pos, bool isreverse);
 	virtual void Standing();
 	virtual void Jumpping(D3DXVECTOR3 pos);
@@ -71,7 +72,7 @@ protected:
 		*mAnimationShooting,
 		*mAnimationStanding,
 		*mAnimationJumping;
-	int HealthPoint = 16;
+
 	EnemyState::StateName mCurrentState;
 
 	//chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai

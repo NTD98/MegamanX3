@@ -23,6 +23,7 @@ Player::Player()
     allowJump = true;
 	mlistFlashEffect = new PlayerFlashDashEffect[5];
 	mlistSmokeEffect = new PlayerSmokeDashEffect[9];
+	this->isAlive = true;
 }
 
 Player::~Player()
@@ -45,8 +46,8 @@ void Player::InitAni()
 	mAnimationDashing = new Animation("Resources/megaman/dash.png", 2, 1, 2, 0.2f, D3DCOLOR_XRGB(0, 0, 0));
 	mAnimationClinging = new Animation("Resources/megaman/Cling.png", 3, 1, 3, 0.15f);
 	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
-	mAnimationDead = new Animation("Resources/megaman/Dead.png", 7, 1, 7, 0.1f);
 	mAniamtionBeDame = new Animation("Resources/megaman/beDame.png", 10, 1, 10, 0.1f);
+	mAnimationBeforeDeath = new Animation("Resources/megaman/BeforeDeath.png", 2, 1, 2, 0.1f);
 
 	//Trạng thái vô hiệu dame của nhân vật
 	mAnimationNoDameStand = new Animation("Resources/megaman/noDameStand.png", 2, 1, 2, 0.03f);
@@ -100,14 +101,14 @@ void Player::Update(float dt)
 			}
 		}
 	}
-	
+
 
 	for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
 		mlistSmokeEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
 	}
 
 	for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
-		mlistFlashEffect[i].Update(dt,mPlayerData->player->GetPosition(),mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
+		mlistFlashEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
 	}
 
 	bulletlist = this->getbulletlist();
@@ -124,16 +125,16 @@ void Player::Update(float dt)
 		mCurrentAnimation->Update(dt);
 		break;
 	}
-	
+
 	if (check >= 0.15 * 7 && isDone == false)
 	{
 		this->SetState(new PlayerStandingState(this->mPlayerData));
 		isDone = true;
 	}
-    if (this->mPlayerData->state)
-    {
-        this->mPlayerData->state->Update(dt);
-    }
+	if (this->mPlayerData->state)
+	{
+		this->mPlayerData->state->Update(dt);
+	}
 	for each (Bullet* bullet in bulletlist)
 	{
 		if (mPlayerData->state->GetState() != PlayerState::Clinging)
@@ -145,12 +146,11 @@ void Player::Update(float dt)
 		}
 		else
 			if (mPlayerData->player->GetReverse())
-				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() /2, -5, 0), false);
+				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), false);
 			else
 				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3((this->getCurrentAnimation()->GetWidth() / 2), 5, 0), true);
 	}
-    Entity::Update(dt);
-	
+	Entity::Update(dt);
 }
 
 void Player::HandleKeyboard(std::map<int, bool> keys)
@@ -290,36 +290,39 @@ void Player::SetCamera(Camera *camera)
 
 void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DXVECTOR2 transform, float angle, D3DXVECTOR2 rotationCenter, D3DXCOLOR colorKey)
 {
-    mCurrentAnimation->FlipVertical(mCurrentReverse);
-    mCurrentAnimation->SetPosition(this->GetPosition());
-
-    if (mCamera)
-    {
-        D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
-            GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-
-		if (mPlayerData->state->GetState() == PlayerState::Spawning)
-			this->spawning();
-        mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
-		for each (Bullet* bullet in bulletlist)
-		{
-			bool reverse = mPlayerData->player->GetReverse();
-			bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey,reverse);
-		}
-		if (mPlayerData->state->GetState()==PlayerState::Dash || mPlayerData->state->GetState()==PlayerState::DashShoot) {
-			for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
-				mlistFlashEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+	if (mCamera)
+	{
+		D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
+			GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
+		if (isAlive) {
+			mCurrentAnimation->FlipVertical(mCurrentReverse);
+			mCurrentAnimation->SetPosition(this->GetPosition());
+			if (mPlayerData->state->GetState() == PlayerState::Spawning)
+				this->spawning();
+			mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0), sourceRect, scale, trans, angle, rotationCenter, colorKey);
+			for each (Bullet* bullet in bulletlist)
+			{
+				bool reverse = mPlayerData->player->GetReverse();
+				bullet->Draw(bullet->GetPosition(), sourceRect, scale, trans, angle, rotationCenter, colorKey, reverse);
 			}
-			for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
-				mlistSmokeEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+			if (mPlayerData->state->GetState() == PlayerState::Dash || mPlayerData->state->GetState() == PlayerState::DashShoot) {
+				for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
+					mlistFlashEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+				}
+				for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
+					mlistSmokeEffect[i].Draw(mPlayerData->player->GetReverse(), trans);
+				}
+			}
+			
+			else
+			{
+				mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
 			}
 		}
-    }
-    else
-    {
-        mCurrentAnimation->Draw(D3DXVECTOR3(posX, posY, 0));
-    }        
-	
+		else {
+			this->mPlayerData->state->Draw(trans);
+		}
+	}
 }
 
 void Player::SetState(PlayerState *newState)
@@ -465,11 +468,11 @@ void Player::changeAnimation(PlayerState::StateName state)
 		case PlayerState::ClingingJShoot:
 			mCurrentAnimation = mAnimationClingJShoot;
 			break;
-		case PlayerState::Dead:
-			mCurrentAnimation = mAnimationDead;
-			break;
 		case PlayerState::BeDame:
 			mCurrentAnimation = mAniamtionBeDame;
+			break;
+		case PlayerState::Death:
+			mCurrentAnimation = mAnimationBeforeDeath;
 			break;
         default:
             break;
@@ -499,7 +502,7 @@ Player::MoveDirection Player::getMoveDirection()
 
 void Player::OnNoCollisionWithBottom()
 {
-    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ && mCurrentState !=PlayerState::StandShoot)
+    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ && mCurrentState !=PlayerState::StandShoot && mCurrentState!=PlayerState::BeDame && mCurrentState!=PlayerState::Death)
     {
         this->SetState(new PlayerFallingState(this->mPlayerData));
     }    

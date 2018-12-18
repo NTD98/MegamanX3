@@ -22,6 +22,7 @@ Gunner::Gunner(D3DXVECTOR3 pos)
     SetWidth(mCurrentAnimation->GetWidth());
 	SetHeight(mCurrentAnimation->GetHeight());
 	isAlive = true;
+	this->HealthPoint = 16;
 }
 
 Gunner::~Gunner()

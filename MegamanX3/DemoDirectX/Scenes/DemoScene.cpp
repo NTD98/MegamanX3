@@ -1,6 +1,7 @@
 #include "DemoScene.h"
 #include "../GameDefines/GameDefine.h"
 #include "../GameObjects/Player/PlayerClingingState.h"
+#include "../GameObjects/Player/PlayerDeathState.h"
 
 
 DemoScene::DemoScene()
@@ -40,6 +41,7 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+	
 	if (byte)
 		byte->Update(dt, mPlayer, this->getMapObject());
 	if(genjibo)
@@ -57,7 +59,7 @@ void DemoScene::Update(float dt)
     mPlayer->HandleKeyboard(keys);
 
     mPlayer->Update(dt);
-
+	
     CheckCameraAndWorldMap();
 
 	HealthBar->SetPosition(D3DXVECTOR2(mCamera->GetPosition().x - 260, mCamera->GetPosition().y - 200));
@@ -76,13 +78,13 @@ void DemoScene::Draw()
 	mMap->Draw(mPlayer->GetPosition().x / 32, mPlayer->GetPosition().y / 32);
 	
     mPlayer->Draw();
-
+	
 	HealthBar->Draw(HealthBar->GetPosition(), RECT(), D3DXVECTOR2(1, 1), trans);
 	D3DXVECTOR3 pos;
 	for (int i = 0; i <mPlayer->getHealthPoint(); i++)
 	{
 		if (pos == D3DXVECTOR3())
-			pos = D3DXVECTOR3(HealthBar->GetPosition().x, HealthBar->GetPosition().y + 16, 0);
+			pos = D3DXVECTOR3(HealthBar->GetPosition().x, HealthBar->GetPosition().y + 17, 0);
 		Health.at(i)->Draw(pos, RECT(), D3DXVECTOR2(1, 1), trans);
 		pos = pos + D3DXVECTOR3(0, -4, 0);
 	}
@@ -183,10 +185,7 @@ bool DemoScene::iscolidebullet(RECT rect1, RECT rect2)
 	return true;
 }
 
-void DemoScene::isDead()
-{
-	
-}
+
 
 vector<Entity*> DemoScene::getMapObject()
 {
@@ -289,21 +288,19 @@ void DemoScene::checkCollision()
 				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, botVsPlayer);
 				//lay phia va cham cua Player so voi Entity
 				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistGunners.at(j), botVsPlayer);
-				if (this->mPlayer->isTimeNoDame == false) {
-						if (this->mPlayer->getState() == PlayerState::Standing) {
-							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
-						}
-						else {
-							this->mPlayer->isSetHealth == true;
-						}
-						if (this->mPlayer->isSetHealth == true) {
-							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag, false);
-							this->mPlayer->isSetHealth = false;
+				if (this->mPlayer->isAlive == true && this->isBeforeDeath==false) {
+					if (this->mPlayer->isTimeNoDame == false) {
+						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+						if (this->mPlayer->isSetHealth == true ||this->mPlayer->getHealthPoint()==16) {
+						this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag, true);
+						this->mPlayer->isSetHealth = false;
 						}
 					}
 					if (this->mPlayer->getHealthPoint() <= 0) {
-						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
+						this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(),pos.x,pos.y));
+						this->isBeforeDeath = true;
 					}
+				}
 			}
 			
 
@@ -332,21 +329,18 @@ void DemoScene::checkCollision()
 
 					//lay phia va cham cua Player so voi Entity
 					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(j), g);
-					
-					if (this->mPlayer->isTimeNoDame == false) {
-						if (this->mPlayer->getState() == PlayerState::Standing) {
+					if (this->mPlayer->isAlive == true && this->isBeforeDeath == false) {
+						if (this->mPlayer->isTimeNoDame == false) {
 							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+							if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
+								this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag, true);
+								this->mPlayer->isSetHealth = false;
+							}
 						}
-						else {
-							this->mPlayer->isSetHealth == true;
+						if (this->mPlayer->getHealthPoint() <= 0) {
+							this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
+							this->isBeforeDeath = true;
 						}
-						if (this->mPlayer->isSetHealth == true) {
-							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag,false);
-							this->mPlayer->isSetHealth = false;
-						}
-					}
-					if (this->mPlayer->getHealthPoint() <= 0) {
-						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
 					}
 				}
 		}
