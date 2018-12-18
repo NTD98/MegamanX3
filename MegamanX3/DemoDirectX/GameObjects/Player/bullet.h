@@ -19,6 +19,7 @@ public:
 	void ChangeBulletType(float dt);
 	RECT GetBound();
 	void HandleKeyboard(std::map<int, bool> keys);
+	bool isdelete = false;
 protected:
 	Animation* bullet,
 		*destroyedbullet,
@@ -26,6 +27,6 @@ protected:
 		*mChargeBullet1,
 		*mChargeBullet2;
 	bool isreverse;
-	bool isdelete = false,isPressed=false;
+	bool isPressed=false;
 	float isDone=0.0f,ischarged=0.0f;
 };

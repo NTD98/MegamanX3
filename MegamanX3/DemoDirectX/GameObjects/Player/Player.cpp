@@ -65,6 +65,16 @@ void Player::InitAni()
 
 void Player::Update(float dt)
 {
+	for (int i = 0; i < bulletlist.size(); i++)
+	{
+		if (bulletlist.at(i)->isdelete)
+		{
+			std::vector<Bullet*>::iterator pos = bulletlist.begin();
+			for (int m = 1; m < i; m++)
+				pos++;
+			bulletlist.erase(pos);
+		}
+	}
 	if (mCurrentState == PlayerState::BeDame) { //Nếu đang bị trạng thái ăn dame thì tăng biến thời gian bị dame
 		this->dtBeDame += dt;
 	}

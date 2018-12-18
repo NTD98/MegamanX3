@@ -360,9 +360,8 @@ void DemoScene::checkCollision()
 			for (int h = 0; h < mlistGunners.size(); h++) {
 				Entity::CollisionReturn PlayerBulletVsBot = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistGunners.at(h)->GetBound());
 				if (PlayerBulletVsBot.IsCollided) {
-					bulletlist.at(j)->OnCollision();
 					mlistGunners.at(h)->setHealthPoint(bulletlist.at(j)->Tag);
-					int a = 4;
+					bulletlist.at(j)->OnCollision();
 					if (mlistGunners.at(h)->getHealthPoint() <=0 ) {
 						mlistGunners.at(h)->isAlive = false;
 						std::vector<Enemy*>::iterator pos = mlistGunners.begin();

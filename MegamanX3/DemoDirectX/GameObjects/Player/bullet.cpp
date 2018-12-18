@@ -86,7 +86,7 @@ void Bullet::OnCollision()
 	//this->bullet->~Sprite();
 	destroyedbullet->SetPosition(pos);
 	isdelete = true;
-
+	Tag = EntityTypes::None;
 }
 
 void Bullet::ChangeBulletType(float dt)
