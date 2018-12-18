@@ -40,6 +40,8 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+	if (byte)
+		byte->Update(dt, mPlayer, this->getMapObject());
 	if(genjibo)
 	genjibo->Update(dt, mPlayer, this->getMapObject());
 	duration += dt;
@@ -88,7 +90,9 @@ void DemoScene::Draw()
 	for (int i = 0; i < mlistenemybullets.size(); i++)
 		mlistenemybullets.at(i)->Draw(trans);
 	if(genjibo)
-	genjibo->Draw(trans);
+		genjibo->Draw(trans);
+	if (byte)
+		byte->Draw(trans);
 	for (int i = 0; i < listhelit.size(); i++)
 	{
 		listhelit.at(i)->Draw(trans);
@@ -378,6 +382,19 @@ void DemoScene::checkCollision()
 
 					//lay phia va cham cua Player so voi Entity
 					genjibo->OnCollision(bulletlist.at(j), sidePlayer);
+					bulletlist.at(j)->OnCollision();
+				}
+			}
+			if (byte)
+			{
+				Entity::CollisionReturn ex = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),
+					byte->GetBound());
+				if (ex.IsCollided)
+				{
+					Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(byte, ex);
+
+					//lay phia va cham cua Player so voi Entity
+					byte->OnCollision(bulletlist.at(j), sidePlayer);
 					bulletlist.at(j)->OnCollision();
 				}
 			}

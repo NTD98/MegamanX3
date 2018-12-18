@@ -97,6 +97,8 @@
     <ClCompile Include="GameComponents\Scene.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameControllers\SceneManager.cpp" />
+    <ClCompile Include="GameObjects\Boss\bomp.cpp" />
+    <ClCompile Include="GameObjects\Boss\Byte.cpp" />
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
     <ClCompile Include="GameObjects\Effect\DeathCircle.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerDeathEffect.cpp" />
@@ -168,6 +170,8 @@
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="GameControllers\SceneManager.h" />
     <ClInclude Include="GameDefines\GameDefine.h" />
+    <ClInclude Include="GameObjects\Boss\bomp.h" />
+    <ClInclude Include="GameObjects\Boss\Byte.h" />
     <ClInclude Include="GameObjects\Boss\Genjibo.h" />
     <ClInclude Include="GameObjects\Effect\DeathCircle.h" />
     <ClInclude Include="GameObjects\Effect\PlayerDeathEffect.h" />

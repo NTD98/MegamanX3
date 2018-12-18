@@ -17,6 +17,7 @@
 #include "../GameObjects/Boss/Genjibo.h"
 #include "../GameObjects/Enemy/Helit.h"
 #include "../GameObjects/Player/PlayerStandingState.h"
+#include "../GameObjects/Boss/Byte.h"
 class DemoScene : public Scene
 {
 public:
@@ -44,6 +45,7 @@ protected:
 	Sprite *HealthBar,
 		*HealthPoint;
 	Genjibo* genjibo;
+	Byte* byte;
 	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
