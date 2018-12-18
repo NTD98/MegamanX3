@@ -286,11 +286,16 @@ void DemoScene::checkCollision()
 				//lay phia va cham cua Player so voi Entity
 				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistGunners.at(j), botVsPlayer);
 				if (this->mPlayer->isTimeNoDame == false) {
+						if (this->mPlayer->getState() == PlayerState::Standing) {
+							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+						}
+						else {
+							this->mPlayer->isSetHealth == true;
+						}
 						if (this->mPlayer->isSetHealth == true) {
-							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag,true);
+							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag, false);
 							this->mPlayer->isSetHealth = false;
 						}
-						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
 					}
 					if (this->mPlayer->getHealthPoint() <= 0) {
 						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);
@@ -325,11 +330,16 @@ void DemoScene::checkCollision()
 					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(j), g);
 					
 					if (this->mPlayer->isTimeNoDame == false) {
+						if (this->mPlayer->getState() == PlayerState::Standing) {
+							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+						}
+						else {
+							this->mPlayer->isSetHealth == true;
+						}
 						if (this->mPlayer->isSetHealth == true) {
 							this->mPlayer->setHealthPoint(mlistGunners.at(j)->Tag,false);
 							this->mPlayer->isSetHealth = false;
 						}
-						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
 					}
 					if (this->mPlayer->getHealthPoint() <= 0) {
 						mAnimationDeathEffect = new PlayerDeathEffect(pos.x, pos.y);

@@ -16,6 +16,7 @@
 #include "../GameObjects/Enemy/EnemyBullet.h"
 #include "../GameObjects/Boss/Genjibo.h"
 #include "../GameObjects/Enemy/Helit.h"
+#include "../GameObjects/Player/PlayerStandingState.h"
 class DemoScene : public Scene
 {
 public:
