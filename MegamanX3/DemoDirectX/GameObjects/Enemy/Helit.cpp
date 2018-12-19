@@ -91,7 +91,7 @@ void Helit::Update(float dt,Player* mPlayer, vector<Entity*> mListEntity)
 void Helit::OnCollision(Entity * other, SideCollisions side)
 {
 	if (isAlive) {
-		if (other->Tag == EntityTypes::MegaBullet) {
+		if (other->Tag == EntityTypes::BulletP|| other->Tag == EntityTypes::BulletCharge1|| other->Tag == EntityTypes::BulletCharge2) {
 			hp-=other->dame;
 			other->Tag = EntityTypes::None;
 			return;
