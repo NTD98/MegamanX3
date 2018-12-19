@@ -7,7 +7,7 @@ PlayerDashState::PlayerDashState(PlayerData * playerData)
 {
 	this->mPlayerData = playerData;
 
-	acceleratorX = 15.0f;
+	acceleratorX = 20.0f;
 	this->mPlayerData->player->allowMoveLeft = true;
 	this->mPlayerData->player->allowMoveRight = true;
 	dtSmoke = 0.0f;

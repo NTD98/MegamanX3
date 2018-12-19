@@ -5,14 +5,14 @@ EnemyBullet::EnemyBullet()
 {
 	mSprite1 = new Sprite("Resources/enemy/EnemyBullet.png");
  
-	this->Tag = EntityTypes::None;
+	this->Tag = EntityTypes::EnemyBullets1;
 	wasBorn = false;
 	typeBullet = 1;
 }
 EnemyBullet::EnemyBullet(int headgunner)
 {
+	this->Tag = EntityTypes::EnemyBullets2;
 	mHeadGunnerBullet = new Animation("Resources/Headgunnerbullet.png", 2, 1, 2, 0.2f);
-	this->Tag = EntityTypes::None;
 	wasBorn = false;
 	typeBullet = 2;
 }
@@ -38,8 +38,6 @@ void EnemyBullet::Spawn(int type,float posx, float posy, float vx, float vy)
 		this->SetHeight(mHeadGunnerBullet->GetHeight());
 	}
 	wasBorn = true;
-	this->Tag = EntityTypes::EnemyBullets;
-
 }
 
 void EnemyBullet::Update(float dt)

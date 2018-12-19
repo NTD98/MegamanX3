@@ -1,22 +1,59 @@
 ﻿  DemoScene.cpp
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(50): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(69): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(78): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(92): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(98): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(106): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(204): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(211): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(217): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(258): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(309): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(354): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(53): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(72): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(81): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(95): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(101): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(109): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(207): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(214): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(220): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(227): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(261): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(279): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(330): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(377): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(392): warning C4018: '<': signed/unsigned mismatch
+  Enemy.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(108): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(110): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(142): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\enemy\enemy.cpp(143): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Compiling...
+  HeadGunner.cpp
+  Gunner.cpp
+  GameMap.cpp
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(61): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(71): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(80): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(90): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(113): warning C4244: 'argument': conversion from 'std::size_t' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(144): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(148): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(262): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(271): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(290): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(292): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(310): warning C4244: 'argument': conversion from 'std::size_t' to 'FLOAT', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(315): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\gamemap.cpp(316): warning C4244: '=': conversion from 'float' to 'LONG', possible loss of data
+  Game.cpp
+  c:\program files (x86)\microsoft directx sdk (june 2010)\include\dinput.h: DIRECTINPUT_VERSION undefined. Defaulting to version 0x0800
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\game.cpp(8): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\gamecomponents\game.cpp(77): warning C4244: 'argument': conversion from 'float' to 'DWORD', possible loss of data
   Generating Code...
   Skipping... (no relevant changes detected)
-  PlayerDameState.cpp
-  Player.cpp
-  Game.cpp
+  PlayerDeathState.cpp
+  Helit.cpp
+  HeadGunnerStandingState.cpp
+  HeadGunnerShootingState.cpp
+  GunnerStandingState.cpp
+  GunnerShootingState.cpp
+  GunnerJumpingState.cpp
+  GunnerFallingState.cpp
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

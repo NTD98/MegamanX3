@@ -3,7 +3,6 @@
 #include "../GameObjects/Player/PlayerClingingState.h"
 #include "../GameObjects/Player/PlayerDeathState.h"
 
-
 DemoScene::DemoScene()
 {
     LoadContent();
@@ -11,8 +10,12 @@ DemoScene::DemoScene()
 
 void DemoScene::generate()
 {
-	Helit* helit = new Helit(793, 1263);
-	listhelit.push_back(helit);
+	/*Helit* helit = new Helit(176.00, 1932.67);*/
+	listhelit.push_back(new Helit(4489.00, 1923.00));
+	listhelit.push_back(new Helit(4951.00, 1813.00));
+	listhelit.push_back(new Helit(5116.00, 1802.00));
+	listhelit.push_back(new Helit(5301.00, 1852.00));
+	listhelit.push_back(new Helit(5707.00, 1866.00));
 }
 
 
@@ -34,14 +37,14 @@ void DemoScene::LoadContent()
 	mlistGunners = mMap->getEnemy();
     mPlayer = new Player();
 	//50/1340
-    mPlayer->SetPosition(90.00, 1854.00);
+    //mPlayer->SetPosition(90.00, 1854.00);
+	mPlayer->SetPosition(5000.00, 1923.00);
     mPlayer->SetCamera(mCamera);
 	generate();
 }
 
 void DemoScene::Update(float dt)
 {
-	
 	if (byte)
 		byte->Update(dt, mPlayer, this->getMapObject());
 	if(genjibo)
@@ -255,6 +258,24 @@ void DemoScene::checkCollision()
 	//player and player's bullet
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
+		for (int j = 0; j < listhelit.size(); j++) {
+			Entity::CollisionReturn helitVsPlayer = GameCollision::RecteAndRect(listhelit.at(j)->GetBound(), this->mPlayer->GetBound());
+			if (helitVsPlayer.IsCollided) {
+				if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath == false) {
+					if (this->mPlayer->isTimeNoDame == false) {
+						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+						if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
+							this->mPlayer->setHealthPoint(listhelit.at(j)->Tag, true);
+							this->mPlayer->isSetHealth = false;
+						}
+					}
+					if (this->mPlayer->getHealthPoint() <= 0) {
+						this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
+						this->mPlayer->isBeforeDeath = true;
+					}
+				}
+			}
+		}
 		for (int j = 0; j < mlistGunners.size(); j++)
 		{
 			int widthBottomE = 0;
@@ -288,7 +309,7 @@ void DemoScene::checkCollision()
 				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, botVsPlayer);
 				//lay phia va cham cua Player so voi Entity
 				Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistGunners.at(j), botVsPlayer);
-				if (this->mPlayer->isAlive == true && this->isBeforeDeath==false) {
+				if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath==false) {
 					if (this->mPlayer->isTimeNoDame == false) {
 						this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
 						if (this->mPlayer->isSetHealth == true ||this->mPlayer->getHealthPoint()==16) {
@@ -298,7 +319,7 @@ void DemoScene::checkCollision()
 					}
 					if (this->mPlayer->getHealthPoint() <= 0) {
 						this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(),pos.x,pos.y));
-						this->isBeforeDeath = true;
+						this->mPlayer->isBeforeDeath = true;
 					}
 				}
 			}
@@ -318,7 +339,7 @@ void DemoScene::checkCollision()
 			{
 				Entity::SideCollisions sidebullet = GameCollision::getSideCollision(mlistenemybullets.at(j), e);
 				mlistenemybullets.at(j)->OnCollision(listCollision.at(i), sidebullet);
-				if (mlistenemybullets.at(0)->mExplosion->isEndAnimate)
+				if (mlistenemybullets.at(j)->mExplosion->isEndAnimate)
 					mlistenemybullets.erase(mlistenemybullets.begin());
 			}
 			else
@@ -329,7 +350,7 @@ void DemoScene::checkCollision()
 
 					//lay phia va cham cua Player so voi Entity
 					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(mlistenemybullets.at(j), g);
-					if (this->mPlayer->isAlive == true && this->isBeforeDeath == false) {
+					if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath == false) {
 						if (this->mPlayer->isTimeNoDame == false) {
 							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
 							if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
@@ -339,7 +360,7 @@ void DemoScene::checkCollision()
 						}
 						if (this->mPlayer->getHealthPoint() <= 0) {
 							this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
-							this->isBeforeDeath = true;
+							this->mPlayer->isBeforeDeath = true;
 						}
 					}
 				}
@@ -351,17 +372,32 @@ void DemoScene::checkCollision()
 			//{
 			//	//bulletlist.at(j)->OnCollision();
 			//}
+
+
 			for (int h = 0; h < mlistGunners.size(); h++) {
 				Entity::CollisionReturn PlayerBulletVsBot = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistGunners.at(h)->GetBound());
 				if (PlayerBulletVsBot.IsCollided) {
 					mlistGunners.at(h)->setHealthPoint(bulletlist.at(j)->Tag);
 					bulletlist.at(j)->OnCollision();
 					if (mlistGunners.at(h)->getHealthPoint() <=0 ) {
+						mlistGunners.at(h)->changeAnimation(EnemyState::Die);
 						mlistGunners.at(h)->isAlive = false;
 						std::vector<Enemy*>::iterator pos = mlistGunners.begin();
 						for (int m = 1; m < h; m++)
 							pos++;
 						mlistGunners.erase(pos);
+					}
+				}
+			}
+			for (int h = 0; h < listhelit.size(); h++) {
+				Entity::CollisionReturn PlayerBulletVsHelit = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), listhelit.at(h)->GetBound());
+				if (PlayerBulletVsHelit.IsCollided) {
+					bulletlist.at(j)->OnCollision();
+					if (listhelit.at(h)->isAlive == false) {
+						std::vector<Helit*>::iterator pos = listhelit.begin();
+						for (int m = 1; m < h; m++)
+							pos++;
+						listhelit.erase(pos);
 					}
 				}
 			}

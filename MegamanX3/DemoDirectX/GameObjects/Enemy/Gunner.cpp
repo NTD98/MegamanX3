@@ -7,7 +7,6 @@ Gunner::Gunner(D3DXVECTOR3 pos)
 {
 	isAlive = true;
 	mAnimationStanding = new Animation("Resources/enemy/GunnerStanding.png",2,1,2,0.3f);
-	mAnimationShooting = new Animation("Resources/enemy/GunnerShooting.png", 4, 1, 4, 0.2);
 	mAnimationJumping = new Animation("Resources/enemy/GunnerJumping.png", 2, 1, 2, 0.5f);
 	mAnimationShooting = new Animation("Resources/enemy/GunnerShooting.png", 4, 1, 4, 0.2f);
 	SetPosition(pos);

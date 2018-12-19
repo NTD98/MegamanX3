@@ -14,6 +14,7 @@ class Game
 public:
     Game(int fps = 60);
     ~Game();
+	//Game* Instance;
 protected:
 
     PDIRECT3DSURFACE9       mBackground,

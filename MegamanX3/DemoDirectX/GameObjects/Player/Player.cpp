@@ -8,6 +8,7 @@
 #include "PlayerDashState.h"
 #include "PlayerDameState.h"
 #include "../../GameComponents/GameCollision.h"
+#include "PlayerDeathState.h"
 
 float check = 0.0;
 bool isDone = false;
@@ -247,6 +248,15 @@ void Player::setHealthPoint(Entity::EntityTypes entityTypes,bool isEnemy)
 	case Entity::EntityTypes::HeadGunner:
 		healthDown = 2;
 		break;
+	case Entity::EntityTypes::Helit:
+		healthDown = 3;
+		break;
+	case Entity::EntityTypes::EnemyBullets1:
+		healthDown = 1;
+		break;
+	case Entity::EntityTypes::EnemyBullets2:
+		healthDown = 2;
+		break;
 	default:
 		break;
 	}
@@ -351,6 +361,28 @@ void Player::OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity:
 			}
 			else {
 				this->mPlayerData->player->AddPosition(-5, 0);
+			}
+		}
+	}
+
+	
+}
+
+void Player::OnCollision(Entity * impactor, Entity::SideCollisions side)
+{
+	D3DXVECTOR2 pos(this->GetPosition().x, this->GetPosition().y);
+	if (impactor->Tag == Entity::EntityTypes::EnemyBullets2) {
+		if (this->isAlive == true && this->isBeforeDeath == false) {
+			if (this->isTimeNoDame == false) {
+				this->SetState(new PlayerDameState(this->getplayerdata()));
+				if (this->isSetHealth == true || this->getHealthPoint() == 16) {
+					this->setHealthPoint(impactor->Tag, false);
+					this->isSetHealth = false;
+				}
+			}
+			if (this->getHealthPoint() <= 0) {
+				this->SetState(new PlayerDeathState(mPlayerData,pos.x, pos.y));
+				this->isBeforeDeath = true;
 			}
 		}
 	}

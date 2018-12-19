@@ -33,7 +33,7 @@ public:
 	enum EntityTypes
 	{
 		Megaman, MegaBullet, None, Wall, Box, SubCarryarm, Carryarm, DebrisCarryarm, Spine, Elevator, Door, Brick, Enemy, EnemiesBullet, Notorbanger,
-		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft, Stone5, Stone3,HeadGunner,BulletP,BulletCharge2,BulletCharge1,EnemyBullets,Static,Gunner, HornetBoss, HornetChild,Byte,Bomps
+		PosNotorbanger, HeadgunnerLeft, HeadgunnerRight, Helit, Genjibo, SlopingWall, ConveyorRight, ConveyorLeft, Stone5, Stone3,HeadGunner,BulletP,BulletCharge2,BulletCharge1,EnemyBullets1,EnemyBullets2,Static,Gunner, HornetBoss, HornetChild,Byte,Bomps,
 	};
 
 	EntityTypes Tag; //Tag de nhan vien loai Entity
@@ -98,7 +98,7 @@ public:
 
 	//duoc goi khi set position cua Entity, dung cho ke thua
 	virtual void OnSetPosition(D3DXVECTOR2 pos);
-	//virtual float checkCollision(Entity* object, float dt);
+    //virtual float checkCollision(Entity* object, float dt);
 	virtual void Draw(D3DXVECTOR3 position = D3DXVECTOR3(), RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
 	//vi tri tam position x va y
 	float posX, posY;

@@ -37,7 +37,7 @@ public:
 	/*void SetState(PlayerState *newState,bool ActionAndShoot);*/
 
     void OnCollision(Entity *impactor, Entity::CollisionReturn data, Entity::SideCollisions side);
-
+	void OnCollision(Entity *impactor, Entity::SideCollisions side);
     void OnNoCollisionWithBottom();
 
     MoveDirection getMoveDirection();
@@ -77,6 +77,7 @@ public:
 	PlayerState::StateName mCurrentState;
 	float dtBeDame = 0, dtTimeNoDame = 0;
 	vector <Bullet*> bulletlist;
+	bool isBeforeDeath = false;
 protected:
     Camera      *mCamera;
 

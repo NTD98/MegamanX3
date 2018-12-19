@@ -12,17 +12,16 @@ Helit::Helit(float posX, float posY)
 	this->SetPosition(posX, posY);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
-	this->Tag = Entity::EntityTypes::Enemy;
+	this->Tag = Entity::EntityTypes::Helit;
 	isFaceLeft = true;
 	//mGameMap = map;
-	hp = 3;
+	hp = 16;
 	isAlive = true;
 	isSpawn = true;
 	direction = -1;
 	iBullet = 0;
 	posX1 = posX;
 	posY1 = posY;
-	dame = 1;
 	//Bullet
 	mBullet = new EnemyBullet(1);
 }
@@ -74,7 +73,7 @@ void Helit::Update(float dt,Player* mPlayer, vector<Entity*> mListEntity)
 		////Kiểm tra va chạm
 
 		mBullet->Update(dt);
-
+		
 		CollisionManager::getInstance()->checkCollision(mPlayer, mBullet, dt );
 
 		for (int j = 0; j < mListEntity.size(); j++)
@@ -91,11 +90,22 @@ void Helit::Update(float dt,Player* mPlayer, vector<Entity*> mListEntity)
 void Helit::OnCollision(Entity * other, SideCollisions side)
 {
 	if (isAlive) {
-		if (other->Tag == EntityTypes::BulletP|| other->Tag == EntityTypes::BulletCharge1|| other->Tag == EntityTypes::BulletCharge2) {
-			hp-=other->dame;
-			other->Tag = EntityTypes::None;
-			return;
+		switch (other->Tag)
+		{
+		case Entity::EntityTypes::BulletP :
+			hp -= 4;
+			break;
+		case Entity::EntityTypes::BulletCharge1:
+			hp -= 10;
+			break;
+		case Entity::EntityTypes::BulletCharge2:
+			hp -= 20;
+			break;
+		default:
+			break;
 		}
+		other->Tag = EntityTypes::None;
+		return;
 	}
 }
 

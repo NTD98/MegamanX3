@@ -4,8 +4,8 @@
 HeadGunner::HeadGunner(D3DXVECTOR3 pos)
 {
 	isAlive = true;
-	mAnimationStanding = new Animation("Resources/HeadGunnerStanding.png", 1, 1, 1, 0.3f);
-	mAnimationShooting = new Animation("Resources/HeadGunnerShooting.png", 4, 1, 4, 0.2f);
+	mAnimationStanding = new Animation("Resources/enemy/HeadGunnerStanding.png", 1, 1, 1, 0.3f);
+	mAnimationShooting = new Animation("Resources/enemy/HeadGunnerShooting.png", 4, 1, 4, 0.2f);
 	SetPosition(pos);
 	this->mEnemyData = new EnemyData();
 	this->mEnemyData->Enemy = this;

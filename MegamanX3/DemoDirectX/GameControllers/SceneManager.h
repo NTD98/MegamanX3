@@ -12,9 +12,9 @@ public:
     Scene* GetCurrentScene();
     void Update(float dt);
     void ReplaceScene(Scene *scene);
-
+	SceneManager();	
 private:
-    SceneManager();
+  
     static SceneManager     *mInstace;
     Scene                   *mCurrentScene;    
 };

@@ -51,6 +51,5 @@ protected:
 	vector<Sprite*> Health;
 	vector<Helit*> listhelit;
     std::map<int, bool> keys;
-	bool isBeforeDeath = false;
 };
 

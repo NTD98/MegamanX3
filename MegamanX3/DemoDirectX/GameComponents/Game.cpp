@@ -9,6 +9,7 @@ Game::Game(int fps)
 
 	SceneManager::GetInstance()->ReplaceScene(new DemoScene());
 	InitLoop();
+	//Instance = this;
 }
 
 Game::~Game()

@@ -2,7 +2,6 @@
 #include "Player.h"
 #include "../../GameDefines/GameDefine.h"
 
-
 PlayerDeathState::PlayerDeathState(PlayerData *playerData,float posX,float posY)
 {
 	this->mPlayerData = playerData;

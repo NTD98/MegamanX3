@@ -7,6 +7,7 @@
 #include "../../GameComponents/Camera.h"
 #include "EnemyData.h"
 #include "EnemyState.h"
+
 class Enemy : public Entity
 {
 public:
