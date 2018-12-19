@@ -67,91 +67,94 @@ void Player::InitAni()
 
 void Player::Update(float dt)
 {
-	for (int i = 0; i < bulletlist.size(); i++)
-	{
-		if (bulletlist.at(i)->isdelete)
+	if (this->isDungYen == false) {
+		for (int i = 0; i < bulletlist.size(); i++)
 		{
-			std::vector<Bullet*>::iterator pos = bulletlist.begin();
-			for (int m = 1; m < i; m++)
-				pos++;
-			bulletlist.erase(pos);
-		}
-	}
-	if (mCurrentState == PlayerState::BeDame) { //Nếu đang bị trạng thái ăn dame thì tăng biến thời gian bị dame
-		this->dtBeDame += dt;
-	}
-
-	if (mCurrentState == PlayerState::BeDame && dtBeDame >= 0.3f) { // Sau 1s load state ăn dame thì chuyển về Stand 
-		this->SetState(new PlayerStandingState(this->mPlayerData));
-		dtBeDame = 0;
-	}
-	if (isTimeNoDame == true) {//Nếu trong thời gian không ăn dame thì tăng biến thời gian không ăn dame
-		dtTimeNoDame += dt;
-	}
-	else {
-		dtTimeNoDame = 0;
-	}
-	if (this->isTimeNoDame == true) {
-		if (dtTimeNoDame > 2.0f) {
-			this->mPlayerData->player->changeAnimation(mCurrentState);
-			this->isTimeNoDame = false;
-		}
-		else {
-			if (dtTimeNoDame != 0) {//Trong khoảng thời gian vô hiệu hóa nhận dame thì chuyển aniamtion nhấp nháy 
-				this->mPlayerData->player->noDameChangeAnimation(mCurrentState);
+			if (bulletlist.at(i)->isdelete)
+			{
+				std::vector<Bullet*>::iterator pos = bulletlist.begin();
+				for (int m = 1; m < i; m++)
+					pos++;
+				bulletlist.erase(pos);
 			}
 		}
-	}
-
-
-	for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
-		mlistSmokeEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
-	}
-
-	for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
-		mlistFlashEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
-	}
-
-	bulletlist = this->getbulletlist();
-	if (dt >= 1 / 60)
-	{
-		check += dt;
-	}
-	switch (mPlayerData->state->GetState())
-	{
-	case PlayerState::Clinging: case PlayerState::ClingingJ: case PlayerState::Dash:
-		mCurrentAnimation->UpdateS(dt);
-		break;
-	default:
-		mCurrentAnimation->Update(dt);
-		break;
-	}
-
-	if (check >= 0.15 * 7 && isDone == false)
-	{
-		this->SetState(new PlayerStandingState(this->mPlayerData));
-		isDone = true;
-	}
-	if (this->mPlayerData->state)
-	{
-		this->mPlayerData->state->Update(dt);
-	}
-	for each (Bullet* bullet in bulletlist)
-	{
-		if (mPlayerData->state->GetState() != PlayerState::Clinging)
-		{
-			if (mPlayerData->player->GetReverse())
-				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), true);
-			else
-				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, 5, 0), false);
+		if (mCurrentState == PlayerState::BeDame) { //Nếu đang bị trạng thái ăn dame thì tăng biến thời gian bị dame
+			this->dtBeDame += dt;
 		}
-		else
-			if (mPlayerData->player->GetReverse())
-				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), false);
+
+		if (mCurrentState == PlayerState::BeDame && dtBeDame >= 0.3f) { // Sau 1s load state ăn dame thì chuyển về Stand 
+			this->SetState(new PlayerStandingState(this->mPlayerData));
+			dtBeDame = 0;
+		}
+		if (isTimeNoDame == true) {//Nếu trong thời gian không ăn dame thì tăng biến thời gian không ăn dame
+			dtTimeNoDame += dt;
+		}
+		else {
+			dtTimeNoDame = 0;
+		}
+		if (this->isTimeNoDame == true) {
+			if (dtTimeNoDame > 2.0f) {
+				this->mPlayerData->player->changeAnimation(mCurrentState);
+				this->isTimeNoDame = false;
+			}
+			else {
+				if (dtTimeNoDame != 0) {//Trong khoảng thời gian vô hiệu hóa nhận dame thì chuyển aniamtion nhấp nháy 
+					this->mPlayerData->player->noDameChangeAnimation(mCurrentState);
+				}
+			}
+		}
+
+
+		for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
+			mlistSmokeEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
+		}
+
+		for (int i = 0; i < sizeof(mlistFlashEffect); i++) {
+			mlistFlashEffect[i].Update(dt, mPlayerData->player->GetPosition(), mPlayerData->player->GetReverse(), mPlayerData->player->GetWidth(), mPlayerData->player->GetHeight());
+		}
+
+		bulletlist = this->getbulletlist();
+		if (dt >= 1 / 60)
+		{
+			check += dt;
+		}
+		switch (mPlayerData->state->GetState())
+		{
+		case PlayerState::Clinging: case PlayerState::ClingingJ: case PlayerState::Dash:
+			mCurrentAnimation->UpdateS(dt);
+			break;
+		default:
+			mCurrentAnimation->Update(dt);
+			break;
+		}
+
+		if (check >= 0.15 * 7 && isDone == false)
+		{
+			this->SetState(new PlayerStandingState(this->mPlayerData));
+			isDone = true;
+		}
+		if (this->mPlayerData->state)
+		{
+			this->mPlayerData->state->Update(dt);
+		}
+		for each (Bullet* bullet in bulletlist)
+		{
+			if (mPlayerData->state->GetState() != PlayerState::Clinging)
+			{
+				if (mPlayerData->player->GetReverse())
+					bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), true);
+				else
+					bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, 5, 0), false);
+			}
 			else
-				bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3((this->getCurrentAnimation()->GetWidth() / 2), 5, 0), true);
+				if (mPlayerData->player->GetReverse())
+					bullet->Update(dt, this->getCurrentAnimation()->GetPosition() + D3DXVECTOR3(this->getCurrentAnimation()->GetWidth() / 2, -5, 0), false);
+				else
+					bullet->Update(dt, this->getCurrentAnimation()->GetPosition() - D3DXVECTOR3((this->getCurrentAnimation()->GetWidth() / 2), 5, 0), true);
+		}
+		Entity::Update(dt);
 	}
-	Entity::Update(dt);
+	
 }
 
 void Player::HandleKeyboard(std::map<int, bool> keys)

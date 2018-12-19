@@ -78,6 +78,7 @@ public:
 	float dtBeDame = 0, dtTimeNoDame = 0;
 	vector <Bullet*> bulletlist;
 	bool isBeforeDeath = false;
+	bool isDungYen = false;
 protected:
     Camera      *mCamera;
 

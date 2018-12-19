@@ -134,6 +134,12 @@ void GameMap::LoadMap(char* filePath)
 									headgunner->Tag = Entity::EntityTypes::HeadGunner;
 									mListGunners.push_back(headgunner);
 								}
+								else {
+									if (layer->GetName() == "door") {
+										Door *door = new Door(position.x,position.y+ 7.75);
+										mlistDoor.push_back(door);
+									}
+								}
 						}
 					}
 				}
@@ -242,6 +248,9 @@ void GameMap::Update(float dt)
 	{
 		mlistElevator[i]->Update(dt);
 	}
+	for (size_t i = 0; i < mlistDoor.size(); i++) {
+		mlistDoor[i]->Update(dt);
+	}
 }
 
 void GameMap::Draw(int beginX, int beginY)
@@ -340,6 +349,10 @@ void GameMap::Draw(int beginX, int beginY)
 	{
 		if(mListGunners[i]->isAlive)
 		mListGunners[i]->Draw(trans);
+	}
+	for (size_t i = 0; i < mlistDoor.size(); i++)
+	{
+		mlistDoor[i]->Draw(trans);
 	}
 #pragma endregion
 	

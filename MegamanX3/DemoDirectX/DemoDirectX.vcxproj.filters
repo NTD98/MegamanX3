@@ -259,6 +259,9 @@
     <ClCompile Include="GameObjects\Player\PlayerDeathState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\Door.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -478,6 +481,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Player\PlayerDeathState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

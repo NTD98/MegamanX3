@@ -38,9 +38,11 @@ void DemoScene::LoadContent()
     mPlayer = new Player();
 	//50/1340
     //mPlayer->SetPosition(90.00, 1854.00);
-	mPlayer->SetPosition(5000.00, 1923.00);
+	//mPlayer->SetPosition(5000.00, 1923.00);
+	mPlayer->SetPosition(3367.75, 2445.75);
     mPlayer->SetCamera(mCamera);
 	generate();
+	mlistdoor = mMap->mlistDoor;
 }
 
 void DemoScene::Update(float dt)
@@ -71,7 +73,6 @@ void DemoScene::Update(float dt)
 
 	for (int i = 0; i < mlistenemybullets.size(); i++)
 		mlistenemybullets.at(i)->Update(dt);
-	
 }
 
 void DemoScene::Draw()
@@ -258,6 +259,24 @@ void DemoScene::checkCollision()
 	//player and player's bullet
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
+		for (int j = 0; j < mlistdoor.size(); j++) {
+			Entity::CollisionReturn doorVsPlayer = GameCollision::RecteAndRect(mlistdoor.at(j)->GetBound(), this->mPlayer->GetBound());
+			Entity::SideCollisions side = GameCollision::getSideCollision(mlistdoor.at(j), doorVsPlayer);
+			if (doorVsPlayer.IsCollided ) {
+				if (side == Entity::SideCollisions::Left) {
+					mlistdoor.at(j)->isOpenDoor = true;
+					if (mlistdoor.at(j)->isPlayerAfterDoor == false) {
+						this->mPlayer->isDungYen = true;
+					}
+					else {
+						this->mPlayer->isDungYen = false;
+					}
+				}
+				else {
+					this->mPlayer->AddPositionX(1);
+				}
+			}
+		}
 		for (int j = 0; j < listhelit.size(); j++) {
 			Entity::CollisionReturn helitVsPlayer = GameCollision::RecteAndRect(listhelit.at(j)->GetBound(), this->mPlayer->GetBound());
 			if (helitVsPlayer.IsCollided) {
@@ -372,7 +391,6 @@ void DemoScene::checkCollision()
 			//{
 			//	//bulletlist.at(j)->OnCollision();
 			//}
-
 
 			for (int h = 0; h < mlistGunners.size(); h++) {
 				Entity::CollisionReturn PlayerBulletVsBot = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistGunners.at(h)->GetBound());

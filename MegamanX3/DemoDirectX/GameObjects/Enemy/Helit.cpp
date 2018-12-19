@@ -69,7 +69,6 @@ void Helit::Update(float dt,Player* mPlayer, vector<Entity*> mListEntity)
 		mAnimation->Update(dt);
 		Entity::Update(dt);
 	}
-
 		////Kiểm tra va chạm
 
 		mBullet->Update(dt);

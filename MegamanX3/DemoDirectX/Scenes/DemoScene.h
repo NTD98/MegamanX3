@@ -18,6 +18,7 @@
 #include "../GameObjects/Player/PlayerStandingState.h"
 #include "../GameObjects/Boss/Byte.h"
 #include "../GameObjects/Player/PlayerFallingState.h"
+#include "../GameObjects/MapObjects/Door.h"
 class DemoScene : public Scene
 {
 public:
@@ -50,6 +51,7 @@ protected:
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;
 	vector<Helit*> listhelit;
+	vector<Door*> mlistdoor;
     std::map<int, bool> keys;
 };
 
