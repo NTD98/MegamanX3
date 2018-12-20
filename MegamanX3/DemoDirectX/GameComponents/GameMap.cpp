@@ -22,7 +22,12 @@ GameMap::~GameMap()
 {
 	delete mMap;
 
-
+	for (size_t i = 0; i < mlistDoor.size(); i++)
+	{
+		if (mlistDoor[i])
+			delete mlistDoor[i];
+	}
+	mlistDoor.clear();
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		if (mListGunners[i])
@@ -181,6 +186,8 @@ void GameMap::SetCamera(Camera* camera)
     mCamera = camera;
 }
 
+
+
 Tmx::Map* GameMap::GetMap()
 {
     return mMap;
@@ -239,11 +246,23 @@ bool GameMap::IsBoundBottom()
 
 void GameMap::Update(float dt)
 {
-	for (size_t i = 0; i < mListGunners.size(); i++)
+	int a = 0;
+	for (int i = 0; i < mListGunners.size(); i++)
 	{
-		if (mListGunners[i]->isAlive)
-		mListGunners[i]->Update(dt);
+		if (mListGunners[i]->GetBound().left > mCamera->GetBound().right || mListGunners[i]->GetBound().bottom<mCamera->GetBound().top || mListGunners[i]->GetBound().top>mCamera->GetBound().bottom || mListGunners[i]->GetBound().right < mCamera->GetBound().left) {
+			a++;
+			continue;
+		}
+		if (mListGunners[i]->isAlive) {
+				mListGunners[i]->Update(dt);
+		}
+		this->isCollisionVsGunner = true;
 	}
+	
+	if (a == mListGunners.size()) {
+		this->isCollisionVsGunner = false;
+	}
+	
 	for (size_t i = 0; i < mlistElevator.size(); i++)
 	{
 		mlistElevator[i]->Update(dt);
@@ -251,6 +270,14 @@ void GameMap::Update(float dt)
 	for (size_t i = 0; i < mlistDoor.size(); i++) {
 		mlistDoor[i]->Update(dt);
 	}
+
+	if (this->isDaChuyenCanh == false) {
+		if (mlistDoor.at(0)->GetBound().right <= mCamera->GetBound().right) {
+			this->isStopCamera = true;
+			this->isDaChuyenCanh = true;
+		}
+	}
+	
 }
 
 void GameMap::Draw(int beginX, int beginY)
@@ -347,9 +374,13 @@ void GameMap::Draw(int beginX, int beginY)
 	}
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
+		if (mListGunners[i]->GetBound().left > mCamera->GetBound().right || mListGunners[i]->GetBound().bottom<mCamera->GetBound().top || mListGunners[i]->GetBound().top>mCamera->GetBound().bottom || mListGunners[i]->GetBound().right < mCamera->GetBound().left) {
+			continue;
+		}
 		if(mListGunners[i]->isAlive)
 		mListGunners[i]->Draw(trans);
 	}
+	
 	for (size_t i = 0; i < mlistDoor.size(); i++)
 	{
 		mlistDoor[i]->Draw(trans);

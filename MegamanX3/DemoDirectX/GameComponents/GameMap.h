@@ -39,6 +39,9 @@ public:
     ~GameMap();
     QuadTree* GetQuadTree();
 	std::vector<Door*> mlistDoor;
+	bool isCollisionVsGunner;
+	bool isStopCamera;
+	bool isDaChuyenCanh = false;
 private:
     void LoadMap(char* filePath);
 
@@ -48,6 +51,7 @@ private:
     Camera                          *mCamera;
     QuadTree                        *mQuadTree;
 	std::vector<Enemy*>			mListGunners;
+	
 	Sprite *map;
 	std::vector<Elevator*>			mlistElevator;
 	

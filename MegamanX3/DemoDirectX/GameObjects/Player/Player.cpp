@@ -176,7 +176,7 @@ void Player::OnKeyPressed(int key)
 			{
 				if (allowJump)
 				{
-					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing )
+					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
 					{
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
@@ -292,10 +292,6 @@ PlayerData * Player::getplayerdata()
 {
 	return mPlayerData;
 }
-
-
-
-
 
 void Player::SetCamera(Camera *camera)
 {

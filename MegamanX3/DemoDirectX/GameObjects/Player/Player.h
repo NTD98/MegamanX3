@@ -82,6 +82,7 @@ public:
 	HornetHP* hornetHP;
 	HornetHP* byteHP;
 	bool isFollow;
+	
 protected:
     Camera      *mCamera;
 

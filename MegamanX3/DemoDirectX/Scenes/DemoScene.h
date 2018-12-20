@@ -55,5 +55,9 @@ protected:
 	vector<Helit*> listhelit;
 	vector<Door*> mlistdoor;
     std::map<int, bool> keys;
+	bool isCollisionVsHelit;
+	bool isCollisionVsBossByte;
+	bool isCollisionVsBossgenjibo;
+	bool isCollisionVsBossHornet;
 };
 
