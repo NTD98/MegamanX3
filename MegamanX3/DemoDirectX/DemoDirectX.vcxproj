@@ -100,9 +100,12 @@
     <ClCompile Include="GameObjects\Boss\bomp.cpp" />
     <ClCompile Include="GameObjects\Boss\Byte.cpp" />
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
+    <ClCompile Include="GameObjects\Boss\Hornet.cpp" />
+    <ClCompile Include="GameObjects\Boss\HornetHP.cpp" />
     <ClCompile Include="GameObjects\Effect\DeathCircle.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp" />
+    <ClCompile Include="GameObjects\Enemy\ChildHornet.cpp" />
     <ClCompile Include="GameObjects\Enemy\Enemy.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyBullet.cpp" />
     <ClCompile Include="GameObjects\Enemy\EnemyData.cpp" />
@@ -174,9 +177,12 @@
     <ClInclude Include="GameObjects\Boss\bomp.h" />
     <ClInclude Include="GameObjects\Boss\Byte.h" />
     <ClInclude Include="GameObjects\Boss\Genjibo.h" />
+    <ClInclude Include="GameObjects\Boss\Hornet.h" />
+    <ClInclude Include="GameObjects\Boss\HornetHP.h" />
     <ClInclude Include="GameObjects\Effect\DeathCircle.h" />
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
     <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h" />
+    <ClInclude Include="GameObjects\Enemy\ChildHornet.h" />
     <ClInclude Include="GameObjects\Enemy\Enemy.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyBullet.h" />
     <ClInclude Include="GameObjects\Enemy\EnemyData.h" />

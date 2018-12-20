@@ -19,6 +19,7 @@
 #include "../GameObjects/Boss/Byte.h"
 #include "../GameObjects/Player/PlayerFallingState.h"
 #include "../GameObjects/MapObjects/Door.h"
+#include "../GameObjects/Boss/Hornet.h"
 class DemoScene : public Scene
 {
 public:
@@ -47,6 +48,7 @@ protected:
 		*HealthPoint;
 	Genjibo* genjibo;
 	Byte* byte;
+	Hornet* hornet;
 	vector<Enemy*> mlistGunners;
 	vector<EnemyBullet*> mlistenemybullets;
 	vector<Sprite*> Health;

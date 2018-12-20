@@ -11,7 +11,7 @@
 #include "bullet.h"
 #include "../Effect/PlayerFlashDashEffect.h"
 #include "../Effect//PlayerSmokeDashEffect.h"
-
+#include "../Boss/HornetHP.h"
 class Player : public Entity
 {
 public:
@@ -79,6 +79,9 @@ public:
 	vector <Bullet*> bulletlist;
 	bool isBeforeDeath = false;
 	bool isDungYen = false;
+	HornetHP* hornetHP;
+	HornetHP* byteHP;
+	bool isFollow;
 protected:
     Camera      *mCamera;
 

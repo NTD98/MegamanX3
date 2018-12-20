@@ -7,7 +7,7 @@ Byte::~Byte()
 
 }
 
-Byte::Byte(float posX, float posY)
+Byte::Byte(float posX, float posY,Player* mPlayer,Camera* mCamera)
 {
 	mAnimationStanding = new Animation("Resources/Boss/bytestand.png", 1, 1, 1, 1.0f);
 	mAnimationDying = new Animation("Resources/Boss/blueexplode.png", 6, 1, 6, 0.1f);
@@ -25,13 +25,21 @@ Byte::Byte(float posX, float posY)
 	isslide = false;
 	onDraw = false;
 	right = false;
+	this->mPlayer = mPlayer;
 	typeAttack = 0;
+	this->hp = 40;
 	this->Tag = EntityTypes::Byte;
-	hp = 30;
+	mPlayer->byteHP = new HornetHP(mCamera->GetPosition().x + 200, mCamera->GetPosition().y + 100);
 }
 
 void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)
 {
+	if(this->hp<=0)
+	{
+		isAlive = false;
+		mAnimation = mAnimationDying;
+		mPlayer->byteHP = nullptr;
+	}
 	mAnimation->UpdateS(dt);
 	delay += dt;
 	if (isAlive)
@@ -80,8 +88,6 @@ void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)
 			bomp->Update(dt);
 		}
 	}
-	if (hp <= 0)
-		isAlive = false;
 }
 
 void Byte::OnCollision(Entity * other, SideCollisions side)
@@ -111,8 +117,32 @@ void Byte::OnCollision(Entity * other, SideCollisions side)
 			}
 		}
 	}
+	if (other->Tag == EntityTypes::Bomps)
+	{
+		vx = -vx;
+		if (mAnimation == mAnimationSlidding)
+		{
+			if (mAnimation->isEndAnimate)
+			{
+				if (side == SideCollisions::Left)
+				{
+					vx = 0;
+					Stand();
+					right = true;
+				}
+				else
+				{
+					vx = 0;
+					Stand();
+					this->SetPosition(posX - 5, posY);
+					right = false;
+				}
+			}
+		}
+	}
 	if (other->Tag == EntityTypes::BulletP || other->Tag == EntityTypes::BulletCharge1 || other->Tag == EntityTypes::BulletCharge2) {
 		hp -= other->dame;
+		mPlayer->byteHP->AddDame(other->dame);
 		other->Tag = EntityTypes::None;
 	}
 	
@@ -145,12 +175,15 @@ void Byte::Stand()
 
 void Byte::Draw(D3DXVECTOR2 transform)
 {
-	mAnimation->FlipVertical(right);
-	if (mAnimation)
-		mAnimation->Draw(transform);
-	if (bomp)
-		if (!bomp->isdestoyed)
-		{
-			bomp->Draw(transform);
-		}
+	if (isAlive)
+	{
+		mAnimation->FlipVertical(right);
+		if (mAnimation)
+			mAnimation->Draw(transform);
+		if (bomp)
+			if (!bomp->isdestoyed)
+			{
+				bomp->Draw(transform);
+			}
+	}
 }

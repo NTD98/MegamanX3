@@ -50,7 +50,9 @@ void DemoScene::Update(float dt)
 	if (byte)
 		byte->Update(dt, mPlayer, this->getMapObject());
 	if(genjibo)
-	genjibo->Update(dt, mPlayer, this->getMapObject());
+		genjibo->Update(dt, mPlayer, this->getMapObject());
+	if (hornet)
+		hornet->Update(dt, mPlayer, this->getMapObject());
 	duration += dt;
 	for (int i = 0; i < listhelit.size(); i++)
 	{
@@ -99,6 +101,8 @@ void DemoScene::Draw()
 		genjibo->Draw(trans);
 	if (byte)
 		byte->Draw(trans);
+	if (hornet)
+		hornet->Draw(trans);
 	for (int i = 0; i < listhelit.size(); i++)
 	{
 		listhelit.at(i)->Draw(trans);

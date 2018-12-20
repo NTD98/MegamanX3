@@ -25,6 +25,7 @@ Player::Player()
 	mlistFlashEffect = new PlayerFlashDashEffect[5];
 	mlistSmokeEffect = new PlayerSmokeDashEffect[9];
 	this->isAlive = true;
+	isFollow = false;
 }
 
 Player::~Player()
@@ -336,6 +337,10 @@ void Player::Draw(D3DXVECTOR3 position, RECT sourceRect, D3DXVECTOR2 scale, D3DX
 			this->mPlayerData->state->Draw(trans);
 		}
 	}
+	if (hornetHP)
+		hornetHP->Draw();
+	if (byteHP)
+		byteHP->Draw();
 }
 
 void Player::SetState(PlayerState *newState)

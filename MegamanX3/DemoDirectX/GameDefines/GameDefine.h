@@ -29,3 +29,10 @@ namespace HelitDefine {
 	const float BULLET_SPEED_Y = 40.0f;
 	const float BULLET_ACCELERATOR_Y = 3.0f;
 }
+namespace HornetDefine {
+	const float SPEED_X = 100.0f;
+	const float SPEED_Y = 50.0f;
+}
+namespace ChildHornetDefine {
+	const float TIME_DELAY = 2.0f;
+}
