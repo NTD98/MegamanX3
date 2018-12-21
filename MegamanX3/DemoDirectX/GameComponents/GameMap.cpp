@@ -270,14 +270,6 @@ void GameMap::Update(float dt)
 	for (size_t i = 0; i < mlistDoor.size(); i++) {
 		mlistDoor[i]->Update(dt);
 	}
-
-	if (this->isDaChuyenCanh == false) {
-		if (mlistDoor.at(0)->GetBound().right <= mCamera->GetBound().right) {
-			this->isStopCamera = true;
-			this->isDaChuyenCanh = true;
-		}
-	}
-	
 }
 
 void GameMap::Draw(int beginX, int beginY)

@@ -19,8 +19,9 @@ public:
 	bool isOpenDoor =false;
 	bool isPlayerAfterDoor=false;
 protected:
-	Animation *mCurrentAnimation, *mDoorClose, *mDoorOpen;
+	Animation *mCurrentAnimation, *mDoorClose, *mDoorOpen, *mDoorClosing;
 	
 	float dtTimeOpen;
 	float dtPlayerAfterDoor;
+	float dtTimeClosing;
 };

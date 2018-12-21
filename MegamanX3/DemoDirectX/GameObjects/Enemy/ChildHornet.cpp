@@ -124,7 +124,9 @@ void ChildHornet::Draw(D3DXVECTOR2 transform)
 		mAnimation->Draw(transform);
 	}
 	
-	if (mExplosion)
+	if (mExplosion) {
 		if (!mExplosion->isEndAnimate)
 			mExplosion->Draw(transform);
+	}
+		
 }

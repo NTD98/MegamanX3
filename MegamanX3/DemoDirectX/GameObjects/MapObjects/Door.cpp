@@ -6,7 +6,9 @@ Door::~Door()
 
 Door::Door(float posX,float posY)
 {
+
 	this->mDoorClose = new Animation("Resources/MapObject/doorClose.png", 1, 1, 1, 1.0f);
+	this->mDoorClosing = new Animation("Resources/MapObject/doorClosing.png", 16, 1, 16, 0.15f);
 	this->mDoorOpen = new Animation("Resources/MapObject/doorOpen.png", 16, 1, 16, 0.15f);
 	this->SetPosition(posX, posY);
 	this->SetWidth(mDoorClose->GetWidth());
@@ -29,7 +31,14 @@ void Door::Update(float dt)
 	if (dtPlayerAfterDoor >= 1.0f) {
 		this->isOpenDoor = false;
 		this->isPlayerAfterDoor = false;
+		mCurrentAnimation = mDoorClosing;
+		dtTimeClosing += dt;
+	}
+	if (dtTimeClosing >= 2.4f) {
 		mCurrentAnimation = mDoorClose;
+		dtTimeClosing = 0;
+		dtPlayerAfterDoor = 0;
+		dtTimeOpen = 0;
 	}
 	this->mCurrentAnimation->SetPosition(this->GetPosition());
 	mCurrentAnimation->Update(dt);

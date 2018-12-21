@@ -284,6 +284,7 @@ void Animation::UpdateS(float dt)
 			mRect.right = mRect.left + mFrameWidth;
 			mRect.top = mCurrentRow * mFrameHeight;
 			mRect.bottom = mRect.top + mFrameHeight;
+			isEndAnimate = true;
 		}
 		SetSourceRect(mRect);
 	}

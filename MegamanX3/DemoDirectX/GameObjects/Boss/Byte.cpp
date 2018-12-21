@@ -145,7 +145,7 @@ void Byte::OnCollision(Entity * other, SideCollisions side)
 		mPlayer->byteHP->AddDame(other->dame);
 		other->Tag = EntityTypes::None;
 	}
-	
+
 }
 
 void Byte::Shoot()

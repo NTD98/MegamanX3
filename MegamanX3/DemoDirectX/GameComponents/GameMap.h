@@ -16,6 +16,9 @@
 #include "../GameObjects/MapObjects/Elevator.h"
 #include "../GameObjects/Enemy/HeadGunner.h"
 #include "../GameObjects/MapObjects/Door.h"
+#include "../GameObjects/Boss/Genjibo.h"
+#include "../GameObjects/Boss/Byte.h"
+#include "../GameObjects/Boss/Hornet.h"
 class GameMap
 {
 public:
@@ -54,6 +57,8 @@ private:
 	
 	Sprite *map;
 	std::vector<Elevator*>			mlistElevator;
+
+
 	
 };
 

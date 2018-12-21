@@ -1,22 +1,22 @@
 ﻿  DemoScene.cpp
 c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(84): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(94): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(111): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(121): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(124): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(139): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(147): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(155): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(257): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(264): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(270): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(277): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(314): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(335): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(356): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(411): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(455): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(476): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(117): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(127): warning C4553: '==': operator has no effect; did you intend '='?
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(144): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(154): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(157): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(172): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(180): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(188): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(290): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(297): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(303): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(310): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(347): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(382): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(403): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(458): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(502): warning C4018: '<': signed/unsigned mismatch
+c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(523): warning C4018: '<': signed/unsigned mismatch
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
   DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

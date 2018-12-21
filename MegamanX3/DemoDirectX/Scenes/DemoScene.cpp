@@ -38,16 +38,49 @@ void DemoScene::LoadContent()
     mPlayer = new Player();
 	//50/1340
     //mPlayer->SetPosition(90.00, 1854.00);
-	//mPlayer->SetPosition(5000.00, 1923.00);
-	mPlayer->SetPosition(2900, 2445.75);
+	
+
+	//BossByte
+	mPlayer->SetPosition(8000, 2439);
+
+	//BossGenjibo
+	//mPlayer->SetPosition(3100, 2439);
+
+	//BossHornet
+	//mPlayer->SetPosition(11120.00, 3926.67);
+
     mPlayer->SetCamera(mCamera);
 	generate();
 	mlistdoor = mMap->mlistDoor;
+	genjibo = new Genjibo(3750.25, 2403.50);
+	byte = new Byte(8836, 2408, mPlayer, mCamera);
+	//hornet = new Hornet(11925.33, 3824.67,mPlayer,mCamera);
 }
 
 void DemoScene::Update(float dt)
 {
-	if (mMap->isStopCamera == true && mlistdoor[0]->isPlayerAfterDoor == true) {
+	if (mMap->isDaChuyenCanh == false) {
+		if (mlistdoor.at(0)->GetBound().left > mCamera->GetBound().right || mlistdoor.at(0)->GetBound().bottom<mCamera->GetBound().top || mlistdoor.at(0)->GetBound().top>mCamera->GetBound().bottom || mlistdoor.at(0)->GetBound().right < mCamera->GetBound().left) {
+			//Do nothing
+		}
+		else {
+			if (mlistdoor.at(0)->GetBound().right <= mCamera->GetBound().right) {
+				mMap->isStopCamera = true;
+				mMap->isDaChuyenCanh = true;
+			}
+		}
+		if (mlistdoor.at(2)->GetBound().left > mCamera->GetBound().right || mlistdoor.at(2)->GetBound().bottom<mCamera->GetBound().top || mlistdoor.at(2)->GetBound().top>mCamera->GetBound().bottom || mlistdoor.at(2)->GetBound().right < mCamera->GetBound().left) {
+			//Do nothing
+		}
+		else {
+			if (mlistdoor.at(2)->GetBound().right <= mCamera->GetBound().right) {
+				mMap->isStopCamera = true;
+				mMap->isDaChuyenCanh = true;
+			}
+		}
+		
+	}
+	if (mMap->isStopCamera == true && (mlistdoor[0]->isPlayerAfterDoor == true ||  mlistdoor[2]->isPlayerAfterDoor == true )) {
 		mMap->isStopCamera = false;
 	}
 	if (byte) {
@@ -138,11 +171,11 @@ void DemoScene::Draw()
 
 	for (int i = 0; i < mlistenemybullets.size(); i++)
 		mlistenemybullets.at(i)->Draw(trans);
-	if(genjibo)
+	if(genjibo && this->isCollisionVsBossgenjibo==true)
 		genjibo->Draw(trans);
-	if (byte)
+	if (byte && this->isCollisionVsBossByte==true)
 		byte->Draw(trans);
-	if (hornet)
+	if (hornet && this->isCollisionVsBossHornet==true)
 		hornet->Draw(trans);
 	for (int i = 0; i < listhelit.size(); i++)
 	{
@@ -312,20 +345,34 @@ void DemoScene::checkCollision()
 	{
 		//Door vs Player
 		for (int j = 0; j < mlistdoor.size(); j++) {
-			Entity::CollisionReturn doorVsPlayer = GameCollision::RecteAndRect(mlistdoor.at(j)->GetBound(), this->mPlayer->GetBound());
-			Entity::SideCollisions side = GameCollision::getSideCollision(mlistdoor.at(j), doorVsPlayer);
-			if (doorVsPlayer.IsCollided ) {
-				if (side == Entity::SideCollisions::Left) {
-					mlistdoor.at(j)->isOpenDoor = true;
-					if (mlistdoor.at(j)->isPlayerAfterDoor == false) {
-						this->mPlayer->isDungYen = true;
+				Entity::CollisionReturn doorVsPlayer = GameCollision::RecteAndRect(mlistdoor.at(j)->GetBound(), this->mPlayer->GetBound());
+				Entity::SideCollisions side = GameCollision::getSideCollision(mlistdoor.at(j), doorVsPlayer);
+				if (doorVsPlayer.IsCollided) {
+					if ((j == 1 && genjibo) || (j == 3 && byte)) {
+						this->mPlayer->AddPositionX(-10);
 					}
 					else {
-						this->mPlayer->isDungYen = false;
+						if (side == Entity::SideCollisions::Left) {
+							mlistdoor.at(j)->isOpenDoor = true;
+							if (mlistdoor.at(j)->isPlayerAfterDoor == false) {
+								this->mPlayer->isDungYen = true;
+							}
+							else {
+								this->mPlayer->isDungYen = false;
+							}
+						}
+						else {
+							this->mPlayer->AddPositionX(10);
+						}
 					}
-				}
-				else {
-					this->mPlayer->AddPositionX(1);
+			}
+
+			//genjibo vs door
+			if (this->isCollisionVsBossgenjibo) {
+				Entity::CollisionReturn doorVsGenjibo = GameCollision::RecteAndRect(mlistdoor.at(j)->GetBound(), this->genjibo->GetBound());
+				Entity::SideCollisions sidegenjibo = GameCollision::getSideCollision(this->genjibo, doorVsGenjibo);
+				if (doorVsGenjibo.IsCollided) {
+					this->genjibo->OnCollision(mlistdoor.at(j), sidegenjibo);
 				}
 			}
 		}
@@ -539,8 +586,74 @@ void DemoScene::checkCollision()
 					Entity::SideCollisions sideImpactor = GameCollision::getSideCollision(listCollision.at(i), genji);
 					genjibo->OnCollision(listCollision.at(i), sidePlayer);
 				}
+				if (this->isCollisionVsBossgenjibo) {
+					Entity::CollisionReturn genjiVsPlayer = GameCollision::RecteAndRect(genjibo->GetBound(),
+						mPlayer->GetBound());
+					if (genjiVsPlayer.IsCollided) {
+						if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath == false) {
+							if (this->mPlayer->isTimeNoDame == false) {
+								this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+								if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
+									this->mPlayer->setHealthPoint(Entity::EntityTypes::Genjibo, true);
+									this->mPlayer->isSetHealth = false;
+								}
+							}
+							if (this->mPlayer->getHealthPoint() <= 0) {
+								this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
+								this->mPlayer->isBeforeDeath = true;
+							}
+						}
+					}
+				}
 			}
+
+		//byte vs player
+		if (byte) {
+			if (this->isCollisionVsBossByte) {
+				Entity::CollisionReturn byteVsPlayer = GameCollision::RecteAndRect(this->byte->GetBound(),
+					mPlayer->GetBound());
+				if (byteVsPlayer.IsCollided) {
+					if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath == false) {
+						if (this->mPlayer->isTimeNoDame == false) {
+							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+							if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
+								this->mPlayer->setHealthPoint(Entity::EntityTypes::Byte, true);
+								this->mPlayer->isSetHealth = false;
+							}
+						}
+						if (this->mPlayer->getHealthPoint() <= 0) {
+							this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
+							this->mPlayer->isBeforeDeath = true;
+						}
+					}
+				}
+			}
+		}
 		
+
+		//hornet vs player
+		if (hornet) {
+			if (this->isCollisionVsBossHornet) {
+				Entity::CollisionReturn hornetVsPLayer = GameCollision::RecteAndRect(this->hornet->GetBound(),
+					mPlayer->GetBound());
+				if (hornetVsPLayer.IsCollided) {
+					if (this->mPlayer->isAlive == true && this->mPlayer->isBeforeDeath == false) {
+						if (this->mPlayer->isTimeNoDame == false) {
+							this->mPlayer->SetState(new PlayerDameState(this->mPlayer->getplayerdata()));
+							if (this->mPlayer->isSetHealth == true || this->mPlayer->getHealthPoint() == 16) {
+								this->mPlayer->setHealthPoint(Entity::EntityTypes::HornetBoss, true);
+								this->mPlayer->isSetHealth = false;
+							}
+						}
+						if (this->mPlayer->getHealthPoint() <= 0) {
+							this->mPlayer->SetState(new PlayerDeathState(this->mPlayer->getplayerdata(), pos.x, pos.y));
+							this->mPlayer->isBeforeDeath = true;
+						}
+					}
+				}
+			}
+		}
+	
 		//PlayerVs Static
 		if (listCollision.at(i)->GetBound().left > mCamera->GetBound().right || listCollision.at(i)->GetBound().bottom<mCamera->GetBound().top || listCollision.at(i)->GetBound().top>mCamera->GetBound().bottom || listCollision.at(i)->GetBound().right < mCamera->GetBound().left) {
 			continue;

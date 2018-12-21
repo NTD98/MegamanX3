@@ -261,6 +261,15 @@ void Player::setHealthPoint(Entity::EntityTypes entityTypes,bool isEnemy)
 	case Entity::EntityTypes::EnemyBullets2:
 		healthDown = 2;
 		break;
+	case Entity::EntityTypes::Genjibo:
+		healthDown = 4;
+		break;
+	case Entity::EntityTypes::Byte:
+		healthDown = 4;
+		break;
+	case Entity::EntityTypes::HornetBoss:
+		healthDown = 5;
+		break;
 	default:
 		break;
 	}
