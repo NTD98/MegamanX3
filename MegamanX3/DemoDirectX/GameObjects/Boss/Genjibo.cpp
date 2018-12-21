@@ -7,9 +7,10 @@ Genjibo::~Genjibo()
 
 Genjibo::Genjibo(float posX, float posY)
 {
-	mAnimationSpawn = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboSpawn.txt", 0.1f, false);
+	mAnimationSpawn = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboSpawn.txt", 0.05f, false);
 	mAnimationRotate = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboRotateLeft.txt", 0.001f, true);
 	mAnimationSub = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/SubGenjibo.txt", 0.01f, false);
+	mAnimationCircle = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboCircle.txt", 0.01f, true);
 	mSpriteZone = new Sprite("Resources/Boss/GenjiboZone.png");
 
 	mAnimation = mAnimationSpawn;
@@ -23,7 +24,7 @@ Genjibo::Genjibo(float posX, float posY)
 
 	posX1 = posX;
 	posY1 = posY;
-	hp = 20;
+	hp = 30;
 	vx = 100;
 	vy = 20;
 	dame = 2;
@@ -32,12 +33,16 @@ Genjibo::Genjibo(float posX, float posY)
 	onDraw = false;
 	typeAttack = 0;
 	this->Tag = EntityTypes::Genjibo;
+	isChange = false;
 }
 
 void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 {
 	if (typeAttack == 2)
 		type2 += dt;
+	else
+		if (typeAttack == 4)
+			type4 += dt;
 	if (isAlive) {
 		//Con ong bay xuống
 		if (abs(posY1 - mAnimationSub->GetPosition().y)>30) {
@@ -53,23 +58,42 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 			return;
 		}
 		else {
-			if (mAnimation != mAnimationRotate) {
-				mAnimation = mAnimationRotate;
-				this->SetWidth(mAnimationRotate->GetWidth());
-				this->SetHeight(mAnimationRotate->GetHeight());
+			if (typeAttack == 4 && !isChange)
+			{
+				mAnimationCircle->SetPosition(mAnimation->GetPosition());
+				mAnimation = mAnimationCircle;
+				this->SetWidth(mAnimationCircle->GetWidth());
+				this->SetHeight(mAnimationCircle->GetHeight());
+				isChange = true;
 			}
+			else
+				if (mAnimation != mAnimationRotate) {
+					if (typeAttack != 4)
+					{
+						mAnimation = mAnimationRotate;
+						this->SetWidth(mAnimationRotate->GetWidth());
+						this->SetHeight(mAnimationRotate->GetHeight());
+					}
+				}
 		}
 
 		Entity::Update(dt);
 
-		if (hp > 15) {
+		if (hp > 25) {
 			typeAttack = 1;
 		}
-		else if (hp > 8) {
+		else if (hp > 18) {
 			typeAttack = 2;
 		}
-		else typeAttack = 3;
-
+		else
+			if (hp > 10)
+			{
+				typeAttack = 3;
+			}
+			else
+			{
+				typeAttack = 4;
+			}
 		if (hp <= 0) {
 			isAlive = false;
 		}
@@ -79,12 +103,19 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 
 			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
 		}
-		if (type2 >= 0.5f&&check2)
+		if (type2 >= 0.5f&&check2&&typeAttack == 2)
 		{
 			vy = -vy;
 			type2 = 0.0f;
 			check2 = false;
 		}
+		else
+			if (type4 >= 0.5&&typeAttack == 4)
+			{
+				vy = -vy;
+				type4 = 0.0f;
+			}
+
 		//Kiểm tra va chạm với nhân vật
 		if (mPlayer) {
 			//kiểm tra va chạm viên đạn player
@@ -152,10 +183,35 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				this->AddPositionY(-2);
 				vy = 0;
 				check2 = false;
+
 			}
 			if (side == SideCollisions::Right) {
 				this->AddPositionX(-2);
 				vx = -GenjiboDefine::SPEED_X;
+			}
+		}
+		else
+		{
+			if (side == SideCollisions::Left) {
+				vy = -GenjiboDefine::SPEED_Y;
+				vx = GenjiboDefine::SPEED_X;
+				type4 = 0.0f;
+			}
+			if (side == SideCollisions::Top)
+			{
+				vy = -vy;
+			}
+			if (side == SideCollisions::Bottom) {
+				this->AddPositionY(-2);
+				if (vy != 0)
+					vy = -vy;
+				else
+					vy = -GenjiboDefine::SPEED_Y;
+			}
+			if (side == SideCollisions::Right) {
+				vy = -GenjiboDefine::SPEED_Y;
+				vx = -GenjiboDefine::SPEED_X;
+				this->AddPositionX(-2);
 			}
 		}
 	}
