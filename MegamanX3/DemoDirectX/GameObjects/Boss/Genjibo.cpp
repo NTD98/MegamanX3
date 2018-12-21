@@ -103,7 +103,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				}
 			}
 		}
-		else if (typeAttack == 2) //Đi vòng tròn
+		else if (typeAttack == 3) //Đi vòng tròn
 		{
 			if (side == SideCollisions::Left && vy == 0) {
 				this->AddPositionX(2);	//Tránh bị xét 2 va chạm ở góc
@@ -129,7 +129,7 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 				vy = 0;
 			}
 		}
-		else if (typeAttack == 3) {
+		else if (typeAttack == 2) {
 			if (vy == 0 && posX < posX1) {
 				vy = -GenjiboDefine::SPEED_Y;
 			}

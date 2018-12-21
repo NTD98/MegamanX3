@@ -113,6 +113,7 @@ void ChildHornet::Die()
 	waittingDie = false;
 	isAlive = false;
 	mExplosion = new Animation("Resources/explode.png", 6, 1, 6, 0.1f);
+	mExplosion->SetPosition(mAnimation->GetPosition());
 }
 
 void ChildHornet::Draw(D3DXVECTOR2 transform)
@@ -123,5 +124,7 @@ void ChildHornet::Draw(D3DXVECTOR2 transform)
 		mAnimation->Draw(transform);
 	}
 	
-	if (mExplosion) mExplosion->Draw(transform);
+	if (mExplosion)
+		if (!mExplosion->isEndAnimate)
+			mExplosion->Draw(transform);
 }
