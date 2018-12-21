@@ -1,4 +1,5 @@
 ﻿#include "Genjibo.h"
+#include "../../Scenes/DemoScene.h"
 #include "../../GameComponents/CollisionManager.h"
 Genjibo::~Genjibo()
 {
@@ -7,15 +8,15 @@ Genjibo::~Genjibo()
 Genjibo::Genjibo(float posX, float posY)
 {
 	mAnimationSpawn = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboSpawn.txt", 0.1f, false);
-	mAnimationRotate= new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboRotateLeft.txt", 0.001f, true);
-	mAnimationSub= new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/SubGenjibo.txt", 0.01f, false);
+	mAnimationRotate = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboRotateLeft.txt", 0.001f, true);
+	mAnimationSub = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/SubGenjibo.txt", 0.01f, false);
 	mSpriteZone = new Sprite("Resources/Boss/GenjiboZone.png");
 
 	mAnimation = mAnimationSpawn;
 	isFaceRight = false;
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
-	mSpriteZone->SetPosition(posX, posY-5);
+	mSpriteZone->SetPosition(posX, posY - 5);
 	mAnimationSub->SetPosition(posX, posY - 200);
 	this->SetWidth(mAnimation->GetWidth());
 	this->SetHeight(mAnimation->GetHeight());
@@ -35,18 +36,20 @@ Genjibo::Genjibo(float posX, float posY)
 
 void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 {
-	if (isAlive ) {
-	//boss go down
-	if (abs(posY1-mAnimationSub->GetPosition().y)>30) {
-		mAnimationSub->SetPosition(posX, mAnimationSub->GetPosition().y + 1);	
-		mAnimationSub->Update(dt,1);
-		return;
-	}
-	else onDraw = true;
+	if (typeAttack == 2)
+		type2 += dt;
+	if (isAlive) {
+		//Con ong bay xuống
+		if (abs(posY1 - mAnimationSub->GetPosition().y)>30) {
+			mAnimationSub->SetPosition(posX, mAnimationSub->GetPosition().y + 1);
+			mAnimationSub->Update(dt, 1);
+			return;
+		}
+		else onDraw = true;
 		mAnimation->SetPosition(posX, posY);
-		mAnimation->Update(dt,1);
+		mAnimation->Update(dt, 1);
 
-		if (!mAnimationSpawn->mEndAnimate && mAnimation==mAnimationSpawn) {
+		if (!mAnimationSpawn->mEndAnimate && mAnimation == mAnimationSpawn) {
 			return;
 		}
 		else {
@@ -54,7 +57,7 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				mAnimation = mAnimationRotate;
 				this->SetWidth(mAnimationRotate->GetWidth());
 				this->SetHeight(mAnimationRotate->GetHeight());
-			}	
+			}
 		}
 
 		Entity::Update(dt);
@@ -70,13 +73,18 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 		if (hp <= 0) {
 			isAlive = false;
 		}
-		
+
 		//kiểm tra va chạm  object với map
 		for (size_t j = 0; j < mListMapObject.size(); j++) {
 
 			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
 		}
-
+		if (type2 >= 0.5f&&check2)
+		{
+			vy = -vy;
+			type2 = 0.0f;
+			check2 = false;
+		}
 		//Kiểm tra va chạm với nhân vật
 		if (mPlayer) {
 			//kiểm tra va chạm viên đạn player
@@ -86,12 +94,12 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 		}
 	}
-	
+
 }
 
 void Genjibo::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Door|| other->Tag == EntityTypes::Static) {
+	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Door || other->Tag == EntityTypes::Static) {
 
 		if (side == SideCollisions::Bottom)
 			vy = 0;
@@ -130,30 +138,28 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 			}
 		}
 		else if (typeAttack == 2) {
-			if (vy == 0 && posX < posX1) {
+			if (side == SideCollisions::Left) {
 				vy = -GenjiboDefine::SPEED_Y;
+				vx = GenjiboDefine::SPEED_X;
+				type2 = 0.0f;
+				check2 = true;
 			}
-			if (side == SideCollisions::Left ) {
-				this->AddPositionX(2);
-				vy = GenjiboDefine::SPEED_Y;
-				vx= GenjiboDefine::SPEED_X;
+			if (side == SideCollisions::Top)
+			{
+				vy = -vy;
+			}
+			if (side == SideCollisions::Bottom) {
+				this->AddPositionY(-2);
+				vy = 0;
+				check2 = false;
 			}
 			if (side == SideCollisions::Right) {
 				this->AddPositionX(-2);
-				vx = GenjiboDefine::SPEED_X;
+				vx = -GenjiboDefine::SPEED_X;
 			}
-			if (side == SideCollisions::Bottom ) {
-				this->AddPositionY(-2);
-				vy = 0;
-			}
-			if (side == SideCollisions::Top) {
-				this->AddPositionY(2);
-				vx=0;
-				vy = GenjiboDefine::SPEED_Y;
-			}
-		}		
+		}
 	}
-	if (other->Tag == EntityTypes::BulletP|| other->Tag == EntityTypes::BulletCharge1|| other->Tag == EntityTypes::BulletCharge2) {
+	if (other->Tag == EntityTypes::BulletP || other->Tag == EntityTypes::BulletCharge1 || other->Tag == EntityTypes::BulletCharge2) {
 		hp -= other->dame;
 		other->Tag = EntityTypes::None;
 	}
@@ -166,8 +172,8 @@ void Genjibo::Draw(D3DXVECTOR2 transform)
 			if (mAnimation == mAnimationSpawn) {
 				mSpriteZone->Draw(D3DXVECTOR3(), RECT(), D3DXVECTOR2(), transform);
 			}
-				mAnimation->FlipVertical(isFaceRight);
-				mAnimation->Draw(transform);
+			mAnimation->FlipVertical(isFaceRight);
+			mAnimation->Draw(transform);
 		}
 		if (!mAnimationSpawn->mEndAnimate)
 			mAnimationSub->Draw(transform);
