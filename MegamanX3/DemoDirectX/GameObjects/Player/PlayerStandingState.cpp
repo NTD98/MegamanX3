@@ -15,6 +15,7 @@ PlayerStandingState::PlayerStandingState(PlayerData *playerData, bool isMoveToLe
 	}
 	else {
 		AllowRunLeft = true;
+		
 	}
 
 	if (isMoveToRight == true) {
@@ -60,14 +61,22 @@ void PlayerStandingState::HandleKeyboard(std::map<int, bool> keys)
 	}
 	
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::StandShoot);
-		return;
+		if (this->mPlayerData->player->isChangeBullet == true) {
+			this->mPlayerData->player->changeAnimation(PlayerState::Standing);
+		}
+		else {
+			this->mPlayerData->player->changeAnimation(PlayerState::StandShoot);
+		}
 	}
 	else {
 		this->mPlayerData->player->changeAnimation(PlayerState::Standing);
 		return;
 	}
 	return;
+}
+
+void PlayerStandingState::Update(float dt)
+{
 }
 
 PlayerState::StateName PlayerStandingState::GetState()

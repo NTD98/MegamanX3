@@ -69,6 +69,7 @@ void Player::InitAni()
 void Player::Update(float dt)
 {
 	if (this->isDungYen == false) {
+
 		for (int i = 0; i < bulletlist.size(); i++)
 		{
 			if (bulletlist.at(i)->isdelete)
@@ -104,6 +105,21 @@ void Player::Update(float dt)
 				}
 			}
 		}
+
+		if (isGetOutGunAnimation == true) {
+			dtChangBullet += dt;
+		}
+		else {
+			dtChangBullet = 0;
+		}
+
+		if (dtChangBullet >= 0.2f) {
+			this->isChangeBullet = true;
+		}
+		else {
+			this->isChangeBullet = false;
+		}
+
 
 
 		for (int i = 0; i < sizeof(mlistSmokeEffect); i++) {
@@ -190,7 +206,7 @@ void Player::OnKeyPressed(int key)
 			}
 		case 0x58:
 		{
-
+			isGetOutGunAnimation = true;
 			if (allowshoot)
 			{
 				if (this->mPlayerData->player->getState() != PlayerState::BeDame){
@@ -222,6 +238,7 @@ void Player::OnKeyUp(int key)
         allowJump = true;
 	if (key == 0x58) {
 		allowshoot = true;
+		isGetOutGunAnimation = false;
 	}
 }
 

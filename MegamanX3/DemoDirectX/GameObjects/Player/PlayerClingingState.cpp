@@ -29,7 +29,12 @@ void PlayerClingingState::Update(float dt)
 void PlayerClingingState::HandleKeyboard(std::map<int, bool> keys)
 {
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::ClingingShoot);
+		if (this->mPlayerData->player->isChangeBullet == true) {
+			this->mPlayerData->player->changeAnimation(PlayerState::Clinging);
+		}
+		else {
+			this->mPlayerData->player->changeAnimation(PlayerState::ClingingShoot);
+		}
 	}
 	else {
 		this->mPlayerData->player->changeAnimation(PlayerState::Clinging);

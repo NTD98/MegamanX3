@@ -66,21 +66,7 @@ void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)
 					}
 		}
 
-		for (size_t j = 0; j < mListMapObject.size(); j++) {
-			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
-			if (bomp)
-				CollisionManager::getInstance()->checkCollision(bomp, mListMapObject[j], dt);
-		}
-		if (bomp)
-			CollisionManager::getInstance()->checkCollision(bomp, this, dt);
 		//Kiểm tra va chạm với nhân vật
-		if (mPlayer) {
-			//kiểm tra va chạm viên đạn player
-			for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
-				CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
-			}
-			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
-		}
 		Entity::Update(dt);
 		mAnimation->SetPosition(posX, posY);
 		if (bomp)

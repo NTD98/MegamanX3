@@ -41,7 +41,6 @@ public:
     bool IsBoundBottom(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     ~GameMap();
     QuadTree* GetQuadTree();
-	std::vector<Door*> mlistDoor;
 	bool isCollisionVsGunner;
 	bool isStopCamera;
 	bool isDaChuyenCanh = false;

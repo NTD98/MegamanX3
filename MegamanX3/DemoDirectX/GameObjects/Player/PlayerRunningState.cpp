@@ -27,8 +27,14 @@ void PlayerRunningState::HandleKeyboard(std::map<int, bool> keys)
 		return;
 	}
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::RunnShoot);
+		if (this->mPlayerData->player->isChangeBullet == true) {
+			this->mPlayerData->player->changeAnimation(PlayerState::Running);
+		}
+		else {
+			this->mPlayerData->player->changeAnimation(PlayerState::RunnShoot);
+		}
 	}
+	
     if (keys[VK_RIGHT])
     {
         if (mPlayerData->player->allowMoveRight)

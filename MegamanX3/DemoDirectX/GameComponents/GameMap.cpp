@@ -7,6 +7,7 @@
 std::ofstream out("Entity.txt");
 GameMap::GameMap()
 {
+	
 }
 
 GameMap::GameMap(char* filePath)
@@ -18,16 +19,12 @@ GameMap::GameMap(char* filePath)
 	this->map->Draw();*/
 }
 
+
+
 GameMap::~GameMap()
 {
 	delete mMap;
 
-	for (size_t i = 0; i < mlistDoor.size(); i++)
-	{
-		if (mlistDoor[i])
-			delete mlistDoor[i];
-	}
-	mlistDoor.clear();
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		if (mListGunners[i])
@@ -62,6 +59,8 @@ void GameMap::LoadMap(char* filePath)
 	r.bottom = 1000;
 
     mQuadTree = new QuadTree(1, r);
+
+
 
     for (size_t i = 0; i < mMap->GetNumTilesets(); i++)
     {
@@ -138,12 +137,6 @@ void GameMap::LoadMap(char* filePath)
 									HeadGunner *headgunner = new HeadGunner(position);
 									headgunner->Tag = Entity::EntityTypes::HeadGunner;
 									mListGunners.push_back(headgunner);
-								}
-								else {
-									if (layer->GetName() == "door") {
-										Door *door = new Door(position.x,position.y+ 7.75);
-										mlistDoor.push_back(door);
-									}
 								}
 						}
 					}
@@ -267,9 +260,7 @@ void GameMap::Update(float dt)
 	{
 		mlistElevator[i]->Update(dt);
 	}
-	for (size_t i = 0; i < mlistDoor.size(); i++) {
-		mlistDoor[i]->Update(dt);
-	}
+	
 }
 
 void GameMap::Draw(int beginX, int beginY)
@@ -373,10 +364,6 @@ void GameMap::Draw(int beginX, int beginY)
 		mListGunners[i]->Draw(trans);
 	}
 	
-	for (size_t i = 0; i < mlistDoor.size(); i++)
-	{
-		mlistDoor[i]->Draw(trans);
-	}
 #pragma endregion
 	
 }

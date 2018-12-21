@@ -48,7 +48,12 @@ void PlayerClingingJState::Update(float dt)
 void PlayerClingingJState::HandleKeyboard(std::map<int, bool> keys)
 {
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::ClingingJShoot);
+		if (this->mPlayerData->player->isChangeBullet == true) {
+			this->mPlayerData->player->changeAnimation(PlayerState::ClingingJ);
+		}
+		else {
+			this->mPlayerData->player->changeAnimation(PlayerState::ClingingJShoot);
+		}
 	}
 	
 	if (keys[VK_LEFT])

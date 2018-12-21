@@ -20,10 +20,15 @@ PlayerDashState::~PlayerDashState()
 
 void PlayerDashState::HandleKeyboard(std::map<int, bool> keys)
 {
+
 	if (keys[0x58]) {
-		this->mPlayerData->player->changeAnimation(PlayerState::DashShoot);
+		if (this->mPlayerData->player->isChangeBullet == true) {
+			this->mPlayerData->player->changeAnimation(PlayerState::Dash);
+		}
+		else {
+			this->mPlayerData->player->changeAnimation(PlayerState::DashShoot);
+		}
 	}
-	
 }
 
 void PlayerDashState::Update(float dt)

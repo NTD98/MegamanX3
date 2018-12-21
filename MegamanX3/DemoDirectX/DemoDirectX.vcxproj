@@ -102,6 +102,7 @@
     <ClCompile Include="GameObjects\Boss\Genjibo.cpp" />
     <ClCompile Include="GameObjects\Boss\Hornet.cpp" />
     <ClCompile Include="GameObjects\Boss\HornetHP.cpp" />
+    <ClCompile Include="GameObjects\Effect\ChangeBulletEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\DeathCircle.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerFlashDashEffect.cpp" />
     <ClCompile Include="GameObjects\Effect\PlayerSmokeDashEffect.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="GameObjects\Boss\Genjibo.h" />
     <ClInclude Include="GameObjects\Boss\Hornet.h" />
     <ClInclude Include="GameObjects\Boss\HornetHP.h" />
+    <ClInclude Include="GameObjects\Effect\ChangeBulletEffect.h" />
     <ClInclude Include="GameObjects\Effect\DeathCircle.h" />
     <ClInclude Include="GameObjects\Effect\PlayerFlashDashEffect.h" />
     <ClInclude Include="GameObjects\Effect\PlayerSmokeDashEffect.h" />

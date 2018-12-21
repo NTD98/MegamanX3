@@ -82,7 +82,9 @@ public:
 	HornetHP* hornetHP;
 	HornetHP* byteHP;
 	bool isFollow;
-	
+	bool isChangeBullet = false;
+	float dtChangBullet = 0;
+	bool isGetOutGunAnimation = false;
 protected:
     Camera      *mCamera;
 

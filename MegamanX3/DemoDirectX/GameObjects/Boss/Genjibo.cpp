@@ -115,15 +115,6 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				vy = -vy;
 				type4 = 0.0f;
 			}
-
-		//Kiểm tra va chạm với nhân vật
-		if (mPlayer) {
-			//kiểm tra va chạm viên đạn player
-			for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
-				CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
-			}
-			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
-		}
 	}
 
 }

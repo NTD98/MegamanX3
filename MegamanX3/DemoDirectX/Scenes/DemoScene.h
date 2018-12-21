@@ -20,6 +20,8 @@
 #include "../GameObjects/Player/PlayerFallingState.h"
 #include "../GameObjects/MapObjects/Door.h"
 #include "../GameObjects/Boss/Hornet.h"
+#include "../GameObjects/Boss/bomp.h"
+#include "../GameObjects/Effect/ChangeBulletEffect.h"
 class DemoScene : public Scene
 {
 public:
@@ -33,7 +35,7 @@ public:
     void OnKeyUp(int keyCode);
     void OnMouseDown(float x, float y);
 	bool iscolidebullet(RECT a, RECT b);
-	
+	bool isInCamera(Entity *entityA );
 	vector<Entity*> getMapObject();
 protected:
 	vector<Entity*> mapobject;
@@ -59,5 +61,6 @@ protected:
 	bool isCollisionVsBossByte;
 	bool isCollisionVsBossgenjibo;
 	bool isCollisionVsBossHornet;
+	ChangeBulletEffect *changeBulletEffect;
 };
 

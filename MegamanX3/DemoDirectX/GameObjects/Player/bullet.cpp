@@ -95,7 +95,7 @@ void Bullet::ChangeBulletType(float dt)
 	{
 		ischarged += dt;
 	}
-	if (ischarged >= 2.0f)
+	if (ischarged >= 1.5f)
 	{
 		mChargeBullet2 = new Animation("Resources/megaman/chargedbullet2.png", 3, 1, 3, 0.1);
 		mChargeBullet2->SetPosition(mCurrentAnimaion->GetPosition());
@@ -104,7 +104,7 @@ void Bullet::ChangeBulletType(float dt)
 		this->dame = 4;
 		return;
 	}
-	if (ischarged >= 1.0f)
+	if (ischarged >= 0.2f)
 	{
 		mChargeBullet1 = new Animation("Resources/megaman/chargedbullet1.png", 6, 1, 6, 0.1);
 		mChargeBullet1->SetPosition(mCurrentAnimaion->GetPosition());

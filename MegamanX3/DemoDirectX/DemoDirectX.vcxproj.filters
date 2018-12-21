@@ -271,6 +271,9 @@
     <ClCompile Include="GameObjects\Boss\HornetHP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\Effect\ChangeBulletEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Game.h">
@@ -502,6 +505,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\Boss\HornetHP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\Effect\ChangeBulletEffect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
