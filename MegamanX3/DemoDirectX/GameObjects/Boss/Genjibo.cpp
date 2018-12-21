@@ -25,7 +25,7 @@ Genjibo::Genjibo(float posX, float posY)
 	posX1 = posX;
 	posY1 = posY;
 	hp = 30;
-	vx = 100;
+	vx = 150;
 	vy = 20;
 	dame = 2;
 	isAlive = true;
