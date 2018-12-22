@@ -13,7 +13,7 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	mAnimationAttack = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetAttack2.txt", 0.1f, false);
 	mAnimationSpawnChild = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetSpawnChild.txt", 0.1f, false);
 	mAnimationDie = new Animation("Resources/Boss/Hornet.png", "Resources/Boss/HornetDie.txt", 0.1f, false);
-	
+
 	mAnimation = mAnimationStand;
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
@@ -27,16 +27,16 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	rectMove = mCamera->GetBound();
 	D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
 		GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-	rectMove.left = 11672;
-	rectMove.right = 11929;
-	rectMove.top = 3710;
-	rectMove.bottom = 4035;
+	rectMove.left = 250;
+	rectMove.right = 402;
+	rectMove.top = 238;
+	rectMove.bottom = 432;
 	dame = 1;
 	toAttack = true;
 	isAttack = false;
 	midRectY = rectMove.top + (rectMove.bottom - rectMove.top) / 2;
 
-	mPlayer->hornetHP = new HornetHP(mCamera->GetPosition().x+200, mCamera->GetPosition().y+100);
+	mPlayer->hornetHP = new HornetHP(mCamera->GetPosition().x + 200, mCamera->GetPosition().y + 100);
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
@@ -48,120 +48,121 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 
 void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 {
-	
-	mAnimation->Update(dt,1);
-	Entity::Update(dt);	
+	if (isAlive)
+	{
+		mAnimation->Update(dt, 1);
+		Entity::Update(dt);
 
-	if (mPlayer->hornetHP->HP <= 0) {
-		if (mAnimation != mAnimationDie) {
-			mAnimationDie->Start();
-			mAnimation = mAnimationDie;
-			vy = 200;
-		}
-	}
-	else if (mPlayer->hornetHP->HP > 30) {
-		typeAttack = 1;
-	}
-	else if (mPlayer->hornetHP->HP > 15) {
-		typeAttack = 2;
-	}
-	else {
-		typeAttack = 3;
-	}
-	if (mAnimation == mAnimationAttack) {	//Lao tới nv
-		if (int(posX) > posMegaX) {
-			this->AddPositionX(-2);
-		}
-		else if (int(posX) < posMegaX) {
-			this->AddPositionX(2);
-		}
-		if (int(posY) > posMegaY) {
-			this->AddPositionY(-2);
-		}
-		else if (int(posY) < posMegaY) {
-			this->AddPositionY(2);
-		}
-		if (int(posY) == posMegaY) {
-			mAnimationFly->Start();
-			mAnimation = mAnimationFly;
-			vy = -HornetDefine::SPEED_Y;
-		}
-	}
-	if (mAnimation->mEndAnimate) {	//Fly->stand->attack->fly
-		if (mAnimation == mAnimationStand) {
-			if (typeAttack == 1) {
-				//Spawn child
-				SpawnChild1();
-
+		if (mPlayer->hornetHP->HP <= 0) {
+			if (mAnimation != mAnimationDie) {
+				mAnimationDie->Start();
+				mAnimation = mAnimationDie;
+				vy = 200;
 			}
-			else if (typeAttack == 2) {
-
-				//Chuẩn bị xuống
-				if (toAttack) {
-					toAttack = false;
-					mAnimationPrepare->Start();
-					mAnimation = mAnimationPrepare;
-				}
-				else {
-					toAttack = true;
+		}
+		else if (mPlayer->hornetHP->HP > 30) {
+			typeAttack = 1;
+		}
+		else if (mPlayer->hornetHP->HP > 15) {
+			typeAttack = 2;
+		}
+		else {
+			typeAttack = 3;
+		}
+		if (mAnimation == mAnimationAttack) {	//Lao tới nv
+			if (int(posX) > posMegaX) {
+				this->AddPositionX(-2);
+			}
+			else if (int(posX) < posMegaX) {
+				this->AddPositionX(2);
+			}
+			if (int(posY) > posMegaY) {
+				this->AddPositionY(-2);
+			}
+			else if (int(posY) < posMegaY) {
+				this->AddPositionY(2);
+			}
+			if (int(posY) == posMegaY) {
+				mAnimationFly->Start();
+				mAnimation = mAnimationFly;
+				vy = -HornetDefine::SPEED_Y;
+			}
+		}
+		if (mAnimation->mEndAnimate) {	//Fly->stand->attack->fly
+			if (mAnimation == mAnimationStand) {
+				if (typeAttack == 1) {
+					//Spawn child
 					SpawnChild1();
+
 				}
+				else if (typeAttack == 2) {
 
-			}
-			else if (typeAttack == 3) {
-				//Spawn child and follow
-				SpawnFollow();
-			}
-		}
-		else if (mAnimation == mAnimationSpawnChild) {
+					//Chuẩn bị xuống
+					if (toAttack) {
+						toAttack = false;
+						mAnimationPrepare->Start();
+						mAnimation = mAnimationPrepare;
+					}
+					else {
+						toAttack = true;
+						SpawnChild1();
+					}
 
-			vy = HornetDefine::SPEED_Y;
-			if (posX > (mCamera->GetPosition().x)) {
-				vx = -HornetDefine::SPEED_X;
+				}
+				else if (typeAttack == 3) {
+					//Spawn child and follow
+					SpawnFollow();
+				}
 			}
-			else vx = HornetDefine::SPEED_X;
-			mAnimationFly->Start();
-			mAnimation = mAnimationFly;
+			else if (mAnimation == mAnimationSpawnChild) {
+
+				vy = HornetDefine::SPEED_Y;
+				if (posX > (mCamera->GetPosition().x)) {
+					vx = -HornetDefine::SPEED_X;
+				}
+				else vx = HornetDefine::SPEED_X;
+				mAnimationFly->Start();
+				mAnimation = mAnimationFly;
+			}
+			else if (mAnimation == mAnimationPrepare) {	//Kết thúc chuẩn bị: Prepare->Attack
+				posMegaX = mPlayer->posX;
+				posMegaY = rectMove.bottom;
+				mAnimationAttack->Start();
+				mAnimation = mAnimationAttack;
+			}
+			else if (mAnimation == mAnimationDie) {
+				//isAlive = false;
+			}
 		}
-		else if (mAnimation == mAnimationPrepare) {	//Kết thúc chuẩn bị: Prepare->Attack
-			posMegaX = mPlayer->posX;
-			posMegaY = rectMove.bottom;
-			mAnimationAttack->Start();
-			mAnimation = mAnimationAttack;
+		if (mAnimation == mAnimationFly) {
+			if (posY > rectMove.bottom) {
+				this->SetPosition(posX, rectMove.bottom);
+				vy = -HornetDefine::SPEED_Y;
+			}
+			if (posY < rectMove.top) {
+				//Stand
+				this->SetPosition(posX, rectMove.top);
+				mAnimationStand->Start();
+				mAnimation = mAnimationStand;
+				vy = 0;
+				vx = 0;
+			}
+			if (posX<rectMove.left || posX>rectMove.right) {
+				if (posX < rectMove.left) this->SetPosition(rectMove.left, posY);
+				if (posX > rectMove.right) this->SetPosition(rectMove.right, posY);
+				vy = -HornetDefine::SPEED_Y;
+				vx = 0;
+			}
+			/*else {
+			if (mPlayer->hornetHP->HP == 5) {
+			vx = HornetDefine::SPEED_X;
+			}
+			}*/
 		}
-		else if (mAnimation == mAnimationDie) {
-			isAlive = false;
-		}
-	}
-	if (mAnimation == mAnimationFly) {
-		if (posY > rectMove.bottom) {
-			this->SetPosition(posX, rectMove.bottom);
-			vy = -HornetDefine::SPEED_Y;
-		}
-		if (posY < rectMove.top) {
-			//Stand
-			this->SetPosition(posX, rectMove.top);
-			mAnimationStand->Start();
-			mAnimation = mAnimationStand;
-			vy = 0;
-			vx = 0;
-		}
-		if (posX<rectMove.left || posX>rectMove.right) {
-			if (posX < rectMove.left) this->SetPosition(rectMove.left, posY);
-			if (posX > rectMove.right) this->SetPosition(rectMove.right, posY);
-			vy = -HornetDefine::SPEED_Y;
-			vx = 0;
-		}
-		/*else {
-		if (mPlayer->hornetHP->HP == 5) {
-		vx = HornetDefine::SPEED_X;
-		}
-		}*/
-	}
 
 
 		// move like 8 
-	
+
 
 
 
@@ -233,44 +234,67 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 			mChildFollow->Update(dt, mPlayer, mListMapObject);
 		}
 	}
+	else
+	{
+		mPlayer->hornetHP = nullptr;
+		if (mExplode[count])
+		{
+			if (!mExplode[count]->isEndAnimate)
+				mExplode[count]->UpdateS(dt);
+			else
+				mExplode[count] = nullptr;
+		}
+		if (mExplode[4])
+			if (mExplode[4]->isEndAnimate)
+				mAnimation = nullptr;
+	}
+}
 
 void Hornet::OnCollision(Entity * other, SideCollisions side)
- {
-	 
- 	if (other->Tag == EntityTypes::BulletP|| other->Tag == EntityTypes::BulletCharge1|| other->Tag == EntityTypes::BulletCharge2) {
+{
+
+	if (other->Tag == EntityTypes::BulletP || other->Tag == EntityTypes::BulletCharge1 || other->Tag == EntityTypes::BulletCharge2) {
 		mPlayer->hornetHP->AddDame(other->dame);
 		other->Tag = EntityTypes::None;
 	}
-	if (other->Tag == EntityTypes::Wall|| other->Tag ==EntityTypes::Static) {
- 		/*if (side == SideCollisions::Top) {
-			vy=-vy;
-		}*/		
+	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Static) {
+		/*if (side == SideCollisions::Top) {
+		vy=-vy;
+		}*/
 		if (mAnimation == mAnimationAttack) {
-				mAnimationFly->Start();
-				mAnimation = mAnimationFly;
-				vy = -HornetDefine::SPEED_Y;
+			mAnimationFly->Start();
+			mAnimation = mAnimationFly;
+			vy = -HornetDefine::SPEED_Y;
 		}
 		else
-		if (mAnimation == mAnimationDie && side == SideCollisions::Bottom)
-		 {
+			if (mAnimation == mAnimationDie && side == SideCollisions::Bottom)
+			{
 				vy = 0;
 				vx = 0;
-		}
+				for (int i = 0; i < 5; i++)
+				{
+					mExplode[i] = new Animation("Resources/blueexplode.png", 6, 1, 6, 0.1f);
+					int X = mAnimation->GetPosition().x;
+					int Y = mAnimation->GetPosition().y;
+					float ranX = (X - 10) + rand() % (50);
+					float ranY = (Y - 10) + rand() % (50);
+					mExplode[i]->SetPosition(ranX, ranY);
+					isAlive = false;
+				}
+			}
 
 	}
-	
-	
+
+
 }
 
 void Hornet::Draw(D3DXVECTOR2 transform)
 {
-	
-	
-	mAnimation->SetPosition(posX, posY);
-	mAnimation->FlipVertical(isFaceRight);
-	mAnimation->Draw(transform);
 	if (isAlive)
 	{
+		mAnimation->SetPosition(posX, posY);
+		mAnimation->FlipVertical(isFaceRight);
+		mAnimation->Draw(transform);
 		for (int i = 0; i < mListChild.size(); i++) {
 			mListChild[i]->Draw(transform);
 		}
@@ -281,6 +305,18 @@ void Hornet::Draw(D3DXVECTOR2 transform)
 
 		if (mChildFollow) {
 			mChildFollow->Draw(transform);
+		}
+	}
+	if (mExplode[count])
+	{
+		if (!mExplode[count]->isEndAnimate)
+		{
+			mExplode[count]->Draw(transform);
+		}
+		else
+		{
+			if (count<4)
+				count++;
 		}
 	}
 }
@@ -297,7 +333,7 @@ void Hornet::SpawnChild1()
 	}
 	for (int i = 0; i < mListChild.size(); i++) {
 		if (!mListChild[i]->isAlive) {
-			mListChild[i] = new ChildHornet(1, posX, posY, direction*30, -10 +i*7);
+			mListChild[i] = new ChildHornet(1, posX, posY, direction * 30, -10 + i * 7);
 		}
 	}
 	mAnimationSpawnChild->Start();
@@ -324,6 +360,6 @@ void Hornet::SpawnFollow()
 		SpawnChild1();
 	}
 	toAttack = !toAttack;
-	
+
 	//SpawnChild1();
 }
