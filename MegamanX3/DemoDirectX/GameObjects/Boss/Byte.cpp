@@ -4,13 +4,12 @@
 
 Byte::~Byte()
 {
-
 }
 
-Byte::Byte(float posX, float posY,Player* mPlayer,Camera* mCamera)
+Byte::Byte(float posX, float posY, Player* mPlayer, Camera* mCamera)
 {
 	mAnimationStanding = new Animation("Resources/Boss/bytestand.png", 1, 1, 1, 1.0f);
-	mAnimationDying = new Animation("Resources/Boss/blueexplode.png", 6, 1, 6, 0.1f);
+	mAnimationDying = new Animation("Resources/Boss/bytestand.png", 1, 1, 1, 0.1f);
 	mAnimation = mAnimationStanding;
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
@@ -34,16 +33,20 @@ Byte::Byte(float posX, float posY,Player* mPlayer,Camera* mCamera)
 
 void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)
 {
-	if(this->hp<=0)
-	{
-		isAlive = false;
-		mAnimation = mAnimationDying;
-		mPlayer->byteHP = nullptr;
-	}
-	mAnimation->UpdateS(dt);
-	delay += dt;
+
+
 	if (isAlive)
 	{
+		if (this->hp <= 0)
+		{
+			isAlive = false;
+			if (mAnimation != mAnimationDying)
+				mAnimation = mAnimationDying;
+			mPlayer->byteHP = nullptr;
+			vx = 0;
+		}
+		delay += dt;
+		mAnimation->UpdateS(dt);
 		if (abs(mPlayer->GetPosition().x - mAnimation->GetPosition().x) < 800)
 		{
 			if (mAnimation == mAnimationStanding)
@@ -66,13 +69,40 @@ void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)
 					}
 		}
 
+		for (size_t j = 0; j < mListMapObject.size(); j++) {
+			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
+			if (bomp)
+				CollisionManager::getInstance()->checkCollision(bomp, mListMapObject[j], dt);
+		}
+		if (bomp)
+			CollisionManager::getInstance()->checkCollision(bomp, this, dt);
 		//Kiểm tra va chạm với nhân vật
+		if (mPlayer) {
+			//kiểm tra va chạm viên đạn player
+			for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
+				CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
+			}
+			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
+		}
 		Entity::Update(dt);
 		mAnimation->SetPosition(posX, posY);
 		if (bomp)
 		{
 			bomp->Update(dt);
 		}
+	}
+	else
+	{
+		if (mExplode[count])
+		{
+			if (!mExplode[count]->isEndAnimate)
+				mExplode[count]->UpdateS(dt);
+			else
+				mExplode[count] = nullptr;
+		}
+		if (mExplode[4])
+			if (mExplode[4]->isEndAnimate)
+				mAnimation = nullptr;
 	}
 }
 
@@ -96,7 +126,7 @@ void Byte::OnCollision(Entity * other, SideCollisions side)
 					{
 						vx = 0;
 						Stand();
-						this->SetPosition(posX-5, posY);
+						this->SetPosition(posX - 5, posY);
 						right = false;
 					}
 				}
@@ -130,6 +160,23 @@ void Byte::OnCollision(Entity * other, SideCollisions side)
 		hp -= other->dame;
 		mPlayer->byteHP->AddDame(other->dame);
 		other->Tag = EntityTypes::None;
+		if (hp <= 0)
+		{
+			if (mAnimation != mAnimationDying)
+			{
+				mAnimationDying->SetPosition(mAnimation->GetPosition());
+				mAnimation = mAnimationDying;
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				mExplode[i] = new Animation("Resources/blueexplode.png", 6, 1, 6, 0.1f);
+				int X = mAnimation->GetPosition().x;
+				int Y = mAnimation->GetPosition().y;
+				float ranX = (X - 10) + rand() % (50);
+				float ranY = (Y - 10) + rand() % (50);
+				mExplode[i]->SetPosition(ranX, ranY);
+			}
+		}
 	}
 
 }
@@ -140,8 +187,8 @@ void Byte::Shoot()
 	vx = 0;
 	mAnimationShooting->SetPosition(mAnimation->GetPosition());
 	mAnimation = mAnimationShooting;
-	if(!right)
-		bomp = new Bomp(mAnimation->GetPosition()+D3DXVECTOR3(-mAnimation->GetWidth()/2-10,0,0),right);
+	if (!right)
+		bomp = new Bomp(mAnimation->GetPosition() + D3DXVECTOR3(-mAnimation->GetWidth() / 2 - 10, 0, 0), right);
 	else
 		bomp = new Bomp(mAnimation->GetPosition() + D3DXVECTOR3(mAnimation->GetWidth() / 2 + 10, 0, 0), right);
 }
@@ -161,15 +208,33 @@ void Byte::Stand()
 
 void Byte::Draw(D3DXVECTOR2 transform)
 {
+
+
 	if (isAlive)
 	{
-		mAnimation->FlipVertical(right);
+
 		if (mAnimation)
+		{
+			mAnimation->FlipVertical(right);
 			mAnimation->Draw(transform);
+		}
 		if (bomp)
 			if (!bomp->isdestoyed)
 			{
 				bomp->Draw(transform);
 			}
+
+	}
+	if (mExplode[count])
+	{
+		if (!mExplode[count]->isEndAnimate)
+		{
+			mExplode[count]->Draw(transform);
+		}
+		else
+		{
+			if (count<4)
+				count++;
+		}
 	}
 }
