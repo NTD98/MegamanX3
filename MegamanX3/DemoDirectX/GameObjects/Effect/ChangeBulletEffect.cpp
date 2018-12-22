@@ -2,7 +2,6 @@
 
 ChangeBulletEffect::ChangeBulletEffect()
 {
-	//mPlayerFlashDash = new Animation("Resources/megaman/flashdash.png", 5, 1, 5, 0.05f);
 	mEffectChangeBullet1 = new Animation("Resources/megaman/changeBullet1Effect.png", 15, 1, 15, 0.01f);
 	mEffectChangeBullet2 = new Animation("Resources/megaman/changeBullet2Effect.png", 15, 1, 15, 0.01f);
 	mCurrentAnimation = mEffectChangeBullet1;

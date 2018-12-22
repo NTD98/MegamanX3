@@ -21,10 +21,11 @@ public:
 	float delay = 0.0f;
 	int count = 0;
 	Animation* mExplode[5];
+	Bomp* bomp;
 protected:
 	Player * mPlayer;
 	Animation * mAnimation, *mAnimationSlidding, *mAnimationShooting, *mAnimationDying, *mAnimationStanding;
-	Bomp* bomp;
+	
 	vector<Bullet*> mListBullet;
 	int typeAttack;
 	float posX1, posY1;

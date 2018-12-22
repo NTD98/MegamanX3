@@ -11,7 +11,7 @@ Genjibo::Genjibo(float posX, float posY)
 	mAnimationRotate = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboRotateLeft.txt", 0.001f, true);
 	mAnimationSub = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/SubGenjibo.txt", 0.01f, false);
 	mAnimationCircle = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboCircle.txt", 0.01f, true);
-	mAnimationDie = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboDie.txt", 0.01f, false);
+	//mAnimationDie = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboDie.txt", 0.01f, false);
 	mSpriteZone = new Sprite("Resources/Boss/GenjiboZone.png");
 
 	mAnimation = mAnimationSpawn;
@@ -101,11 +101,11 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				isAlive = false;
 			}
 
-			//kiểm tra va chạm  object với map
-			for (size_t j = 0; j < mListMapObject.size(); j++) {
+			////kiểm tra va chạm  object với map
+			//for (size_t j = 0; j < mListMapObject.size(); j++) {
 
-				CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
-			}
+			//	CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
+			//}
 			if (type2 >= 0.5f&&check2&&typeAttack == 2)
 			{
 				vy = -vy;
@@ -119,14 +119,14 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 					type4 = 0.0f;
 				}
 
-			//Kiểm tra va chạm với nhân vật
-			if (mPlayer) {
-				//kiểm tra va chạm viên đạn player
-				for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
-					CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
-				}
-				CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
-			}
+			////Kiểm tra va chạm với nhân vật
+			//if (mPlayer) {
+			//	//kiểm tra va chạm viên đạn player
+			//	for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
+			//		CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
+			//	}
+			//	CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
+			//}
 		}
 	}
 	else
