@@ -43,13 +43,16 @@ void DemoScene::LoadContent()
 		Health.insert(Health.begin(), 1, HealthPoint);
 	}
 	mlistGunners = mMap->getEnemy();
+	mlistBox = mMap->getBox();
     mPlayer = new Player();
 	//50/1340
     //mPlayer->SetPosition(90.00, 1854.00);
 	
+	//helit
+	mPlayer->SetPosition(4822.50, 1915.50);
 
 	//BossByte
-	mPlayer->SetPosition(8000, 2439);
+	//mPlayer->SetPosition(8000, 2439);
 
 	//BossGenjibo
 	//mPlayer->SetPosition(3100, 2439);
@@ -66,6 +69,7 @@ void DemoScene::LoadContent()
 
 void DemoScene::Update(float dt)
 {
+
 	
 	if (mMap->isDaChuyenCanh == false) {
 		if (this->isInCamera(mlistdoor.at(0)) == false) {
@@ -185,6 +189,13 @@ void DemoScene::Update(float dt)
 	if (this->mPlayer->isChangeBullet == true) {
 		changeBulletEffect->Update(dt, mPlayer);
 	}
+
+	for (int i = 0; i < mlistBox.size(); i++) {
+		if (this->isInCamera(mlistBox.at(i)) == true){
+			mlistBox.at(i)->Update(dt);
+		}
+	}
+
 }
 
 void DemoScene::Draw()
@@ -241,6 +252,12 @@ void DemoScene::Draw()
 
 	if (this->mPlayer->isChangeBullet) {
 		changeBulletEffect->Draw(trans);
+	}
+
+	for (int i = 0; i < mlistBox.size(); i++) {
+		if (this->isInCamera(mlistBox.at(i)) == true) {
+			mlistBox.at(i)->Draw(trans);
+		}
 	}
 	
 }
@@ -354,6 +371,7 @@ void DemoScene::CheckCameraAndWorldMap()
 		vector<Bullet*> bulletlist = mPlayer->getbulletlist();
 		mCamera->SetPosition(mPlayer->GetPosition());
 
+
 		if (mCamera->GetBound().left < 0)
 		{
 			//vi position cua camera ma chinh giua camera
@@ -414,8 +432,10 @@ void DemoScene::checkCollision()
 	// Nếu Đối tượng nào xuất hiện trong camera thì mới tương tác với nhau 
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
-		//door
+
+		//doorr
 		for (int j = 0; j < mlistdoor.size(); j++) {
+
 			//Door vs Player
 			if (this->isInCamera(mlistdoor.at(j)) == true) {
 				Entity::CollisionReturn doorVsPlayer = GameCollision::RecteAndRect(mlistdoor.at(j)->GetBound(), this->mPlayer->GetBound());
@@ -602,6 +622,7 @@ void DemoScene::checkCollision()
 		//BulletOfPLayerVs...
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
+			
 			if (mMap->isCollisionVsGunner) {
  				for (int h = 0; h < mlistGunners.size(); h++) {
 					if (this->isInCamera(mlistGunners.at(h)) == true) {

@@ -416,6 +416,7 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollisions side)
 			}
 		}
 	}
+	
 }
 
 RECT Player::GetBound()

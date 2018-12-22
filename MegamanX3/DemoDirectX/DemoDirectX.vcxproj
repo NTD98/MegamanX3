@@ -121,6 +121,7 @@
     <ClCompile Include="GameObjects\Enemy\HeadGunnerStandingState.cpp" />
     <ClCompile Include="GameObjects\Enemy\Helit.cpp" />
     <ClCompile Include="GameObjects\Entity.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\Box.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="GameObjects\Enemy\HeadGunnerStandingState.h" />
     <ClInclude Include="GameObjects\Enemy\Helit.h" />
     <ClInclude Include="GameObjects\Entity.h" />
+    <ClInclude Include="GameObjects\MapObjects\Box.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />

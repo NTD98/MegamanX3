@@ -56,6 +56,7 @@ protected:
 	vector<Sprite*> Health;
 	vector<Helit*> listhelit;
 	vector<Door*> mlistdoor;
+	vector<Box*> mlistBox;
     std::map<int, bool> keys;
 	bool isCollisionVsHelit;
 	bool isCollisionVsBossByte;

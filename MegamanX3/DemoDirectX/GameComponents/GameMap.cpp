@@ -138,6 +138,13 @@ void GameMap::LoadMap(char* filePath)
 									headgunner->Tag = Entity::EntityTypes::HeadGunner;
 									mListGunners.push_back(headgunner);
 								}
+								else {
+									if (layer->GetName() == "box2") {
+										Box *box2 = new Box(position.x,position.y+5,2);
+										mListBox.push_back(box2);
+										mQuadTree->insertEntity(box2);
+									}
+								}
 						}
 					}
 				}
@@ -381,4 +388,9 @@ QuadTree * GameMap::GetQuadTree()
 vector<Enemy*> GameMap::getEnemy()
 {
 	return mListGunners;
+}
+
+vector<Box*> GameMap::getBox()
+{
+	return mListBox;
 }

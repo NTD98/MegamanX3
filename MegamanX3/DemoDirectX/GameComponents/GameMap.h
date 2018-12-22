@@ -19,6 +19,7 @@
 #include "../GameObjects/Boss/Genjibo.h"
 #include "../GameObjects/Boss/Byte.h"
 #include "../GameObjects/Boss/Hornet.h"
+#include "../GameObjects/MapObjects/Box.h"
 class GameMap
 {
 public:
@@ -35,6 +36,7 @@ public:
     int GetTileHeight();
     std::map<int, Sprite*> getListTileSet();
 	vector<Enemy*> getEnemy();
+	vector<Box*> getBox();
     bool IsBoundLeft(); //kiem tra luc nay Camera o vi bien ben trai so voi WorldMap
     bool IsBoundRight(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     bool IsBoundTop(); // kiem tra xem co o vi tri bien ben trai worldmap khong
@@ -53,7 +55,7 @@ private:
     Camera                          *mCamera;
     QuadTree                        *mQuadTree;
 	std::vector<Enemy*>			mListGunners;
-	
+	std::vector<Box*> mListBox;
 	Sprite *map;
 	std::vector<Elevator*>			mlistElevator;
 
