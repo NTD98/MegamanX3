@@ -15,10 +15,12 @@ public:
 	bool check2 = false, check4 = 0.0f;
 	void Draw(D3DXVECTOR2 transform);
 	bool isChange;
+	Animation* mExplode[5];
+	int count = 0;
 protected:
-	Animation * mAnimation, *mAnimationSpawn, *mAnimationSub, *mAnimationRotate, *mAnimationCircle;
+	Animation * mAnimation, *mAnimationSpawn, *mAnimationSub, *mAnimationRotate, *mAnimationCircle, *mAnimationDie;
 	Sprite *mSpriteZone;
-	vector<Bullet*> mListBullet;
+	vector<Bullet*> mListBullet;	
 	int typeAttack;
 	float posX1, posY1;
 	bool onDraw;

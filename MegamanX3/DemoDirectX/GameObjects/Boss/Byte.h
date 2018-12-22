@@ -20,10 +20,10 @@ public:
 	bool right;
 	float delay = 0.0f;
 	int count = 0;
+	Animation* mExplode[5];
 protected:
 	Player * mPlayer;
 	Animation * mAnimation, *mAnimationSlidding, *mAnimationShooting, *mAnimationDying, *mAnimationStanding;
-	Animation* mExplode[5];
 	Bomp* bomp;
 	vector<Bullet*> mListBullet;
 	int typeAttack;
