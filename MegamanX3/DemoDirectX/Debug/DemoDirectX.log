@@ -1,7 +1,101 @@
-﻿  Genjibo.cpp
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\boss\genjibo.cpp(247): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\boss\genjibo.cpp(248): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\boss\genjibo.cpp(249): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\boss\genjibo.cpp(250): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+﻿  DemoScene.cpp
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(20): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(21): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(22): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(23): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(145): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(156): warning C4553: '==': operator has no effect; did you intend '='?
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(179): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(196): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(199): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(214): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(228): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(250): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(361): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(368): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(374): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(381): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(418): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(489): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(510): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(562): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(606): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\scenes\demoscene.cpp(626): warning C4018: '<': signed/unsigned mismatch
+  Hornet.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(128): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(139): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(144): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(151): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(152): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(172): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(193): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(209): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(277): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(278): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(279): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(280): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(298): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(326): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(334): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(336): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(347): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(349): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(359): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Byte.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(173): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(174): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(175): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(176): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(191): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(193): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  main.cpp
+  tinyxml2.cpp
+  base64.cpp
+  TmxUtil.cpp
+  TmxTileset.cpp
+  TmxTileOffset.cpp
+  TmxTileLayer.cpp
+  TmxTile.cpp
+  TmxTerrainArray.cpp
+  TmxTerrain.cpp
+  TmxPropertySet.cpp
+  TmxPolyline.cpp
+  TmxPolygon.cpp
+  TmxObjectGroup.cpp
+  TmxObject.cpp
+  TmxMap.cpp
+  TmxLayer.cpp
+  TmxImageLayer.cpp
+  TmxImage.cpp
+  TmxEllipse.cpp
+  PlayerState.cpp
+  PlayerData.cpp
+  GameObject.cpp
+  Entity.cpp
+  HeadGunnerShootingState.cpp
+  HeadGunner.cpp
+  GunnerShootingState.cpp
+  GunnerJumpingState.cpp
+  GunnerFallingState.cpp
+  Gunner.cpp
+  EnemyState.cpp
+  EnemyData.cpp
+  Enemy.cpp
+  PlayerSmokeDashEffect.cpp
+  PlayerFlashDashEffect.cpp
+  DeathCircle.cpp
+  bomp.cpp
+  SceneManager.cpp
+  Sprite.cpp
+  Scene.cpp
+  QuadTree.cpp
+  GameTime.cpp
+  GameGlobal.cpp
+  GameCollision.cpp
+  CollisionManager.cpp
+  Camera.cpp
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

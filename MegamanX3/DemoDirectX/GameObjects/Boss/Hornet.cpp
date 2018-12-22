@@ -36,7 +36,7 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	isAttack = false;
 	midRectY = rectMove.top + (rectMove.bottom - rectMove.top) / 2;
 
-	mPlayer->hornetHP = new HornetHP(mCamera->GetPosition().x + 200, mCamera->GetPosition().y + 100);
+	mPlayer->hornetHP = new HornetHP(500, 100);
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());
 	mListChild.push_back(new ChildHornet());

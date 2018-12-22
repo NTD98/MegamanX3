@@ -28,7 +28,7 @@ Byte::Byte(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	typeAttack = 0;
 	this->hp = 40;
 	this->Tag = EntityTypes::Byte;
-	mPlayer->byteHP = new HornetHP(mCamera->GetPosition().x + 200, mCamera->GetPosition().y + 100);
+	mPlayer->byteHP = new HornetHP(500, 100);
 }
 
 void Byte::Update(float dt, Player * mPlayer, vector<Entity*> mListMapObject)

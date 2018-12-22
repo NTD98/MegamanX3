@@ -31,5 +31,6 @@ void HornetHP::Draw()
 
 void HornetHP::AddDame(int dame)
 {
-	HP -= dame;
+	if(this)
+		HP -= dame;
 }

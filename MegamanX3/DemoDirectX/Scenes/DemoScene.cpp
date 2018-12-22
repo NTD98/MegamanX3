@@ -60,7 +60,7 @@ void DemoScene::LoadContent()
     mPlayer->SetCamera(mCamera);
 	generate();
 	genjibo = new Genjibo(3750.25, 2403.50);
-	byte = new Byte(8836, 2408, mPlayer, mCamera);
+	byte = new Byte(8834, 2408, mPlayer, mCamera);
 	//hornet = new Hornet(11925.33, 3824.67,mPlayer,mCamera);
 }
 
@@ -100,6 +100,12 @@ void DemoScene::Update(float dt)
 		else {
 			this->isCollisionVsBossByte = false;
 		}
+		if (byte->mExplode[4])
+			if (byte->mExplode[4]->isEndAnimate)
+			{
+				byte = nullptr;
+				isCollisionVsBossByte = false;
+			}
 	}
 		
 	if (genjibo) {
@@ -110,6 +116,12 @@ void DemoScene::Update(float dt)
 		else {
 			this->isCollisionVsBossgenjibo = false;
 		}
+		if (genjibo->mExplode[4])
+			if (genjibo->mExplode[4]->isEndAnimate)
+			{
+				genjibo = nullptr;
+				isCollisionVsBossgenjibo = false;
+			}
 	}
 		
 	if (hornet) {
@@ -120,6 +132,12 @@ void DemoScene::Update(float dt)
 		else {
 			this->isCollisionVsBossHornet = false;
 		}
+		if (hornet->mExplode[4])
+			if (hornet->mExplode[4]->isEndAnimate)
+			{
+				hornet = nullptr;
+				isCollisionVsBossHornet = false;
+			}
 	}
 
 	duration += dt;

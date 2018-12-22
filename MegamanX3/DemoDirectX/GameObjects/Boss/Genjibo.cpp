@@ -11,7 +11,7 @@ Genjibo::Genjibo(float posX, float posY)
 	mAnimationRotate = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboRotateLeft.txt", 0.001f, true);
 	mAnimationSub = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/SubGenjibo.txt", 0.01f, false);
 	mAnimationCircle = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboCircle.txt", 0.01f, true);
-	//mAnimationDie = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboDie.txt", 0.01f, false);
+	mAnimationDie = new Animation("Resources/Boss/Genjibo.png", "Resources/Boss/GenjiboDie.txt", 0.01f, false);
 	mSpriteZone = new Sprite("Resources/Boss/GenjiboZone.png");
 
 	mAnimation = mAnimationSpawn;
