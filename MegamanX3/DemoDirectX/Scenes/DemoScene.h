@@ -22,6 +22,7 @@
 #include "../GameObjects/Boss/Hornet.h"
 #include "../GameObjects/Boss/bomp.h"
 #include "../GameObjects/Effect/ChangeBulletEffect.h"
+#include "../GameObjects/MapObjects/Elevator.h"
 class DemoScene : public Scene
 {
 public:
@@ -57,6 +58,7 @@ protected:
 	vector<Helit*> listhelit;
 	vector<Door*> mlistdoor;
 	vector<Box*> mlistBox;
+	vector<Elevator*> mlistElevator;
     std::map<int, bool> keys;
 	bool isCollisionVsHelit;
 	bool isCollisionVsBossByte;

@@ -30,6 +30,7 @@ public:
 	void Draw(int beginX, int beginY);
     Tmx::Map* GetMap();
     RECT GetWorldMapBound();
+	
     int GetWidth();
     int GetHeight();
     int GetTileWidth();
@@ -37,6 +38,7 @@ public:
     std::map<int, Sprite*> getListTileSet();
 	vector<Enemy*> getEnemy();
 	vector<Box*> getBox();
+	vector<Elevator*> getElevator();
     bool IsBoundLeft(); //kiem tra luc nay Camera o vi bien ben trai so voi WorldMap
     bool IsBoundRight(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     bool IsBoundTop(); // kiem tra xem co o vi tri bien ben trai worldmap khong
@@ -46,6 +48,7 @@ public:
 	bool isCollisionVsGunner;
 	bool isStopCamera;
 	bool isDaChuyenCanh = false;
+	QuadTree                        *mQuadTree;
 private:
     void LoadMap(char* filePath);
 
@@ -53,7 +56,7 @@ private:
     std::map<int, Sprite*>          mListTileset;
     LPD3DXSPRITE                    mSpriteHandler;
     Camera                          *mCamera;
-    QuadTree                        *mQuadTree;
+    
 	std::vector<Enemy*>			mListGunners;
 	std::vector<Box*> mListBox;
 	Sprite *map;

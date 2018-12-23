@@ -44,12 +44,13 @@ void DemoScene::LoadContent()
 	}
 	mlistGunners = mMap->getEnemy();
 	mlistBox = mMap->getBox();
+	mlistElevator = mMap->getElevator();
     mPlayer = new Player();
 	//50/1340
     //mPlayer->SetPosition(90.00, 1854.00);
 	
 	//helit
-	mPlayer->SetPosition(4822.50, 1915.50);
+	mPlayer->SetPosition(4822.50, 1900);
 
 	//BossByte
 	//mPlayer->SetPosition(8000, 2439);
@@ -191,9 +192,16 @@ void DemoScene::Update(float dt)
 	}
 
 	for (int i = 0; i < mlistBox.size(); i++) {
-		if (this->isInCamera(mlistBox.at(i)) == true){
-			mlistBox.at(i)->Update(dt);
+		if (mlistBox.at(i)->isAlive == true) {
+			if (this->isInCamera(mlistBox.at(i)) == true) {
+				mlistBox.at(i)->Update(dt);
+			}
 		}
+		
+	}
+	for (size_t i = 0; i < mlistElevator.size(); i++)
+	{
+		mlistElevator[i]->Update(dt);
 	}
 
 }
@@ -255,11 +263,16 @@ void DemoScene::Draw()
 	}
 
 	for (int i = 0; i < mlistBox.size(); i++) {
-		if (this->isInCamera(mlistBox.at(i)) == true) {
-			mlistBox.at(i)->Draw(trans);
+		if (mlistBox.at(i)->isAlive == true) {
+			if (this->isInCamera(mlistBox.at(i)) == true) {
+				mlistBox.at(i)->Draw(trans);
+			}
 		}
 	}
-	
+	for (size_t i = 0; i < mlistElevator.size(); i++)
+	{
+		mlistElevator[i]->Draw(trans);
+	}
 }
 
 void DemoScene::EnemyAction()
@@ -432,6 +445,8 @@ void DemoScene::checkCollision()
 	// Nếu Đối tượng nào xuất hiện trong camera thì mới tương tác với nhau 
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
+
+
 
 		//doorr
 		for (int j = 0; j < mlistdoor.size(); j++) {
@@ -622,7 +637,22 @@ void DemoScene::checkCollision()
 		//BulletOfPLayerVs...
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
-			
+		
+			for (int h = 0; h < mlistBox.size(); h++) {
+				if (mlistBox.at(h)->isAlive == true) {
+					if (this->isInCamera(mlistBox.at(h)) == true) {
+						Entity::CollisionReturn PlayerBulletVsBox = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(), mlistBox.at(h)->GetBound());
+						Entity::SideCollisions sideBox = GameCollision::getSideCollision(mlistBox.at(h), PlayerBulletVsBox);
+						if (PlayerBulletVsBox.IsCollided) {
+							mlistBox.at(h)->OnCollision(bulletlist.at(j), sideBox);
+							bulletlist.at(j)->OnCollision();
+
+						}
+
+					}
+				}
+			}
+
 			if (mMap->isCollisionVsGunner) {
  				for (int h = 0; h < mlistGunners.size(); h++) {
 					if (this->isInCamera(mlistGunners.at(h)) == true) {
@@ -824,7 +854,8 @@ void DemoScene::checkCollision()
 					mPlayer->SetState(new PlayerClingingState(this->mPlayer->getplayerdata()));
 				}
 				if (sidePlayer == Entity::Top) {
-
+					mPlayer->AddPositionY(5);
+					mPlayer->SetState(new PlayerFallingState(this->mPlayer->getplayerdata()));
 				}
 			}
 		}

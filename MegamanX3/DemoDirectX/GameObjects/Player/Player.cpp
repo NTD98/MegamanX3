@@ -565,7 +565,7 @@ Player::MoveDirection Player::getMoveDirection()
 
 void Player::OnNoCollisionWithBottom()
 {
-    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ && mCurrentState !=PlayerState::StandShoot && mCurrentState!=PlayerState::BeDame && mCurrentState!=PlayerState::Death)
+    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ  && mCurrentState!=PlayerState::BeDame && mCurrentState!=PlayerState::Death)
     {
         this->SetState(new PlayerFallingState(this->mPlayerData));
     }    

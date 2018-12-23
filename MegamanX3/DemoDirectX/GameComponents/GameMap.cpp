@@ -140,9 +140,18 @@ void GameMap::LoadMap(char* filePath)
 								}
 								else {
 									if (layer->GetName() == "box2") {
-										Box *box2 = new Box(position.x,position.y+5,2);
+										Box *box2 = new Box(position.x,position.y,2);
 										mListBox.push_back(box2);
-										mQuadTree->insertEntity(box2);
+									}
+									else {
+										if (layer->GetName() == "box22") {
+											Box *box22 = new Box(position.x, position.y, 22);
+											mListBox.push_back(box22);
+										}
+										if (layer->GetName() == "boxWall") {
+											Box *box22 = new Box(position.x, position.y, 0);
+											mListBox.push_back(box22);
+										}
 									}
 								}
 						}
@@ -203,6 +212,7 @@ RECT GameMap::GetWorldMapBound()
     return bound;
 }
 
+
 int GameMap::GetWidth()
 {
     return mMap->GetWidth() * mMap->GetTileWidth();
@@ -262,12 +272,6 @@ void GameMap::Update(float dt)
 	if (a == mListGunners.size()) {
 		this->isCollisionVsGunner = false;
 	}
-	
-	for (size_t i = 0; i < mlistElevator.size(); i++)
-	{
-		mlistElevator[i]->Update(dt);
-	}
-	
 }
 
 void GameMap::Draw(int beginX, int beginY)
@@ -358,10 +362,7 @@ void GameMap::Draw(int beginX, int beginY)
     }
 #pragma endregion
 #pragma region DRAW MAP OBJECT
-	for (size_t i = 0; i < mlistElevator.size(); i++)
-	{
-		mlistElevator[i]->Draw(trans);
-	}
+	
 	for (size_t i = 0; i < mListGunners.size(); i++)
 	{
 		if (mListGunners[i]->GetBound().left > mCamera->GetBound().right || mListGunners[i]->GetBound().bottom<mCamera->GetBound().top || mListGunners[i]->GetBound().top>mCamera->GetBound().bottom || mListGunners[i]->GetBound().right < mCamera->GetBound().left) {
@@ -393,4 +394,9 @@ vector<Enemy*> GameMap::getEnemy()
 vector<Box*> GameMap::getBox()
 {
 	return mListBox;
+}
+
+vector<Elevator*> GameMap::getElevator()
+{
+	return mlistElevator;
 }

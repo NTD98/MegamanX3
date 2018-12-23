@@ -128,6 +128,8 @@ int QuadTree::getTotalEntities()
     return total;
 }
 
+
+
 int QuadTree::getIndex(RECT body)
 {
     /*lay vi tri cua Entity

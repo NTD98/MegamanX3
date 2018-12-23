@@ -23,7 +23,6 @@ public:
     void getAllEntities(std::vector<Entity*> &entitiesOut);
 
     int getTotalEntities();
-
     RECT Bound;
 
 protected:
@@ -37,7 +36,7 @@ protected:
     3: nam trong Node con goc phai duoi
     -1: bi dinh > 2 node con*/
     int getIndex(RECT body);
-
+	
     void split(); //thuc hien chia ra cac node
 
     bool isContain(Entity *entity);
