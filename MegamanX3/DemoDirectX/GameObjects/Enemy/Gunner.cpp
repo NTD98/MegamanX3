@@ -14,8 +14,8 @@ Gunner::Gunner(D3DXVECTOR3 pos)
 	this->mEnemyData->Enemy = this;
 	this->vx = 0;
 	this->vy = 0;
-	//this->SetState(new GunnerFallingState(this->mEnemyData));
-	this->SetState(new GunnerStandingState(this->mEnemyData));
+	this->SetState(new GunnerFallingState(this->mEnemyData));
+	//this->SetState(new GunnerStandingState(this->mEnemyData));
 	mCurrentAnimation = mAnimationStanding;
 	mCurrentAnimation->SetPosition(pos);
     SetWidth(mCurrentAnimation->GetWidth());

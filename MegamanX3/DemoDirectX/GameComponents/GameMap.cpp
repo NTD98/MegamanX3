@@ -235,7 +235,9 @@ void GameMap::LoadMap(char* filePath)
 											if (layer->GetName() == "health") {
 												ItemsHealth *health = new ItemsHealth(position.x, position.y);
 												mlistHealth.push_back(health);
+											
 											}
+											
 										}
 									}
 								}

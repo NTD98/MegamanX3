@@ -25,7 +25,8 @@ public:
 		ClingingJShoot,
 		BeDame,
 		NoDame,
-		Death
+		Death,
+		Win
     };
 
     ~PlayerState();

@@ -118,6 +118,7 @@
     <ClCompile Include="GameObjects\Enemy\GunnerShootingState.cpp" />
     <ClCompile Include="GameObjects\Enemy\GunnerStandingState.cpp" />
     <ClCompile Include="GameObjects\Enemy\HeadGunner.cpp" />
+    <ClCompile Include="GameObjects\Enemy\HeadGunnerFalling.cpp" />
     <ClCompile Include="GameObjects\Enemy\HeadGunnerShootingState.cpp" />
     <ClCompile Include="GameObjects\Enemy\HeadGunnerStandingState.cpp" />
     <ClCompile Include="GameObjects\Enemy\Helit.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="GameObjects\Enemy\GunnerShootingState.h" />
     <ClInclude Include="GameObjects\Enemy\GunnerStandingState.h" />
     <ClInclude Include="GameObjects\Enemy\HeadGunner.h" />
+    <ClInclude Include="GameObjects\Enemy\HeadGunnerFalling.h" />
     <ClInclude Include="GameObjects\Enemy\HeadGunnerShootingState.h" />
     <ClInclude Include="GameObjects\Enemy\HeadGunnerStandingState.h" />
     <ClInclude Include="GameObjects\Enemy\Helit.h" />

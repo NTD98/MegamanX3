@@ -73,5 +73,8 @@ protected:
 	bool isCollisionVsBossgenjibo;
 	bool isCollisionVsBossHornet;
 	ChangeBulletEffect *changeBulletEffect;
+	bool isBossGenJiboAcceptSpawn = false;
+	bool isBossByteAcceptSpawn = false;
+	bool isBossHornetAcceptSpawn = false;
 };
 

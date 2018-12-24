@@ -18,8 +18,8 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	mAnimation = mAnimationStand;
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
-	this->SetWidth(30);
-	this->SetHeight(60);
+	this->SetWidth(30);	//người ở giữa
+	this->SetHeight(60);	//người ở giữa
 	isFaceRight = false;
 	isAlive = true;
 	isSpawn = true;
@@ -52,6 +52,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 	{
 		mAnimation->Update(dt, 1);
 		Entity::Update(dt);
+
 		if (mPlayer->hornetHP->HP <= 0) {
 			if (mAnimation != mAnimationDie) {
 				mAnimationDie->Start();
@@ -68,7 +69,8 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 		else {
 			typeAttack = 3;
 		}
-		if (mAnimation == mAnimationAttack) {	//go to megaman
+		if (mAnimation == mAnimationAttack) {
+			//go to megaman
 			if (int(posX) > posMegaX) {
 				this->AddPositionX(-2);
 			}
@@ -123,7 +125,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				mAnimationFly->Start();
 				mAnimation = mAnimationFly;
 			}
-			else if (mAnimation == mAnimationPrepare) {	//Done Prepare: Prepare->Attack
+			else if (mAnimation == mAnimationPrepare) {	//done Prepare: Prepare->Attack
 				posMegaX = mPlayer->posX;
 				posMegaY = rectMove.bottom;
 				mAnimationAttack->Start();
@@ -155,7 +157,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 		}
 		//check collision with megaman
 		if (mPlayer) {
-			//check collision mega bullet with boss
+			//kiểm tra va chạm viên đạn player
 			for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
 				CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
 			}
@@ -172,6 +174,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 			}
 		}
 
+		
 		for (size_t j = 0; j < mListMapObject.size(); j++) {
 			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
 		}
@@ -245,6 +248,7 @@ void Hornet::OnCollision(Entity * other, SideCollisions side)
 		other->Tag = EntityTypes::None;
 	}
 	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Static) {
+		
 		if (mAnimation == mAnimationAttack) {
 			mAnimationFly->Start();
 			mAnimation = mAnimationFly;

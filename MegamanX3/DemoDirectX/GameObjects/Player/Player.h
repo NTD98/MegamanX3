@@ -107,6 +107,7 @@ protected:
 		*mAnimationClingJShoot,
 		*mAniamtionBeDame,
 		*mAnimationBeforeDeath,
+		*mAnimationWin,
 
 		// No being dame
 		*mAnimationNoDameStand,

@@ -11,9 +11,9 @@ DemoScene::DemoScene()
 void DemoScene::generate()
 {
 	/*Helit* helit = new Helit(176.00, 1932.67);*/
-	listhelit.push_back(new Helit(4489.00, 1923.00));
-	listhelit.push_back(new Helit(5116.00, 1802.00));
-	listhelit.push_back(new Helit(5707.00, 1866.00));
+	listhelit.push_back(new Helit(4450.00, 1890));
+	listhelit.push_back(new Helit(5116.00, 1870));
+	listhelit.push_back(new Helit(5707.00, 1850));
 
 	mlistdoor.push_back(new Door(3490.33, 2424.67));
 	mlistdoor.push_back(new Door(3860.96, 2424.67));
@@ -50,7 +50,7 @@ void DemoScene::LoadContent()
 	mlisItemHealth = mMap->mlistHealth;
     mPlayer = new Player();
 	//50/1340
-   // mPlayer->SetPosition(90.00, 1854.00);
+    mPlayer->SetPosition(90.00, 1854.00);
 	
 	//healtItem
 	//mPlayer->SetPosition(5171.33, 3398.67);
@@ -59,7 +59,7 @@ void DemoScene::LoadContent()
 	//mPlayer->SetPosition(1100, 1700);
 
 	//helit
-	mPlayer->SetPosition(4822.50, 1900);
+	//mPlayer->SetPosition(4500, 2400);
 
 	//BossByte
 	//mPlayer->SetPosition(8000, 2439);
@@ -77,15 +77,36 @@ void DemoScene::LoadContent()
 	Sound::getInstance()->play("background", true, 0);
     mPlayer->SetCamera(mCamera);
 	generate();
-	byte = new Byte(8834, 2408, mPlayer, mCamera);
-	genjibo = new Genjibo(3750.25, 2403.50);
-	hornet = new Hornet(11925.33, 3824.67,mPlayer,mCamera);
+	
+	
+	
 }
 
 
 
 void DemoScene::Update(float dt)
 {
+	if (!hornet && this->mPlayer->GetBound().left>mlistdoor.at(4)->GetBound().right) {
+		{
+			this->mPlayer->changeAnimation(PlayerState::Win);
+		}
+	}
+	if ((this->mPlayer->GetBound().left > mlistdoor.at(1)->GetBound().right && this->isInCamera(mlistdoor.at(1)) )|| (this->mPlayer->GetBound().left > mlistdoor.at(3)->GetBound().right && this->isInCamera(mlistdoor.at(3))) ) {
+		mMap->isDaChuyenCanh = false;
+	}
+
+	if ((this->mPlayer->GetBound().left > mlistdoor.at(0)->GetBound().right) && this->isBossGenJiboAcceptSpawn==false) {
+		genjibo = new Genjibo(3750.25, 2403.50);
+		this->isBossGenJiboAcceptSpawn = true;
+	}
+	if ((this->mPlayer->GetBound().left > mlistdoor.at(2)->GetBound().right) && this->isBossByteAcceptSpawn == false) {
+		byte = new Byte(8834, 2408, mPlayer, mCamera);
+		this->isBossByteAcceptSpawn = true;
+	}
+	if ((this->mPlayer->GetBound().left > mlistdoor.at(4)->GetBound().right) && this->isBossHornetAcceptSpawn == false) {
+		hornet = new Hornet(11925.33, 3824.67, mPlayer, mCamera);
+		this->isBossHornetAcceptSpawn = true;
+	}
 	
 	if (mMap->isDaChuyenCanh == false) {
 		if (this->isInCamera(mlistdoor.at(0)) == false) {

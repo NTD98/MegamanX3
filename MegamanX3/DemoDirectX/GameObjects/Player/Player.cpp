@@ -54,6 +54,7 @@ void Player::InitAni()
 	mAnimationClingingJ = new Animation("Resources/megaman/ClingJ.png", 2, 1, 2, 0.15f);
 	mAniamtionBeDame = new Animation("Resources/megaman/beDame.png", 10, 1, 10, 0.1f);
 	mAnimationBeforeDeath = new Animation("Resources/megaman/BeforeDeath.png", 2, 1, 2, 0.1f);
+	mAnimationWin = new Animation("Resources/megaman/Win.png", 5, 1, 5, 0.1f);
 
 	//Trạng thái vô hiệu dame của nhân vật
 	mAnimationNoDameStand = new Animation("Resources/megaman/noDameStand.png", 2, 1, 2, 0.03f);
@@ -588,6 +589,9 @@ void Player::changeAnimation(PlayerState::StateName state)
 			Sound::getInstance()->stop("background");
 			Sound::getInstance()->play("Die", false, 1);
 			mCurrentAnimation = mAnimationBeforeDeath;
+			break;
+		case PlayerState::Win:
+			mCurrentAnimation = mAnimationWin;
 			break;
         default:
             break;

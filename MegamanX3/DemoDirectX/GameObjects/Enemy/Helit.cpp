@@ -42,7 +42,7 @@ void Helit::Update(float dt,Player* mPlayer, vector<Entity*> mListEntity)
 		if (posY <= posY1 && vy<0) {
 			vy = 0;
 		}
-		if (abs(posX - mPlayer->posX) < 100 && abs(posY - mPlayer->posY)<100)	// khoảng cách dưới 100
+		if (abs(posX - mPlayer->posX) < 150 && abs(posY - mPlayer->posY)<150)	// khoảng cách dưới 100
 		{
 			if (mPlayer->posX < posX)	//bên trái
 			{
