@@ -4,7 +4,7 @@
 #include"GameGlobal.h"
 #include <fstream>
 #include <iostream>
-std::ofstream out("Entity.txt");
+#include <string>
 GameMap::GameMap()
 {
 	
@@ -32,12 +32,6 @@ GameMap::~GameMap()
 	}
 	mListGunners.clear();
 
-	for (size_t i = 0; i < mlistElevator.size(); i++)
-	{
-		if (mlistElevator[i])
-			delete mlistElevator[i];
-	}
-	mlistElevator.clear();
 
     for (size_t i = 0; i < mListTileset.size(); i++)
     {
@@ -48,15 +42,25 @@ GameMap::~GameMap()
 
     delete mQuadTree;
 }
+void GameMap::DeleteEntity(Entity * entity)
+{
+	
+}
+void GameMap::deletenode(Entity * entity)
+{
+	mQuadTree->deletenode(entity);
+}
 void GameMap::LoadMap(char* filePath)
 {
+	FILE* file;
+	file = fopen("C:/Users/DanhyPC/Desktop/MegamanX3/DemoDirectX/Entity.txt", "r");
     mMap = new Tmx::Map();
     mMap->ParseFile(filePath);
     RECT r;
     r.left = 0;
     r.top = 0;
-	r.right = 1000;
-	r.bottom = 1000;
+	r.right = 600;
+	r.bottom = 600;
 
     mQuadTree = new QuadTree(1, r);
 
@@ -71,15 +75,89 @@ void GameMap::LoadMap(char* filePath)
     }
 
     //khoi tao cac khoi Brick (vien gach)
-
-	for (size_t i = 0; i < GetMap()->GetNumTileLayers(); i++)
+	if (file)
 	{
-		const Tmx::TileLayer *layer = mMap->GetTileLayer(i);
+		while (!feof(file))
+		{
+			char str1[15], str2[10], str3[10], str[10], str4[10], str5[10];
+			char st[10] = "Static", gn[10] = "Elevator", el[13] = "EscalatorLTR", hg[11] = "BoxWall",b22[10]="Box22",b[10]="Box",le[13]="EscalatorRTL";
+			float x, y, w, h;
+			fscanf(file, "%s %s %f %s %f %s %f %s %f", str1, str2, &x, str3, &y, str4, &w, str5, &h);
+			if (strcmp(str1, st) == 0)
+			{
+				Entity *entity = new Entity();
+				entity->SetPosition(x, y);
+				entity->SetWidth(w);
+				entity->SetHeight(h);
+				entity->Tag = Entity::EntityTypes::Static;
+				mQuadTree->insertEntity(entity);
+			}
+			else
+				if (strcmp(str1, gn)==0)
+				{
+					Elevator *ele = new Elevator(x,y, false);
+					ele->SetWidth(w);
+					ele->SetHeight(h);
+					mlistElevator.push_back(ele);
+					mQuadTree->insertEntity(ele);
+				}
+				else if (strcmp(str1, el)==0)
+				{
+					Escalator *es;
+					es = new Escalator(x,y, true);
+					es->SetWidth(w);
+					es->SetHeight(h);
+					mlistEscalator.push_back(es);
+					mQuadTree->insertEntity(es);
+				}
+				else
+					if (strcmp(str1, hg)==0)
+					{
+						Box *boxWall = new Box(x,y, 0);
+						boxWall->SetWidth(w);
+						boxWall->SetHeight(h);
+						mListBox.push_back(boxWall);
+						mQuadTree->insertEntity(boxWall);
+					}
+					else if (strcmp(str1, b22)==0)
+					{
+						Box *box22 = new Box(x,y, 22);
+						box22->SetWidth(w);
+						box22->SetHeight(h);
+						mListBox.push_back(box22);
+						mQuadTree->insertEntity(box22);
+					}
+					else if (strcmp(str1, b)==0)
+					{
+						Box *box2 = new Box(x,y, 2);
+						box2->SetWidth(w);
+						box2->SetHeight(h);
+						mListBox.push_back(box2);
+						mQuadTree->insertEntity(box2);
+					}
+					else if (strcmp(str1, le)==0)
+					{
+						Escalator *es;
+						es = new Escalator(x,y, false);
+						es->SetWidth(w);
+						es->SetHeight(h);
+						mlistEscalator.push_back(es);
+						mQuadTree->insertEntity(es);
+					}
+			//getline(f, line);
+			//data += line;
+		}
+	}
+	else{
+		std::ofstream out("Entity.txt");
+		for (size_t i = 0; i < GetMap()->GetNumTileLayers(); i++)
+		{
+			const Tmx::TileLayer *layer = mMap->GetTileLayer(i);
 
-		if (layer->IsVisible())
-			continue;
+			if (layer->IsVisible())
+				continue;
 
-		//xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
+			//xac dinh layer Brick bi an di de tu do tao ra cac vien gach trong game, nhung vien gach khong phai la 1 physic static nos co the bi pha huy duoc
 
 			for (size_t j = 0; j < mMap->GetNumTilesets(); j++)
 			{
@@ -120,17 +198,10 @@ void GameMap::LoadMap(char* filePath)
 							if (layer->GetName() == "gunner")
 							{
 								Gunner *gunner = new Gunner(position);
-							    gunner->Tag = Entity::EntityTypes::Gunner;
+								gunner->Tag = Entity::EntityTypes::Gunner;
 								mListGunners.push_back(gunner);
 								//mQuadTree->insertEntity(gunner);
 							}
-							else
-							//elevator
-								if (layer->GetName() == "elevator") {
-									Elevator *elevator = new Elevator(position);
-									mlistElevator.push_back(elevator);
-									mQuadTree->insertEntity(elevator);
-								}
 							else
 								if (layer->GetName() == "headgunner")
 								{
@@ -140,53 +211,102 @@ void GameMap::LoadMap(char* filePath)
 								}
 								else {
 									if (layer->GetName() == "box2") {
-										Box *box2 = new Box(position.x,position.y,2);
+										Box *box2 = new Box(position.x, position.y, 2);
 										mListBox.push_back(box2);
+										mQuadTree->insertEntity(box2);
+										out << "Box " << "x: " << std::to_string(box2->GetPosition().x) << " " << "y: " << std::to_string(box2->GetPosition().y) << " " << "width " << std::to_string(box2->GetWidth()) << " height " << std::to_string(box2->GetHeight()) << "\n";
 									}
 									else {
 										if (layer->GetName() == "box22") {
 											Box *box22 = new Box(position.x, position.y, 22);
 											mListBox.push_back(box22);
+											mQuadTree->insertEntity(box22);
+											out << "Box22 " << "x: " <<std::to_string(box22->GetPosition().x) << " " << "y: " << std::to_string(box22->GetPosition().y) << " " << "width " << std::to_string(box22->GetWidth()) << " height " << std::to_string(box22->GetHeight()) << "\n";
+
 										}
 										if (layer->GetName() == "boxWall") {
-											Box *box22 = new Box(position.x, position.y, 0);
-											mListBox.push_back(box22);
+											Box *boxWall = new Box(position.x, position.y, 0);
+											mListBox.push_back(boxWall);
+											mQuadTree->insertEntity(boxWall);
+											out << "BoxWall " << "x: " << std::to_string(boxWall->GetPosition().x) << " " << "y: " << std::to_string(boxWall->GetPosition().y) << " " << "width " << std::to_string(boxWall->GetWidth()) << " height " << std::to_string(boxWall->GetHeight()) << "\n";
+
+										}
+										else {
+											if (layer->GetName() == "health") {
+												ItemsHealth *health = new ItemsHealth(position.x, position.y);
+												mlistHealth.push_back(health);
+											}
 										}
 									}
 								}
 						}
 					}
 				}
+			}
 		}
-	}
 #pragma region -OBJECTGROUP, STATIC OBJECT-
 
-    for (size_t i = 0; i < mMap->GetNumObjectGroups(); i++)
-    {
-        const Tmx::ObjectGroup *objectGroup = mMap->GetObjectGroup(i);
+		for (size_t i = 0; i < mMap->GetNumObjectGroups(); i++)
+		{
+			const Tmx::ObjectGroup *objectGroup = mMap->GetObjectGroup(i);
 
-        for (size_t j = 0; j < objectGroup->GetNumObjects(); j++)
-        {
-            //lay object group chu khong phai layer
-            //object group se chua nhung body
-            Tmx::Object *object = objectGroup->GetObjects().at(j);
-
-            Entity *entity = new Entity();
-            entity->SetPosition(object->GetX() + object->GetWidth()/2,object->GetY() + object->GetHeight()/2);
-            entity->SetWidth(object->GetWidth());
-            entity->SetHeight(object->GetHeight());
-            entity->Tag = Entity::EntityTypes::Static;
-
-            mQuadTree->insertEntity(entity);
-			switch (entity->Tag)
+			for (size_t j = 0; j < objectGroup->GetNumObjects(); j++)
 			{
-			case 4: out << "Static " << "x: " << std::to_string(entity->GetPosition().x)<<" "<<"y: "<< std::to_string(entity->GetPosition().y)<<" "<<"width "<< std::to_string(entity->GetWidth())<<" height "<< std::to_string(entity->GetHeight())<<"\n";
-			default:
-			break;
+				//lay object group chu khong phai layer
+				//object group se chua nhung body
+				Tmx::Object *object = objectGroup->GetObjects().at(j);
+
+				Entity *entity = new Entity();
+				entity->SetPosition(object->GetX() + object->GetWidth() / 2, object->GetY() + object->GetHeight() / 2);
+				entity->SetWidth(object->GetWidth());
+				entity->SetHeight(object->GetHeight());
+				entity->Tag = Entity::EntityTypes::Static;
+				mQuadTree->insertEntity(entity);
+				if (object->GetId() == 375) {
+					Escalator *es;
+					es = new Escalator(object->GetX() + object->GetWidth() / 2, object->GetY() + object->GetHeight() / 2, true);
+					mlistEscalator.push_back(es);
+					mQuadTree->insertEntity(es);
+					out << "EscalatorLTR " << "x: " << std::to_string(es->GetPosition().x) << " " << "y: " << std::to_string(es->GetPosition().y) << " " << "width " << std::to_string(es->GetWidth()) << " height " << std::to_string(es->GetHeight()) << "\n";
+				}
+
+				else {
+					if (object->GetId() == 380 || object->GetId() == 381) {
+						Escalator *es;
+						es = new Escalator(object->GetX() + object->GetWidth() / 2, object->GetY() + object->GetHeight() / 2, false);
+						mlistEscalator.push_back(es);
+						mQuadTree->insertEntity(es);
+						out << "EscalatorRTL " << "x: " << std::to_string(es->GetPosition().x) << " " << "y: " << std::to_string(es->GetPosition().y) << " " << "width " << std::to_string(es->GetWidth()) << " height " << std::to_string(es->GetHeight()) << "\n";
+					}
+					else
+					if (object->GetId() == 372) {
+						Elevator *ele = new Elevator(object->GetX(), object->GetY(), false);
+						mlistElevator.push_back(ele);
+						mQuadTree->insertEntity(ele);
+						out << "Elevator " << "x: " << std::to_string(ele->GetPosition().x) << " " << "y: " << std::to_string(ele->GetPosition().y) << " " << "width " << std::to_string(ele->GetWidth()) << " height " << std::to_string(ele->GetHeight()) << "\n";
+
+					}
+					else {
+						if (object->GetId() == 373) {
+							Elevator *ele = new Elevator(object->GetX(), object->GetY(), true);
+							mlistElevator.push_back(ele);
+							mQuadTree->insertEntity(ele);
+							out << "Elevator " << "x: " << std::to_string(ele->GetPosition().x) << " " << "y: " << std::to_string(ele->GetPosition().y) << " " << "width " << std::to_string(ele->GetWidth()) << " height " << std::to_string(ele->GetHeight()) << "\n";
+
+						}
+					}
+				}
+				switch (entity->Tag)
+				{
+				case Entity::EntityTypes::Static: out << "Static " << "x: " << std::to_string(entity->GetPosition().x) << " " << "y: " << std::to_string(entity->GetPosition().y) << " " << "width " << std::to_string(entity->GetWidth()) << " height " << std::to_string(entity->GetHeight()) << "\n";
+
+				default:
+					break;
+				}
 			}
-        }
-    }
-	out.close();
+		}
+		out.close();
+	}
 #pragma endregion
 }
 
@@ -271,6 +391,12 @@ void GameMap::Update(float dt)
 	
 	if (a == mListGunners.size()) {
 		this->isCollisionVsGunner = false;
+	}
+	for (int i = 0; i < mlistEscalator.size(); i++) {
+		mlistEscalator.at(i)->Update(dt);
+	}
+	for (int i = 0; i < mlistHealth.size(); i++) {
+		mlistHealth.at(i)->Update(dt);
 	}
 }
 
@@ -371,7 +497,12 @@ void GameMap::Draw(int beginX, int beginY)
 		if(mListGunners[i]->isAlive)
 		mListGunners[i]->Draw(trans);
 	}
-	
+	for (int i = 0; i < mlistEscalator.size(); i++) {
+		mlistEscalator.at(i)->Draw(trans);
+	}
+	for (int i = 0; i < mlistHealth.size(); i++) {
+		mlistHealth.at(i)->Draw(trans);
+	}
 #pragma endregion
 	
 }
@@ -396,7 +527,4 @@ vector<Box*> GameMap::getBox()
 	return mListBox;
 }
 
-vector<Elevator*> GameMap::getElevator()
-{
-	return mlistElevator;
-}
+

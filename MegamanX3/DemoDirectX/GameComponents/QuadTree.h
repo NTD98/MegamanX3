@@ -24,7 +24,7 @@ public:
 
     int getTotalEntities();
     RECT Bound;
-
+	void deletenode(Entity* entity);
 protected:
     QuadTree **Nodes;
     std::vector<Entity*> mListEntity; //danh sach cac phan tu co trong vung va cham (Bound)

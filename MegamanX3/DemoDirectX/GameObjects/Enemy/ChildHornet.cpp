@@ -70,7 +70,7 @@ void ChildHornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObje
 
 void ChildHornet::OnCollision(Entity * other, SideCollisions side)
 {
-	if (other->Tag == EntityTypes::Wall|| other->Tag == EntityTypes::Static) {
+	if (other->Tag == EntityTypes::Wall|| other->Tag == EntityTypes::Static|| other->Tag == EntityTypes::Door) {
 		if (typeAttack == 1) {
 			waittingDie = true;
 			vx = 0;
@@ -111,11 +111,11 @@ void ChildHornet::OnCollision(Entity * other, SideCollisions side)
 
 void ChildHornet::Die()
 {
+	Sound::getInstance()->play("explosion", false, 1);
 	waittingDie = false;
 	isAlive = false;
 	mExplosion = new Animation("Resources/explode.png", 6, 1, 6, 0.1f);
 	mExplosion->SetPosition(mAnimation->GetPosition());
-	Sound::getInstance()->play("explosion", false, 1);
 }
 
 void ChildHornet::Draw(D3DXVECTOR2 transform)

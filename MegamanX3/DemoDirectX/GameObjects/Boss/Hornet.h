@@ -17,6 +17,9 @@ public:
 	Animation* mExplode[5];
 	void Draw(D3DXVECTOR2 transform);
 	int count = 0;
+	ChildHornet *mChild;
+	ChildHornet *mChildFollow;
+	std::vector<ChildHornet* > mListChild;
 protected:
 	void SpawnChild1();
 	void SpawnFollow();
@@ -24,9 +27,6 @@ protected:
 		*mAnimationFly, *mAnimationStand, *mAnimationPrepare, *mAnimationFollow;
 	Player* mPlayer;
 	Camera* mCamera;
-	ChildHornet *mChild;
-	ChildHornet *mChildFollow;
-	std::vector<ChildHornet* > mListChild;
 	RECT rectMove;
 	int midRectY;
 	int typeAttack, iExplosion;

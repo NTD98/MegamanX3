@@ -85,6 +85,7 @@ public:
 	bool isChangeBullet = false;
 	float dtChangBullet = 0;
 	bool isGetOutGunAnimation = false;
+	
 protected:
     Camera      *mCamera;
 
@@ -126,6 +127,5 @@ protected:
 	int HealthPoint = 16;
     //chi cho phep jump khi nhan nhim space, muon nhay lai phai tha phim space roi nhan lai
 	void InitAni();
-	
 };
 

@@ -23,6 +23,9 @@
 #include "../GameObjects/Boss/bomp.h"
 #include "../GameObjects/Effect/ChangeBulletEffect.h"
 #include "../GameObjects/MapObjects/Elevator.h"
+#include "../GameObjects/MapObjects/Box.h"
+#include "../GameObjects/MapObjects/Escalator.h"
+#include "../GameObjects/MapObjects/ItemsHealth.h"
 #include "../GameComponents/Sound.h"
 class DemoScene : public Scene
 {
@@ -38,7 +41,9 @@ public:
     void OnMouseDown(float x, float y);
 	bool iscolidebullet(RECT a, RECT b);
 	bool isInCamera(Entity *entityA );
+	float outtime = 0.0f;
 	vector<Entity*> getMapObject();
+	
 protected:
 	vector<Entity*> mapobject;
     void checkCollision();
@@ -60,6 +65,8 @@ protected:
 	vector<Door*> mlistdoor;
 	vector<Box*> mlistBox;
 	vector<Elevator*> mlistElevator;
+	vector<Escalator*> mlistEscalator;
+	vector<ItemsHealth*> mlisItemHealth;
     std::map<int, bool> keys;
 	bool isCollisionVsHelit;
 	bool isCollisionVsBossByte;

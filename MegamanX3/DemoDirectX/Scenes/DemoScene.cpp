@@ -2,7 +2,7 @@
 #include "../GameDefines/GameDefine.h"
 #include "../GameObjects/Player/PlayerClingingState.h"
 #include "../GameObjects/Player/PlayerDeathState.h"
-
+#include "../GameComponents/Sound.h"
 DemoScene::DemoScene()
 {
     LoadContent();
@@ -12,15 +12,16 @@ void DemoScene::generate()
 {
 	/*Helit* helit = new Helit(176.00, 1932.67);*/
 	listhelit.push_back(new Helit(4489.00, 1923.00));
-	listhelit.push_back(new Helit(4951.00, 1813.00));
 	listhelit.push_back(new Helit(5116.00, 1802.00));
-	listhelit.push_back(new Helit(5301.00, 1852.00));
 	listhelit.push_back(new Helit(5707.00, 1866.00));
 
 	mlistdoor.push_back(new Door(3490.33, 2424.67));
 	mlistdoor.push_back(new Door(3860.96, 2424.67));
 	mlistdoor.push_back(new Door(8520.78, 2424.67));
 	mlistdoor.push_back(new Door(8893.44, 2424.67));
+	//door hornet
+	mlistdoor.push_back(new Door(11620, 3923.67, true));
+
 }
 
 
@@ -35,9 +36,7 @@ void DemoScene::LoadContent()
     mMap->SetCamera(mCamera);
 	HealthBar = new Sprite("Resources/megaman/EmptyHealth.png");
 	HealthPoint = new Sprite("Resources/megaman/HealthBar.png");
-	Sound::getInstance()->loadSound("Resources/Sound/Background.wav", "background");
-	Sound::getInstance()->loadSound("Resources/Sound/Explosion.wav", "explosion");
-	Sound::getInstance()->play("background", true, 0);
+
 
 	changeBulletEffect = new ChangeBulletEffect();
 	for (int i = 0; i < 16; i++)
@@ -46,11 +45,19 @@ void DemoScene::LoadContent()
 	}
 	mlistGunners = mMap->getEnemy();
 	mlistBox = mMap->getBox();
-	mlistElevator = mMap->getElevator();
+	mlistElevator = mMap->mlistElevator;
+	mlistEscalator = mMap->mlistEscalator;
+	mlisItemHealth = mMap->mlistHealth;
     mPlayer = new Player();
 	//50/1340
-    //mPlayer->SetPosition(90.00, 1854.00);
+   // mPlayer->SetPosition(90.00, 1854.00);
 	
+	//healtItem
+	//mPlayer->SetPosition(5171.33, 3398.67);
+
+	//elevator1
+	//mPlayer->SetPosition(1100, 1700);
+
 	//helit
 	mPlayer->SetPosition(4822.50, 1900);
 
@@ -61,18 +68,24 @@ void DemoScene::LoadContent()
 	//mPlayer->SetPosition(3100, 2439);
 
 	//BossHornet
-	//mPlayer->SetPosition(11120.00, 3926.67);
+	//mPlayer->SetPosition(11110, 3926);
 
+	//esclator
+	//mPlayer->SetPosition(2469.33, 904.67);
+	Sound::getInstance()->loadSound("Resources/Sound/Background.wav", "background");
+	Sound::getInstance()->loadSound("Resources/Sound/Explosion.wav", "explosion");
+	Sound::getInstance()->play("background", true, 0);
     mPlayer->SetCamera(mCamera);
 	generate();
-	genjibo = new Genjibo(3750.25, 2403.50);
 	byte = new Byte(8834, 2408, mPlayer, mCamera);
-	//hornet = new Hornet(11925.33, 3824.67,mPlayer,mCamera);
+	genjibo = new Genjibo(3750.25, 2403.50);
+	hornet = new Hornet(11925.33, 3824.67,mPlayer,mCamera);
 }
+
+
 
 void DemoScene::Update(float dt)
 {
-
 	
 	if (mMap->isDaChuyenCanh == false) {
 		if (this->isInCamera(mlistdoor.at(0)) == false) {
@@ -93,9 +106,18 @@ void DemoScene::Update(float dt)
 				mMap->isDaChuyenCanh = true;
 			}
 		}
+		if (this->isInCamera(mlistdoor.at(4)) == false) {
+			//Do nothing
+		}
+		else {
+			if (mlistdoor.at(4)->GetBound().right <= mCamera->GetBound().right) {
+				mMap->isStopCamera = true;
+				mMap->isDaChuyenCanh = true;
+			}
+		}
 		
 	}
-	if (mMap->isStopCamera == true && (mlistdoor[0]->isPlayerAfterDoor == true ||  mlistdoor[2]->isPlayerAfterDoor == true )) {
+	if (mMap->isStopCamera == true && (mlistdoor[0]->isPlayerAfterDoor == true ||  mlistdoor[2]->isPlayerAfterDoor == true || mlistdoor[4]->isPlayerAfterDoor==true )) {
 		mMap->isStopCamera = false;
 	}
 
@@ -146,7 +168,7 @@ void DemoScene::Update(float dt)
 				isCollisionVsBossHornet = false;
 			}
 	}
-
+	outtime += dt;
 	duration += dt;
 	int a = 0;
 	for (int i = 0; i < listhelit.size(); i++)
@@ -198,6 +220,12 @@ void DemoScene::Update(float dt)
 			if (this->isInCamera(mlistBox.at(i)) == true) {
 				mlistBox.at(i)->Update(dt);
 			}
+		}
+		else {
+			mMap->deletenode(mlistBox.at(i));
+			std::vector<Box*>::iterator pos = mlistBox.begin();
+			mlistBox.erase(pos + i);
+			
 		}
 		
 	}
@@ -270,6 +298,7 @@ void DemoScene::Draw()
 				mlistBox.at(i)->Draw(trans);
 			}
 		}
+		
 	}
 	for (size_t i = 0; i < mlistElevator.size(); i++)
 	{
@@ -421,7 +450,7 @@ void DemoScene::CheckCameraAndWorldMap()
 		{
 			for (auto it = bulletlist.begin(); it != bulletlist.end();)
 			{
-				if (bulletlist.at(bulletlist.size() - 1)->GetBound().left > mCamera->GetBound().right || bulletlist.at(bulletlist.size() - 1)->GetBound().right < mCamera->GetBound().left)
+				if (bulletlist.at(bulletlist.size() - 1)->posX > mCamera->GetBound().right || bulletlist.at(bulletlist.size() - 1)->posX < mCamera->GetBound().left)
 				{
 					mPlayer->deletebullet();
 					break;
@@ -434,6 +463,7 @@ void DemoScene::CheckCameraAndWorldMap()
 		}
 	}
 }
+
 
 void DemoScene::checkCollision()
 {
@@ -448,8 +478,29 @@ void DemoScene::checkCollision()
 	for (size_t i = 0; i < listCollision.size(); i++)
 	{
 
+		//healthIems
+		for (int j = 0; j < mlisItemHealth.size(); j++) {
+			if (this->isInCamera(mlisItemHealth.at(j)) == true) {
+				Entity::CollisionReturn PlayerVsHealthItems = GameCollision::RecteAndRect(mPlayer->GetBound(), mlisItemHealth.at(j)->GetBound());
+				Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(mPlayer, PlayerVsHealthItems);
+				Entity::SideCollisions sideHealth = GameCollision::getSideCollision(mlisItemHealth.at(j), PlayerVsHealthItems);
+				if (PlayerVsHealthItems.IsCollided) {
+					if (mlisItemHealth.at(j)->isAlive == true) {
+						mPlayer->OnCollision(mlisItemHealth.at(j), sidePlayer);
+						mlisItemHealth.at(j)->OnCollision(mPlayer, sideHealth);
+					}
+				}
+			}
+		}
 
-
+		//escalator
+		for (int j = 0; j < mlistEscalator.size(); j++) {
+			Entity::CollisionReturn PlayerVsEs = GameCollision::RecteAndRect(mPlayer->GetBound(), mlistEscalator.at(j)->GetBound());
+			Entity::SideCollisions side = GameCollision::getSideCollision(mPlayer, PlayerVsEs);
+			if (PlayerVsEs.IsCollided) {
+				mPlayer->OnCollision(mlistEscalator.at(j), side);
+			}
+		}
 		//doorr
 		for (int j = 0; j < mlistdoor.size(); j++) {
 
@@ -465,11 +516,11 @@ void DemoScene::checkCollision()
 					{
 						mPlayer->SetState(new PlayerClingingState(this->mPlayer->getplayerdata()));
 					}
-					if (j == 1 && genjibo && side == Entity::Left) {
+					if (j == 1 && genjibo && (side == Entity::Left || side == Entity::TopLeft || side == Entity::BottomLeft ||side ==Entity::Top) ) {
 						mPlayer->AddPositionX(-5);
 						continue;
 					}
-					if (j == 3 && byte ) {
+					if (j == 3 && byte && (side == Entity::Left || side == Entity::TopLeft || side == Entity::BottomLeft || side == Entity::Top)) {
 						mPlayer->AddPositionX(-5);
 						continue;
 					}
@@ -487,7 +538,7 @@ void DemoScene::checkCollision()
 							mPlayer->AddPositionX(5);
 						}
 					}	
-			}
+				}
 				
 		}
 
@@ -640,6 +691,7 @@ void DemoScene::checkCollision()
 		for (size_t j = 0; j < bulletlist.size(); j++)
 		{
 		
+			//box
 			for (int h = 0; h < mlistBox.size(); h++) {
 				if (mlistBox.at(h)->isAlive == true) {
 					if (this->isInCamera(mlistBox.at(h)) == true) {
@@ -667,9 +719,7 @@ void DemoScene::checkCollision()
 								mlistGunners.at(h)->changeAnimation(EnemyState::Die);
 								mlistGunners.at(h)->isAlive = false;
 								std::vector<Enemy*>::iterator pos = mlistGunners.begin();
-								for (int m = 1; m < h; m++)
-									pos++;
-								mlistGunners.erase(pos);
+								mlistGunners.erase(pos + h);
 							}
 						}
 					}
@@ -685,9 +735,7 @@ void DemoScene::checkCollision()
 							if (listhelit.at(h)->isAlive == false) {
 								Sound::getInstance()->play("explosion", false, 1);
 								std::vector<Helit*>::iterator pos = listhelit.begin();
-								for (int m = 1; m < h; m++)
-									pos++;
-								listhelit.erase(pos);
+								listhelit.erase(pos + h);
 							}
 						}
 					}
@@ -717,6 +765,19 @@ void DemoScene::checkCollision()
 					{
 						Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(byte, ex);
 						byte->OnCollision(bulletlist.at(j), sidePlayer);
+						bulletlist.at(j)->OnCollision();
+					}
+				}
+			}
+			//honert 
+			if (this->isCollisionVsBossHornet) {
+				if (hornet)
+				{
+					Entity::CollisionReturn ex = GameCollision::RecteAndRect(bulletlist.at(j)->GetBound(),
+						hornet->GetBound());
+					if (ex.IsCollided)
+					{
+						Entity::SideCollisions sidePlayer = GameCollision::getSideCollision(hornet, ex);
 						bulletlist.at(j)->OnCollision();
 					}
 				}
@@ -857,7 +918,7 @@ void DemoScene::checkCollision()
 					//mPlayer->changeAnimation(PlayerState::Clinging);
 					mPlayer->SetState(new PlayerClingingState(this->mPlayer->getplayerdata()));
 				}
-				if (sidePlayer == Entity::Top) {
+				if (sidePlayer == Entity::Top || sidePlayer == Entity::TopLeft || sidePlayer == Entity::TopRight) {
 					mPlayer->AddPositionY(5);
 					mPlayer->SetState(new PlayerFallingState(this->mPlayer->getplayerdata()));
 				}

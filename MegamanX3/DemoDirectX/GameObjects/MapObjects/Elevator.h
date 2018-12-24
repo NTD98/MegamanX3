@@ -9,13 +9,14 @@ class Elevator : public Entity
 {
 public:
 	~Elevator();
-	Elevator(D3DXVECTOR3 pos);
+	Elevator(float posX,float posY,bool isElevator2);
 	void Update(float dt);
-
+	bool isElevator2 = false;//thang may 1
 	void Draw(D3DXVECTOR3 position = D3DXVECTOR3(), RECT sourceRect = RECT(), D3DXVECTOR2 scale = D3DXVECTOR2(), D3DXVECTOR2 transform = D3DXVECTOR2(), float angle = 0, D3DXVECTOR2 rotationCenter = D3DXVECTOR2(), D3DXCOLOR colorKey = D3DCOLOR_XRGB(255, 255, 255));
 	void OnCollision(Entity *impactor, CollisionReturn data, SideCollisions side);
 	void Draw(D3DXVECTOR2 transform);
 	void OnSetPosition(D3DXVECTOR3 poks);
 protected:
 	Animation *mAnimation;
+
 };

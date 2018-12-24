@@ -277,6 +277,12 @@
     <ClCompile Include="GameObjects\MapObjects\Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\Escalator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjects\MapObjects\ItemsHealth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GameComponents\Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -517,6 +523,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameObjects\MapObjects\Box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\Escalator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjects\MapObjects\ItemsHealth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameComponents\Sound.h">

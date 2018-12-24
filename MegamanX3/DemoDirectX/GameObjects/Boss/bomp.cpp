@@ -60,9 +60,9 @@ void Bomp::OnCollision(Entity * other, SideCollisions side)
 	{
 		if (bomp == clingbomp)
 		{
+			Sound::getInstance()->play("explosion", false, 1);
 			destroyedbomp->SetPosition(bomp->GetPosition());
 			bomp = destroyedbomp;
-			Sound::getInstance()->play("explosion", false, 1);
 		}
 	}
 }

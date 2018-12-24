@@ -28,21 +28,20 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	rectMove = mCamera->GetBound();
 	D3DXVECTOR2 trans = D3DXVECTOR2(GameGlobal::GetWidth() / 2 - mCamera->GetPosition().x,
 		GameGlobal::GetHeight() / 2 - mCamera->GetPosition().y);
-	rectMove.left = 250;
-	rectMove.right = 402;
-	rectMove.top = 238;
-	rectMove.bottom = 432;
+	rectMove.left = 11662;
+	rectMove.right = 11939;
+	rectMove.top = 3700;
+	rectMove.bottom = 3934;
 	dame = 1;
 	toAttack = true;
 	isAttack = false;
 	midRectY = rectMove.top + (rectMove.bottom - rectMove.top) / 2;
-
+	mListChild.push_back(new ChildHornet());
+	mListChild.push_back(new ChildHornet());
+	mListChild.push_back(new ChildHornet());
+	mListChild.push_back(new ChildHornet());
+	mListChild.push_back(new ChildHornet());
 	mPlayer->hornetHP = new HornetHP(500, 100);
-	mListChild.push_back(new ChildHornet());
-	mListChild.push_back(new ChildHornet());
-	mListChild.push_back(new ChildHornet());
-	mListChild.push_back(new ChildHornet());
-	mListChild.push_back(new ChildHornet());
 
 	this->Tag = EntityTypes::HornetBoss;
 }
@@ -327,6 +326,7 @@ void Hornet::SpawnChild1()
 {
 	for (int i = 0; i < mListChild.size(); i++) {
 		if (mListChild[i]->isAlive) {
+			mListChild[i]->Tag = EntityTypes::HornetChild;
 			mListChild[i]->SetPosition(this->GetPosition());
 			mAnimationStand->Start();
 			mAnimation = mAnimationStand;
@@ -336,6 +336,7 @@ void Hornet::SpawnChild1()
 	for (int i = 0; i < mListChild.size(); i++) {
 		if (!mListChild[i]->isAlive) {
 			mListChild[i] = new ChildHornet(1, posX, posY, direction * 30, -10 + i * 7);
+			mListChild[i]->Tag = EntityTypes::HornetChild;
 		}
 	}
 	mAnimationSpawnChild->Start();

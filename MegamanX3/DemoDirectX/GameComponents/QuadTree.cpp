@@ -52,7 +52,7 @@ void QuadTree::insertEntity(Entity *entity)
     }
     else
     {
-        //node chua dc tao nen se tao va split roi moi insert
+       // node chua dc tao nen se tao va split roi moi insert
         if (Nodes == NULL)
         {
             split();
@@ -61,6 +61,7 @@ void QuadTree::insertEntity(Entity *entity)
         Nodes[index]->insertEntity(entity);
     }
 }
+
 
 bool QuadTree::isContain(Entity *entity)
 {
@@ -128,6 +129,19 @@ int QuadTree::getTotalEntities()
     return total;
 }
 
+void QuadTree::deletenode(Entity * entity)
+{
+	std::vector<Entity*> listentities;
+	getAllEntities(listentities);
+	for (int i = 0; i < listentities.size(); i++)
+	{
+		if (listentities.at(i) == entity)
+		{
+			listentities.at(i)->Tag = Entity::IsDelete;
+		}
+	}
+}
+
 
 
 int QuadTree::getIndex(RECT body)
@@ -178,6 +192,7 @@ void QuadTree::getAllEntities(std::vector<Entity*> &entitiesOut)
 {
     for (auto child : mListEntity)
     {
+		if (child->Tag != Entity::IsDelete)
         entitiesOut.push_back(child);
     }
 
@@ -199,6 +214,7 @@ void QuadTree::getEntitiesCollideAble(std::vector<Entity*> &entitiesOut, Entity 
         //nhung Entity o day se la nam tren 2 node con nen chung ta cung se lay de set va cham
         for (auto child : mListEntity)
         {
+			if (child->Tag != Entity::IsDelete)
             entitiesOut.push_back(child);
         }
 

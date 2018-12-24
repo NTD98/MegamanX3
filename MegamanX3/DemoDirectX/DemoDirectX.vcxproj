@@ -125,7 +125,9 @@
     <ClCompile Include="GameObjects\MapObjects\Box.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Door.cpp" />
     <ClCompile Include="GameObjects\MapObjects\Elevator.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\Escalator.cpp" />
     <ClCompile Include="GameObjects\MapObjects\GameObject.cpp" />
+    <ClCompile Include="GameObjects\MapObjects\ItemsHealth.cpp" />
     <ClCompile Include="GameObjects\Player\bullet.cpp" />
     <ClCompile Include="GameObjects\Player\Player.cpp" />
     <ClCompile Include="GameObjects\Player\PlayerClingingJState.cpp" />
@@ -205,7 +207,9 @@
     <ClInclude Include="GameObjects\MapObjects\Box.h" />
     <ClInclude Include="GameObjects\MapObjects\Door.h" />
     <ClInclude Include="GameObjects\MapObjects\Elevator.h" />
+    <ClInclude Include="GameObjects\MapObjects\Escalator.h" />
     <ClInclude Include="GameObjects\MapObjects\GameObject.h" />
+    <ClInclude Include="GameObjects\MapObjects\ItemsHealth.h" />
     <ClInclude Include="GameObjects\Player\bullet.h" />
     <ClInclude Include="GameObjects\Player\Player.h" />
     <ClInclude Include="GameObjects\Player\PlayerClingingJState.h" />

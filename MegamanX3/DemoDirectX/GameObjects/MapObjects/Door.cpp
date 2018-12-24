@@ -6,7 +6,6 @@ Door::~Door()
 
 Door::Door(float posX,float posY)
 {
-
 	this->mDoorClose = new Animation("Resources/MapObject/doorClose.png", 1, 1, 1, 1.0f);
 	this->mDoorClosing = new Animation("Resources/MapObject/doorClosing.png", 16, 1, 16, 0.15f);
 	this->mDoorOpen = new Animation("Resources/MapObject/doorOpen.png", 16, 1, 16, 0.15f);
@@ -18,13 +17,29 @@ Door::Door(float posX,float posY)
 	this->Tag = Entity::EntityTypes::Door;
 }
 
+Door::Door(float posX, float posY, bool isHornet)
+{
+	this->mDoorClose = new Animation("Resources/MapObject/hornetDoorClose.png", 1, 1, 1, 1.0f);
+	this->mDoorClosing = new Animation("Resources/MapObject/hornetDoorClosing.png", 8, 1, 8, 0.15f);
+	this->mDoorOpen = new Animation("Resources/MapObject/hornetDoorOpen.png", 8, 1, 8, 0.15f);
+	this->SetPosition(posX, posY);
+	this->SetWidth(mDoorClose->GetWidth());
+	this->SetHeight(mDoorClose->GetHeight());
+	mCurrentAnimation = mDoorClose;
+	this->mCurrentAnimation->SetPosition(this->GetPosition());
+	this->Tag = Entity::EntityTypes::Door;
+	this->isDoorHornet = isHornet;
+}
+
+
+
 void Door::Update(float dt)
 {
 	if (isOpenDoor == true) {
 		mCurrentAnimation = mDoorOpen;
 		dtTimeOpen += dt;
 	}
-	if (dtTimeOpen >= 2.4f && isOpenDoor==true) {
+	if ((this->isDoorHornet?dtTimeOpen >= 1.2f:dtTimeOpen>=2.4f) && isOpenDoor==true) {
 		this->isPlayerAfterDoor = true;
 		this->dtPlayerAfterDoor += dt;
 	}
@@ -34,7 +49,7 @@ void Door::Update(float dt)
 		mCurrentAnimation = mDoorClosing;
 		dtTimeClosing += dt;
 	}
-	if (dtTimeClosing >= 2.4f) {
+	if (this->isDoorHornet?dtTimeClosing >= 1.2f:dtTimeClosing>=2.4f) {
 		mCurrentAnimation = mDoorClose;
 		dtTimeClosing = 0;
 		dtPlayerAfterDoor = 0;

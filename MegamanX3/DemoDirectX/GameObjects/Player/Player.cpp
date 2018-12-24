@@ -198,14 +198,12 @@ void Player::OnKeyPressed(int key)
 				{
 					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
 					{
-						Sound::getInstance()->play("Jump", false, 1);
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
 					allowJump = false;
 				}
 				if (mCurrentState == PlayerState::Clinging)
 				{
-					Sound::getInstance()->play("Jump", false, 1);
 					this->SetState(new PlayerClingingJState(this->mPlayerData));
 				}
 				break;
@@ -215,7 +213,6 @@ void Player::OnKeyPressed(int key)
 			isGetOutGunAnimation = true;
 			if (allowshoot)
 			{
-				Sound::getInstance()->play("shoot", false, 1);
 				if (this->mPlayerData->player->getState() != PlayerState::BeDame){
 					if (mPlayerData->player->GetReverse())
 					{
@@ -244,6 +241,7 @@ void Player::OnKeyUp(int key)
     if (key == VK_SPACE)
         allowJump = true;
 	if (key == 0x58) {
+		Sound::getInstance()->play("shoot", false, 1);
 		allowshoot = true;
 		isGetOutGunAnimation = false;
 	}
@@ -294,6 +292,12 @@ void Player::setHealthPoint(Entity::EntityTypes entityTypes,bool isEnemy)
 	case Entity::EntityTypes::HornetBoss:
 		healthDown = 5;
 		break;
+	case Entity::EntityTypes::Health:
+		healthDown = -2;
+		break;
+	case Entity::EntityTypes::HornetChild:
+		healthDown = 2;
+		break;
 	default:
 		break;
 	}
@@ -318,6 +322,7 @@ vector<Bullet*> Player::getbulletlist()
 
 void Player::deletebullet()
 {
+	if(bulletlist.size()>0)
 	this->bulletlist.pop_back();
 }
 
@@ -423,7 +428,40 @@ void Player::OnCollision(Entity * impactor, Entity::SideCollisions side)
 			}
 		}
 	}
-	
+	if (impactor->Tag == Entity::EntityTypes::EscalatorRTL) {
+		this->vx = -100;
+	}
+	if (impactor->Tag == Entity::EntityTypes::EscalatorLTR) {
+		this->vx = 100;
+	}
+	if (impactor->Tag == Entity::HornetChild)
+	{
+		if (isAlive == true && isBeforeDeath == false) {
+			if (isTimeNoDame == false) {
+				SetState(new PlayerDameState(getplayerdata()));
+				if (isSetHealth == true || getHealthPoint() == 16) {
+					setHealthPoint(Entity::EntityTypes::HornetChild, true);
+					isSetHealth = false;
+				}
+			}
+			if (getHealthPoint() <= 0) {
+				SetState(new PlayerDeathState(getplayerdata(), pos.x, pos.y));
+				isBeforeDeath = true;
+			}
+		}
+		//nhan vat bi mat mau
+		HealthPoint -= impactor->dame;
+	}
+	if (impactor->Tag == Entity::EntityTypes::Health) {
+		if (this->HealthPoint <= 14) {
+			this->isSetHealth = true;
+			if (this->isSetHealth == true) {
+				this->setHealthPoint(impactor->Tag, false);
+				this->isSetHealth = false;
+			}
+		}
+	}
+
 }
 
 RECT Player::GetBound()
@@ -450,17 +488,19 @@ void Player::noDameChangeAnimation(PlayerState::StateName state)
 	case PlayerState::Falling:
 		mCurrentAnimation = mAnimationNoDameJumping;
 		break;
-
 	case PlayerState::Jumping:
+		Sound::getInstance()->play("Jump", false, 1);
 		mCurrentAnimation = mAnimationNoDameJumping;
 		break;
 	case PlayerState::Clinging:
 		mCurrentAnimation = mAnimationNoDameClinging;
 		break;
 	case PlayerState::ClingingJ:
+		Sound::getInstance()->play("Jump", false, 1);
 		mCurrentAnimation = mAnimationNoDameClingingJ;
 		break;
 	case PlayerState::Dash:
+		Sound::getInstance()->play("Dass", false, 1);
 		mCurrentAnimation = mAnimationNoDameDashing;
 		break;
 	case PlayerState::StandShoot:
@@ -506,6 +546,7 @@ void Player::changeAnimation(PlayerState::StateName state)
             break;
 
         case PlayerState::Jumping:
+			Sound::getInstance()->play("Jump", false, 1);
             mCurrentAnimation = mAnimationJumping;
             break;
 		case PlayerState::Spawning:
@@ -515,6 +556,7 @@ void Player::changeAnimation(PlayerState::StateName state)
 			mCurrentAnimation = mAnimationClinging;
 			break;
 		case PlayerState::ClingingJ:
+			Sound::getInstance()->play("Jump", false, 1);
 			mCurrentAnimation = mAnimationClingingJ;
 			break;
 		case PlayerState::Dash:
@@ -575,10 +617,10 @@ Player::MoveDirection Player::getMoveDirection()
 
 void Player::OnNoCollisionWithBottom()
 {
-    if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState!= PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ  && mCurrentState!=PlayerState::BeDame && mCurrentState!=PlayerState::Death)
-    {
-        this->SetState(new PlayerFallingState(this->mPlayerData));
-    }    
+	if (mCurrentState != PlayerState::Jumping && mCurrentState != PlayerState::Falling && mCurrentState != PlayerState::Clinging && mCurrentState != PlayerState::ClingingJ  && mCurrentState != PlayerState::BeDame && mCurrentState != PlayerState::Death)
+	{
+		this->SetState(new PlayerFallingState(this->mPlayerData));
+	}
 }
 
 PlayerState::StateName Player::getState()

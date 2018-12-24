@@ -91,6 +91,7 @@ void Box::OnCollision(Entity * impactor, SideCollisions side)
 	if ((impactor->Tag == Entity::BulletP)|| (impactor->Tag == Entity::BulletCharge1) || (impactor->Tag == Entity::BulletCharge2)) {
 		this->setHealth(impactor->Tag);
 	}
+	
 }
 
 

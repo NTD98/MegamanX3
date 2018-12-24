@@ -20,6 +20,8 @@
 #include "../GameObjects/Boss/Byte.h"
 #include "../GameObjects/Boss/Hornet.h"
 #include "../GameObjects/MapObjects/Box.h"
+#include "../GameObjects/MapObjects/Escalator.h"
+#include "../GameObjects/MapObjects/ItemsHealth.h"
 class GameMap
 {
 public:
@@ -38,7 +40,6 @@ public:
     std::map<int, Sprite*> getListTileSet();
 	vector<Enemy*> getEnemy();
 	vector<Box*> getBox();
-	vector<Elevator*> getElevator();
     bool IsBoundLeft(); //kiem tra luc nay Camera o vi bien ben trai so voi WorldMap
     bool IsBoundRight(); // kiem tra xem co o vi tri bien ben phai worldmap khong
     bool IsBoundTop(); // kiem tra xem co o vi tri bien ben trai worldmap khong
@@ -49,6 +50,11 @@ public:
 	bool isStopCamera;
 	bool isDaChuyenCanh = false;
 	QuadTree                        *mQuadTree;
+	void DeleteEntity(Entity* entity);
+	vector<Escalator*> mlistEscalator;
+	vector<ItemsHealth*> mlistHealth;
+	vector<Elevator*> mlistElevator;
+	void deletenode(Entity* entity);
 private:
     void LoadMap(char* filePath);
 
@@ -56,11 +62,10 @@ private:
     std::map<int, Sprite*>          mListTileset;
     LPD3DXSPRITE                    mSpriteHandler;
     Camera                          *mCamera;
-    
+   
 	std::vector<Enemy*>			mListGunners;
 	std::vector<Box*> mListBox;
 	Sprite *map;
-	std::vector<Elevator*>			mlistElevator;
 
 
 	

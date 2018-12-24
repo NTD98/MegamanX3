@@ -157,6 +157,13 @@ void Genjibo::OnCollision(Entity * other, SideCollisions side)
 			if (typeAttack == 1) {
 				if (side == SideCollisions::Left || side == SideCollisions::Right) {
 					vx = -vx;
+					if (side == SideCollisions::Left) {
+						this->AddPositionX(10);
+					}
+					else {
+						this->AddPositionX(-10);
+					}
+					
 				}
 			}
 		}
