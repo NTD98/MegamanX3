@@ -9,12 +9,16 @@
 #include "PlayerDameState.h"
 #include "../../GameComponents/GameCollision.h"
 #include "PlayerDeathState.h"
-
+#include "../../GameComponents/Sound.h"
 float check = 0.0;
 bool isDone = false;
 Player::Player()
 {
 	InitAni();
+	Sound::getInstance()->loadSound("Resources/Sound/Jump.wav", "Jump");
+	Sound::getInstance()->loadSound("Resources/Sound/Dass.wav", "Dass");
+	Sound::getInstance()->loadSound("Resources/Sound/Die.wav", "Die");
+	Sound::getInstance()->loadSound("Resources/Sound/PlayerShoot.wav", "shoot");
     this->mPlayerData = new PlayerData();
     this->mPlayerData->player = this;
     this->vx = 0;
@@ -194,12 +198,14 @@ void Player::OnKeyPressed(int key)
 				{
 					if (mCurrentState == PlayerState::Running || mCurrentState == PlayerState::Standing)
 					{
+						Sound::getInstance()->play("Jump", false, 1);
 						this->SetState(new PlayerJumpingState(this->mPlayerData));
 					}
 					allowJump = false;
 				}
 				if (mCurrentState == PlayerState::Clinging)
 				{
+					Sound::getInstance()->play("Jump", false, 1);
 					this->SetState(new PlayerClingingJState(this->mPlayerData));
 				}
 				break;
@@ -209,6 +215,7 @@ void Player::OnKeyPressed(int key)
 			isGetOutGunAnimation = true;
 			if (allowshoot)
 			{
+				Sound::getInstance()->play("shoot", false, 1);
 				if (this->mPlayerData->player->getState() != PlayerState::BeDame){
 					if (mPlayerData->player->GetReverse())
 					{
@@ -511,6 +518,7 @@ void Player::changeAnimation(PlayerState::StateName state)
 			mCurrentAnimation = mAnimationClingingJ;
 			break;
 		case PlayerState::Dash:
+			Sound::getInstance()->play("Dass", false, 1);
 			mCurrentAnimation = mAnimationDashing;
 			break;
 		case PlayerState::StandShoot:
@@ -535,6 +543,8 @@ void Player::changeAnimation(PlayerState::StateName state)
 			mCurrentAnimation = mAniamtionBeDame;
 			break;
 		case PlayerState::Death:
+			Sound::getInstance()->stop("background");
+			Sound::getInstance()->play("Die", false, 1);
 			mCurrentAnimation = mAnimationBeforeDeath;
 			break;
         default:

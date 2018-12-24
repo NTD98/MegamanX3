@@ -23,6 +23,7 @@
 #include "../GameObjects/Boss/bomp.h"
 #include "../GameObjects/Effect/ChangeBulletEffect.h"
 #include "../GameObjects/MapObjects/Elevator.h"
+#include "../GameComponents/Sound.h"
 class DemoScene : public Scene
 {
 public:

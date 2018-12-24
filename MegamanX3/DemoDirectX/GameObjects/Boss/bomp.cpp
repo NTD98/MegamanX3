@@ -1,5 +1,5 @@
 #include "bomp.h"
-
+#include "../../GameComponents/Sound.h"
 Bomp::Bomp(D3DXVECTOR3 pos,bool reverse)
 {
 	flybomp = new Animation("Resources/Boss/bompfly.png", 2, 1, 2, 0.1f);
@@ -62,6 +62,7 @@ void Bomp::OnCollision(Entity * other, SideCollisions side)
 		{
 			destroyedbomp->SetPosition(bomp->GetPosition());
 			bomp = destroyedbomp;
+			Sound::getInstance()->play("explosion", false, 1);
 		}
 	}
 }

@@ -1,5 +1,14 @@
-﻿  Box.cpp
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\mapobjects\box.cpp(31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\gameobjects\mapobjects\box.cpp(37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+﻿  ChildHornet.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\enemy\childhornet.cpp(59): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\enemy\childhornet.cpp(92): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\enemy\childhornet.cpp(93): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Byte.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(174): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(175): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(176): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(177): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(192): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\byte.cpp(194): warning C4244: 'argument': conversion from 'int' to 'FLOAT', possible loss of data
+  Generating Code...
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

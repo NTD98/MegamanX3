@@ -1,6 +1,7 @@
 ﻿#include "Genjibo.h"
 #include "../../Scenes/DemoScene.h"
 #include "../../GameComponents/CollisionManager.h"
+#include "../../GameComponents/Sound.h"
 Genjibo::~Genjibo()
 {
 }
@@ -133,6 +134,7 @@ void Genjibo::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 	{
 		if (mExplode[count])
 		{
+			Sound::getInstance()->play("explosion", false, 1);
 			if (!mExplode[count]->isEndAnimate)
 				mExplode[count]->UpdateS(dt);
 			else

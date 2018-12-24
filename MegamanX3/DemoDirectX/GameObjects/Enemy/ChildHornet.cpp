@@ -1,6 +1,7 @@
 ﻿#include "ChildHornet.h"
 #include "../../GameDefines/GameDefine.h"
 #include"../../GameComponents/CollisionManager.h"
+#include "../../GameComponents/Sound.h"
 ChildHornet::~ChildHornet()
 {
 }
@@ -114,6 +115,7 @@ void ChildHornet::Die()
 	isAlive = false;
 	mExplosion = new Animation("Resources/explode.png", 6, 1, 6, 0.1f);
 	mExplosion->SetPosition(mAnimation->GetPosition());
+	Sound::getInstance()->play("explosion", false, 1);
 }
 
 void ChildHornet::Draw(D3DXVECTOR2 transform)

@@ -1,6 +1,7 @@
 ﻿#include "Hornet.h"
 #include "../../GameDefines/GameDefine.h"
 #include "../../GameComponents/CollisionManager.h"
+#include "../../GameComponents/Sound.h"
 Hornet::~Hornet()
 {
 }
@@ -239,6 +240,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 		mPlayer->hornetHP = nullptr;
 		if (mExplode[count])
 		{
+			Sound::getInstance()->play("explosion", false, 1);
 			if (!mExplode[count]->isEndAnimate)
 				mExplode[count]->UpdateS(dt);
 			else

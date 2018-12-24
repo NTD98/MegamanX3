@@ -35,7 +35,9 @@ void DemoScene::LoadContent()
     mMap->SetCamera(mCamera);
 	HealthBar = new Sprite("Resources/megaman/EmptyHealth.png");
 	HealthPoint = new Sprite("Resources/megaman/HealthBar.png");
-
+	Sound::getInstance()->loadSound("Resources/Sound/Background.wav", "background");
+	Sound::getInstance()->loadSound("Resources/Sound/Explosion.wav", "explosion");
+	Sound::getInstance()->play("background", true, 0);
 
 	changeBulletEffect = new ChangeBulletEffect();
 	for (int i = 0; i < 16; i++)
@@ -661,6 +663,7 @@ void DemoScene::checkCollision()
 							mlistGunners.at(h)->setHealthPoint(bulletlist.at(j)->Tag);
 							bulletlist.at(j)->OnCollision();
 							if (mlistGunners.at(h)->getHealthPoint() <= 0) {
+								Sound::getInstance()->play("explosion", false, 1);
 								mlistGunners.at(h)->changeAnimation(EnemyState::Die);
 								mlistGunners.at(h)->isAlive = false;
 								std::vector<Enemy*>::iterator pos = mlistGunners.begin();
@@ -680,6 +683,7 @@ void DemoScene::checkCollision()
 						if (PlayerBulletVsHelit.IsCollided) {
 							bulletlist.at(j)->OnCollision();
 							if (listhelit.at(h)->isAlive == false) {
+								Sound::getInstance()->play("explosion", false, 1);
 								std::vector<Helit*>::iterator pos = listhelit.begin();
 								for (int m = 1; m < h; m++)
 									pos++;
