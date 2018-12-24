@@ -18,8 +18,8 @@ Hornet::Hornet(float posX, float posY, Player* mPlayer, Camera* mCamera)
 	mAnimation = mAnimationStand;
 	this->SetPosition(posX, posY);
 	mAnimation->SetPosition(posX, posY);
-	this->SetWidth(30);	//người ở giữa
-	this->SetHeight(60);	//người ở giữa
+	this->SetWidth(30);
+	this->SetHeight(60);
 	isFaceRight = false;
 	isAlive = true;
 	isSpawn = true;
@@ -52,7 +52,6 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 	{
 		mAnimation->Update(dt, 1);
 		Entity::Update(dt);
-
 		if (mPlayer->hornetHP->HP <= 0) {
 			if (mAnimation != mAnimationDie) {
 				mAnimationDie->Start();
@@ -63,13 +62,13 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 		else if (mPlayer->hornetHP->HP > 30) {
 			typeAttack = 1;
 		}
-		else if (mPlayer->hornetHP->HP > 15) {
+		else if (mPlayer->hornetHP->HP > 17) {
 			typeAttack = 2;
 		}
 		else {
 			typeAttack = 3;
 		}
-		if (mAnimation == mAnimationAttack) {	//Lao tới nv
+		if (mAnimation == mAnimationAttack) {	//go to megaman
 			if (int(posX) > posMegaX) {
 				this->AddPositionX(-2);
 			}
@@ -97,7 +96,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				}
 				else if (typeAttack == 2) {
 
-					//Chuẩn bị xuống
+					//prepare go down
 					if (toAttack) {
 						toAttack = false;
 						mAnimationPrepare->Start();
@@ -124,7 +123,7 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				mAnimationFly->Start();
 				mAnimation = mAnimationFly;
 			}
-			else if (mAnimation == mAnimationPrepare) {	//Kết thúc chuẩn bị: Prepare->Attack
+			else if (mAnimation == mAnimationPrepare) {	//Done Prepare: Prepare->Attack
 				posMegaX = mPlayer->posX;
 				posMegaY = rectMove.bottom;
 				mAnimationAttack->Start();
@@ -153,28 +152,16 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 				vy = -HornetDefine::SPEED_Y;
 				vx = 0;
 			}
-			/*else {
-			if (mPlayer->hornetHP->HP == 5) {
-			vx = HornetDefine::SPEED_X;
-			}
-			}*/
 		}
-
-
-		// move like 8 
-
-
-
-
-		//Kiểm tra va chạm với nhân vật
+		//check collision with megaman
 		if (mPlayer) {
-			//kiểm tra va chạm viên đạn player
+			//check collision mega bullet with boss
 			for (int i = 0; i < mPlayer->bulletlist.size(); i++) {
 				CollisionManager::getInstance()->checkCollision(mPlayer->bulletlist[i], this, dt);
 			}
 			CollisionManager::getInstance()->checkCollision(mPlayer, this, dt);
 
-			//Xoay mặt hướng nhân vật
+			//change flipvertical
 			if (mPlayer->posX >= posX) {
 				isFaceRight = true;
 				direction = 1;
@@ -185,7 +172,6 @@ void Hornet::Update(float dt, Player* mPlayer, vector<Entity*> mListMapObject)
 			}
 		}
 
-		//kiểm tra va chạm  object với map
 		for (size_t j = 0; j < mListMapObject.size(); j++) {
 			CollisionManager::getInstance()->checkCollision(this, mListMapObject[j], dt);
 		}
@@ -259,9 +245,6 @@ void Hornet::OnCollision(Entity * other, SideCollisions side)
 		other->Tag = EntityTypes::None;
 	}
 	if (other->Tag == EntityTypes::Wall || other->Tag == EntityTypes::Static) {
-		/*if (side == SideCollisions::Top) {
-		vy=-vy;
-		}*/
 		if (mAnimation == mAnimationAttack) {
 			mAnimationFly->Start();
 			mAnimation = mAnimationFly;

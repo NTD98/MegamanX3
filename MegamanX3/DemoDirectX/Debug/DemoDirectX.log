@@ -1,33 +1,45 @@
-﻿  DemoScene.cpp
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(18): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(19): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(20): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(21): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(23): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(82): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(174): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(185): warning C4553: '==': operator has no effect; did you intend '='?
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(208): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(218): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(245): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(248): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(263): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(277): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(295): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(311): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(423): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(430): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(436): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(443): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(482): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(497): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(505): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(577): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(598): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(650): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(695): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(711): warning C4018: '<': signed/unsigned mismatch
-c:\users\danhypc\desktop\megamanx3\demodirectx\scenes\demoscene.cpp(730): warning C4018: '<': signed/unsigned mismatch
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.exe
-  DemoDirectX.vcxproj -> C:\Users\DanhyPC\Desktop\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)
+﻿  HornetHP.cpp
+  Hornet.cpp
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(127): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(138): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(143): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(150): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(151): warning C4244: 'argument': conversion from 'LONG' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(159): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(179): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(195): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(261): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(262): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(263): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(264): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(282): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(310): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(319): warning C4018: '<': signed/unsigned mismatch
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(321): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(333): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(335): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+d:\github\megamanx3\megamanx3\demodirectx\gameobjects\boss\hornet.cpp(345): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  DemoScene.cpp
+  bullet.cpp
+  PlayerStandingState.cpp
+  PlayerSpawingState.cpp
+  PlayerRunningState.cpp
+  PlayerJumpingState.cpp
+  PlayerFallingState.cpp
+  PlayerDeathState.cpp
+  PlayerDashState.cpp
+  PlayerDameState.cpp
+  PlayerClingingState.cpp
+  PlayerClingingJState.cpp
+  Player.cpp
+  Helit.cpp
+  ChildHornet.cpp
+  ChangeBulletEffect.cpp
+  Genjibo.cpp
+  Byte.cpp
+  GameMap.cpp
+  Game.cpp
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.exe
+  DemoDirectX.vcxproj -> D:\GitHub\MegamanX3\MegamanX3\Debug\DemoDirectX.pdb (Full PDB)

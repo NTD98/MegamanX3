@@ -8,7 +8,7 @@ HornetHP::HornetHP(float posx, float posy)
 	HP = 40;
 	for (int i = 0; i < HP; i++) {
 		mListSpriteLine.push_back(new Sprite("Resources/Boss/LineHP.png"));
-		mListSpriteLine[i]->SetPosition(posX, (posY - 48 + (HP - i)*2));//(posY - 22 + (HP - i) * 2)
+		mListSpriteLine[i]->SetPosition(posX, (posY - 48 + (HP - i)*2));
 	}
 
 }
